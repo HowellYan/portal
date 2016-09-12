@@ -58,15 +58,13 @@ public class MessageSourceHelper implements Helper<String> {
   private MessageSource messageSource;
 
   /**
-   * Creates a new {@link MessageSourceHelperTest}.
-   *
+
    * @param messageSource The message source. Required.
    */
   public MessageSourceHelper(final MessageSource messageSource) {
     this.messageSource = notNull(messageSource, "A message source is required.");
   }
 
-  @Override
   public CharSequence apply(final String code, final Options options)
       throws IOException {
     Object[] args = options.params;

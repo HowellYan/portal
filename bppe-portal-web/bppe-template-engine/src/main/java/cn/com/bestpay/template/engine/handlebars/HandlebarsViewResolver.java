@@ -163,7 +163,6 @@ public class HandlebarsViewResolver  extends AbstractTemplateViewResolver
         return HandlebarsView.class;
     }
 
-    @Override
     public void afterPropertiesSet() {
         // Creates a new template loader.
         URLTemplateLoader templateLoader = createTemplateLoader(getApplicationContext());
@@ -213,12 +212,10 @@ public class HandlebarsViewResolver  extends AbstractTemplateViewResolver
      */
     private static I18nSource createI18nSource(final ApplicationContext context) {
         return new I18nSource() {
-            @Override
             public String message(final String key, final Locale locale, final Object... args) {
                 return context.getMessage(key, args, locale);
             }
 
-            @Override
             public String[] keys(final String basename, final Locale locale) {
                 ResourceBundle bundle = ResourceBundle.getBundle(basename, locale);
                 Enumeration<String> keys = bundle.getKeys();
@@ -380,7 +377,6 @@ public class HandlebarsViewResolver  extends AbstractTemplateViewResolver
      * @param helperSource The helper source. Required.
      * @return This handlebars object.
      */
-    @Override
     public HandlebarsViewResolver registerHelpers(final Object helperSource) {
         registry.registerHelpers(helperSource);
         return this;

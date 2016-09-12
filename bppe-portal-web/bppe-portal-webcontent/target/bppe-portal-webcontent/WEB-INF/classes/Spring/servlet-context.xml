@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <util:list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </util:list>
+                </property>
+            </bean>
+            <bean class="cn.com.bestpay.web.misc.JsonMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <util:properties id="app" location="classpath:app.properties"/>
+
+
+
+
+    <import resource="classpath*:Spring/template.engine.xml"/>
+    <import resource="controllers.xml"/>
+
+    <aop:config>
+        <aop:aspect ref="storageAdvice" id="getAspect">
+            <aop:pointcut id="getPointcut" expression="execution(* cn.com.bestpay.template.engine.service.*.findById(..))"/>
+            <aop:around method="storageGetAround" pointcut-ref="getPointcut"/>
+        </aop:aspect>
+        <aop:aspect ref="storageAdvice" id="updateAspect">
+            <aop:pointcut id="updatePointcut" expression="execution(* cn.com.bestpay.template.engine.service.*.update(..))"/>
+            <aop:around method="storageUpdateAround" pointcut-ref="updatePointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean name="storagePolicy" class="cn.com.bestpay.storage.StoragePolicy">
+        <constructor-arg index="0">
+            <list>
+                <value>cn.com.bestpay.template.engine.model.redis.Component</value>
+                <value>cn.com.bestpay.template.engine.model.redis.Site</value>
+                <value>cn.com.bestpay.template.engine.model.redis.Page</value>
+                <value>cn.com.bestpay.template.engine.model.redis.SiteInstance</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <list>
+                <value>30</value>
+                <value>30</value>
+                <value>30</value>
+                <value>30</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <list>
+                <ref bean="inMemoryStore"/>
+                <ref bean="inMemoryStore"/>
+                <ref bean="inMemoryStore"/>
+                <ref bean="inMemoryStore"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+
+</beans>

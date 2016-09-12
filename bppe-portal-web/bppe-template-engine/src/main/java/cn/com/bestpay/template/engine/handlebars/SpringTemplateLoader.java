@@ -66,7 +66,6 @@ public class SpringTemplateLoader extends URLTemplateLoader {
     this((ResourceLoader) applicationContext);
   }
 
-  @Override
   protected URL getResource(final String location) throws IOException {
     Resource resource = loader.getResource(location);
     if (!resource.exists()) {

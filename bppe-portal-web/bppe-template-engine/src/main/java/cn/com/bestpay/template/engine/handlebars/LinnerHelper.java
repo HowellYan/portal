@@ -34,7 +34,6 @@ public class LinnerHelper {
         }
 
         this.handlebarEngine.registerHelper("fillPath", new Helper() {
-            @Override
             public CharSequence apply(Object context, Options options) throws IOException {
                 String assertPath = String.valueOf(context);
                 return (CharSequence)(LinnerHelper.this.assertPaths != null && LinnerHelper.this.assertPaths.get(assertPath) != null?(CharSequence)LinnerHelper.this.assertPaths.get(assertPath):assertPath);

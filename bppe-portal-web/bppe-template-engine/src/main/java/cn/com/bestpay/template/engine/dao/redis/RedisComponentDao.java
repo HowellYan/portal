@@ -1,6 +1,10 @@
 package cn.com.bestpay.template.engine.dao.redis;
 
 
+import cn.com.bestpay.redis.dao.RedisBaseDao;
+import cn.com.bestpay.redis.utils.JedisTemplate;
+import cn.com.bestpay.redis.utils.KeyUtils;
+import cn.com.bestpay.template.engine.model.redis.Component;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,7 +32,7 @@ public class RedisComponentDao extends RedisBaseDao<Component> {
     }
 
     public List<Component> findByCategoryId(final Long categoryId) {
-        Set ids = (Set)this.template.execute(new JedisAction() {
+        Set ids = (Set)this.template.execute(new JedisTemplate.JedisAction() {
             public Set<String> action(Jedis jedis) {
                 return jedis.smembers(KeyUtils.components(categoryId.longValue()));
             }
@@ -37,7 +41,7 @@ public class RedisComponentDao extends RedisBaseDao<Component> {
     }
 
     public Component findByPath(final String path) {
-        String id = (String)this.template.execute(new JedisAction() {
+        String id = (String)this.template.execute(new JedisTemplate.JedisAction() {
             public String action(Jedis jedis) {
                 return jedis.get(KeyUtils.component(path));
             }
@@ -48,7 +52,7 @@ public class RedisComponentDao extends RedisBaseDao<Component> {
     public void create(final Component component) {
         final Long id = this.newId();
         component.setId(id);
-        this.template.execute(new JedisActionNoResult() {
+        this.template.execute(new JedisTemplate.JedisActionNoResult() {
             public void action(Jedis jedis) {
                 Transaction t = jedis.multi();
                 t.hmset(KeyUtils.entityId(Component.class, id.longValue()), RedisComponentDao.this.stringHashMapper.toHash(component));
@@ -65,7 +69,7 @@ public class RedisComponentDao extends RedisBaseDao<Component> {
     public void delete(final Long id) {
         final Component component = (Component)this.findByKey(id);
         if(id != null) {
-            this.template.execute(new JedisActionNoResult() {
+            this.template.execute(new JedisTemplate.JedisActionNoResult() {
                 public void action(Jedis jedis) {
                     Transaction t = jedis.multi();
                     t.del(KeyUtils.entityId(Component.class, id.longValue()));
@@ -86,7 +90,7 @@ public class RedisComponentDao extends RedisBaseDao<Component> {
         if(original == null) {
             throw new IllegalStateException("component not exist");
         } else {
-            this.template.execute(new JedisActionNoResult() {
+            this.template.execute(new JedisTemplate.JedisActionNoResult() {
                 public void action(Jedis jedis) {
                     Transaction t = jedis.multi();
                     t.hmset(KeyUtils.entityId(Component.class, id.longValue()), RedisComponentDao.this.stringHashMapper.toHash(component));

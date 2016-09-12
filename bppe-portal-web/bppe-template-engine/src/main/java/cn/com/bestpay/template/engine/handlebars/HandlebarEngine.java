@@ -1,6 +1,12 @@
 package cn.com.bestpay.template.engine.handlebars;
 
 
+import cn.com.bestpay.common.utils.JsonMapper;
+import cn.com.bestpay.template.engine.container.ExecutorFactory;
+import cn.com.bestpay.template.engine.model.redis.Page;
+import cn.com.bestpay.template.engine.model.redis.Widget;
+import cn.com.bestpay.template.engine.service.ComponentService;
+import cn.com.bestpay.user.base.UserUtil;
 import com.github.jknack.handlebars.*;
 import com.github.jknack.handlebars.Handlebars.SafeString;
 import com.github.jknack.handlebars.io.TemplateLoader;
@@ -42,7 +48,7 @@ public class HandlebarEngine {
     private String baseDir;
 
     @Autowired
-    public HandlebarEngine(ComponentService componentService, ExecutorFactory executorFactory,@Value("#{app.baseDir}") String baseDir, ServletContext servletContext) {
+    public HandlebarEngine(ComponentService componentService, ExecutorFactory executorFactory, @Value("#{app.baseDir}") String baseDir, ServletContext servletContext) {
         this.baseDir = baseDir;
         logger.debug("baseDir : " + baseDir);
         this.componentService = componentService;
@@ -55,7 +61,7 @@ public class HandlebarEngine {
         this.executedComponentCache = CacheBuilder.newBuilder().maximumSize(1000L).expireAfterWrite(10L, TimeUnit.MINUTES).build();
         this.handlebars = new Handlebars(this.templateLoader);
         this.handlebars.registerHelper("inject", new Helper<String>() {
-            @Override
+
             public CharSequence apply(String compPath, Options options) throws IOException {
                 logger.debug("compPath : " + compPath);
                 HashMap tempContext = Maps.newHashMap();
@@ -72,7 +78,7 @@ public class HandlebarEngine {
 
                 Object firstParam1 = options.param(0, (Object)null);
                 if(firstParam1 != null) {
-                    cn.pojo.templateEngine.model.redis.Component component;
+                    cn.com.bestpay.template.engine.model.redis.Component component;
                     if(firstParam1 instanceof Boolean && ((Boolean)firstParam1).booleanValue()) {
                         component = HandlebarEngine.this.componentService.findByPath(compPath);
                         if(component == null) {
@@ -84,7 +90,7 @@ public class HandlebarEngine {
                     }
 
                     if(firstParam1 instanceof String && StringUtils.isNotBlank((String)firstParam1)) {
-                        component = new cn.pojo.templateEngine.model.redis.Component();
+                        component = new cn.com.bestpay.template.engine.model.redis.Component();
                         component.setPath(compPath);
                         component.setApis(ImmutableMap.of("default", (String)firstParam1));
                         return new SafeString(HandlebarEngine.this.execComponent((Widget)null, component, tempContext));
@@ -95,7 +101,7 @@ public class HandlebarEngine {
             }
         });
         this.handlebars.registerHelper("component", new Helper<String>() {
-            @Override
+
             public CharSequence apply(String className, Options options) throws IOException {
                 StringBuilder compOpenTag = (new StringBuilder("<div class=\"")).append(className).append(" js-comp\"");
                 Object id = options.context.get("_ID_");
@@ -167,15 +173,15 @@ public class HandlebarEngine {
         }
     }
 
-    public String execComponent(final Widget widget, final cn.pojo.templateEngine.model.redis.Component comp, final Map<String, Object> context) {
+    public String execComponent(final Widget widget, final cn.com.bestpay.template.engine.model.redis.Component comp, final Map<String, Object> context) {
         if(comp == null) {
             logger.debug("component is null for compId : {}", widget.getCompId());
             return "";
         } else {
             String key = null;
-            if(widget != null && Objects.equal(Integer.valueOf(CacheBy.Widget.value()), comp.getCachedBy())) {
+            if(widget != null && Objects.equal(Integer.valueOf(cn.com.bestpay.template.engine.model.redis.Component.CacheBy.Widget.value()), comp.getCachedBy())) {
                 key = "Wid:" + widget.getId();
-            } else if(Objects.equal(Integer.valueOf(CacheBy.Component.value()), comp.getCachedBy())) {
+            } else if(Objects.equal(Integer.valueOf(cn.com.bestpay.template.engine.model.redis.Component.CacheBy.Component.value()), comp.getCachedBy())) {
                 key = "Comp:" + comp.getId();
             }
 
@@ -196,7 +202,7 @@ public class HandlebarEngine {
         }
     }
 
-    private String _execComponent(Widget widget, cn.pojo.templateEngine.model.redis.Component comp, Map<String, Object> context) {
+    private String _execComponent(Widget widget, cn.com.bestpay.template.engine.model.redis.Component comp, Map<String, Object> context) {
         if(comp.getApis() != null) {
             Object object = this.executorFactory.getExecutor().exec((String)comp.getApis().get("default"), context);
             context.put("_DATA_", object);

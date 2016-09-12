@@ -1,6 +1,7 @@
 package cn.com.bestpay.template.engine.model.redis;
 
-import cn.pojo.common.model.Indexable;
+
+import cn.com.bestpay.common.model.Indexable;
 import com.google.common.base.Objects;
 
 import java.util.Date;

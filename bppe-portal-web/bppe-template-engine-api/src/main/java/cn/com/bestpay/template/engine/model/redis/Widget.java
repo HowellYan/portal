@@ -1,9 +1,11 @@
 package cn.com.bestpay.template.engine.model.redis;
 
-import cn.pojo.common.utils.Node;
+
+import cn.com.bestpay.common.utils.Node;
 import com.google.common.base.Objects;
 
 import java.io.Serializable;
+
 
 /**
  * Created by Howell on 16/1/28.

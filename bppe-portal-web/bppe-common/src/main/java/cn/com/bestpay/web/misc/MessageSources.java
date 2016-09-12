@@ -43,7 +43,7 @@ public class MessageSources implements MessageSource{
      * otherwise the default message passed as a parameter
      * @see java.text.MessageFormat
      */
-    @Override
+
     public String getMessage(String code, Object[] args, String defaultMessage, Locale locale) {
         return messageSource.getMessage(code, args, defaultMessage, locale);
     }
@@ -59,7 +59,7 @@ public class MessageSources implements MessageSource{
      * @throws org.springframework.context.NoSuchMessageException if the message wasn't found
      * @see java.text.MessageFormat
      */
-    @Override
+
     public String getMessage(String code, Object[] args, Locale locale) throws NoSuchMessageException {
         return messageSource.getMessage(code, args, locale);
     }
@@ -76,7 +76,6 @@ public class MessageSources implements MessageSource{
      * @throws org.springframework.context.NoSuchMessageException if the message wasn't found
      * @see java.text.MessageFormat
      */
-    @Override
     public String getMessage(MessageSourceResolvable resolvable, Locale locale) throws NoSuchMessageException {
         return messageSource.getMessage(resolvable, locale);
     }

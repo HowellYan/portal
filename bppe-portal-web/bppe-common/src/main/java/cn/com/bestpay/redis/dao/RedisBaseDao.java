@@ -37,7 +37,6 @@ public abstract class RedisBaseDao<T> {
             return Collections.emptyList();
         }
         List<Response<Map<String,String>>> result = template.execute(new JedisTemplate.JedisAction<List<Response<Map<String,String>>>>() {
-            @Override
             public List<Response<Map<String,String>>> action(Jedis jedis) {
                 List<Response<Map<String,String>>> result = Lists.newArrayListWithCapacity(Iterables.size(ids));
                 Pipeline p = jedis.pipelined();
@@ -57,7 +56,6 @@ public abstract class RedisBaseDao<T> {
 
     protected T findByKey(final Long id) {
         Map<String,String> hash = template.execute(new JedisTemplate.JedisAction<Map<String, String>>() {
-            @Override
             public Map<String, String> action(Jedis jedis) {
                 return jedis.hgetAll(KeyUtils.entityId(entityClass,id));
             }
@@ -67,7 +65,6 @@ public abstract class RedisBaseDao<T> {
 
     public Long newId(){
         return template.execute(new JedisTemplate.JedisAction<Long>() {
-            @Override
             public Long action(Jedis jedis) {
                 return jedis.incr(KeyUtils.entityCount(entityClass));
             }

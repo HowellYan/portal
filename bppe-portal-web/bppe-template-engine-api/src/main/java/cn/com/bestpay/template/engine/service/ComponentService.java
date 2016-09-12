@@ -1,6 +1,8 @@
 package cn.com.bestpay.template.engine.service;
 
-import cn.pojo.templateEngine.model.redis.Component;
+
+
+import cn.com.bestpay.template.engine.model.redis.Component;
 
 import java.util.List;
 

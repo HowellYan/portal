@@ -1,6 +1,10 @@
 package cn.com.bestpay.template.engine.service;
 
 
+import cn.com.bestpay.redis.dao.RedisBaseDao;
+import cn.com.bestpay.redis.utils.JedisTemplate;
+import cn.com.bestpay.redis.utils.KeyUtils;
+import cn.com.bestpay.template.engine.model.redis.ComponentCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;

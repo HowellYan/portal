@@ -1,6 +1,11 @@
 package cn.com.bestpay.template.engine.dao.redis;
 
 
+import cn.com.bestpay.common.model.Paging;
+import cn.com.bestpay.redis.dao.RedisBaseDao;
+import cn.com.bestpay.redis.utils.JedisTemplate;
+import cn.com.bestpay.redis.utils.KeyUtils;
+import cn.com.bestpay.template.engine.model.redis.Site;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
@@ -31,7 +36,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     }
 
     public Site findByDomain(String domain, boolean isSubDomain) {
-        final String key = isSubDomain?KeyUtils.subDomain(domain):KeyUtils.domain(domain);
+        final String key = isSubDomain? KeyUtils.subDomain(domain):KeyUtils.domain(domain);
         String siteId = (String)this.template.execute(new JedisTemplate.JedisAction() {
             public String action(Jedis jedis) {
                 return jedis.get(key);
@@ -51,7 +56,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
         } else if(!Strings.isNullOrEmpty(site.getSubDomain()) && this.subDomainExists(site.getSubDomain()).booleanValue()) {
             throw new IllegalArgumentException("subDomain exists");
         } else {
-            this.template.execute(new JedisActionNoResult() {
+            this.template.execute(new JedisTemplate.JedisActionNoResult() {
                 public void action(Jedis jedis) {
                     Transaction t = jedis.multi();
                     t.hmset(KeyUtils.entityId(Site.class, id.longValue()), RedisSiteDao.this.stringHashMapper.toHash(site));
@@ -78,7 +83,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     public void delete(final Long id) {
         final Site site = this.findById(id);
         if(site != null) {
-            this.template.execute(new JedisActionNoResult() {
+            this.template.execute(new JedisTemplate.JedisActionNoResult() {
                 public void action(Jedis jedis) {
                     String subDomain = site.getSubDomain();
                     String domain = site.getDomain();
@@ -104,7 +109,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
         Preconditions.checkArgument(site.getDomain() == null, "can not update domain use this method");
         Preconditions.checkArgument(site.getSubDomain() == null, "can not update subDomain use this method");
         site.setUpdatedAt(new Date());
-        this.template.execute(new JedisActionNoResult() {
+        this.template.execute(new JedisTemplate.JedisActionNoResult() {
             public void action(Jedis jedis) {
                 Transaction t = jedis.multi();
                 Long id = site.getId();
@@ -148,7 +153,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     }
 
     public Boolean subDomainExists(final String subDomain) {
-        return (Boolean)this.template.execute(new JedisAction() {
+        return (Boolean)this.template.execute(new JedisTemplate.JedisAction() {
             public Boolean action(Jedis jedis) {
                 return jedis.exists(KeyUtils.subDomain(subDomain));
             }
@@ -162,7 +167,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
                 throw new IllegalArgumentException("domain exists");
             } else {
                 final String originalDomain = site.getDomain();
-                this.template.execute(new JedisActionNoResult() {
+                this.template.execute(new JedisTemplate.JedisActionNoResult() {
                     public void action(Jedis jedis) {
                         Transaction t = jedis.multi();
                         if(!Strings.isNullOrEmpty(originalDomain)) {
@@ -179,7 +184,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     }
 
     public List<Site> findByUserId(final Long userId) {
-        Set ids = (Set)this.template.execute(new JedisAction() {
+        Set ids = (Set)this.template.execute(new JedisTemplate.JedisAction() {
             public Set<String> action(Jedis jedis) {
                 return jedis.smembers(KeyUtils.sites(userId.longValue()));
             }
@@ -188,7 +193,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     }
 
     public Long maxId() {
-        return (Long)this.template.execute(new JedisAction() {
+        return (Long)this.template.execute(new JedisTemplate.JedisAction() {
             public Long action(Jedis jedis) {
                 return Long.valueOf(Long.parseLong(jedis.get(KeyUtils.entityCount(Site.class))));
             }
@@ -196,7 +201,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     }
 
     public void changeOwner(final Long siteId, final Long oldUerId, final Long newUserId) {
-        this.template.execute(new JedisActionNoResult() {
+        this.template.execute(new JedisTemplate.JedisActionNoResult() {
             public void action(Jedis jedis) {
                 Transaction t = jedis.multi();
                 t.srem(KeyUtils.sites(oldUerId.longValue()), siteId.toString());
@@ -207,7 +212,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
     }
 
     public Paging<Site> pagination(final int offset, final Integer size) {
-        Long total = (Long)this.template.execute(new JedisAction() {
+        Long total = (Long)this.template.execute(new JedisTemplate.JedisAction() {
             public Long action(Jedis jedis) {
                 return jedis.llen(KeyUtils.allSites());
             }
@@ -215,7 +220,7 @@ public class RedisSiteDao extends RedisBaseDao<Site> {
         if((long)offset >= total.longValue()) {
             return new Paging(total, Collections.emptyList());
         } else {
-            List ids = (List)this.template.execute(new JedisAction() {
+            List ids = (List)this.template.execute(new JedisTemplate.JedisAction() {
                 public List<String> action(Jedis jedis) {
                     return jedis.lrange(KeyUtils.allSites(), (long)offset, (long)(offset + size.intValue() - 1));
                 }

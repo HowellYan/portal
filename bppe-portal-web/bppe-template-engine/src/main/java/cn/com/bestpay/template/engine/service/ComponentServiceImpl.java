@@ -1,6 +1,10 @@
 package cn.com.bestpay.template.engine.service;
 
 
+import cn.com.bestpay.common.utils.JsonMapper;
+import cn.com.bestpay.template.engine.dao.redis.RedisComponentDao;
+import cn.com.bestpay.template.engine.model.redis.Component;
+import cn.com.bestpay.template.engine.model.redis.ComponentCategory;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;

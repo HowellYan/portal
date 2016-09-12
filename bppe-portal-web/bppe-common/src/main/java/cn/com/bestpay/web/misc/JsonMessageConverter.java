@@ -1,6 +1,7 @@
 package cn.com.bestpay.web.misc;
 
-import cn.pojo.common.utils.JsonMapper;
+
+import cn.com.bestpay.common.utils.JsonMapper;
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JavaType;

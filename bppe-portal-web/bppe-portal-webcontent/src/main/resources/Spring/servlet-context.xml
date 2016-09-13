@@ -51,16 +51,7 @@
     </aop:config>
 
 
-     <!-- VIEW RESOLVER -->
-         <bean id="handlebarsViewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
-             <!--  <constructor-arg value="com.ruijie.crazy.handlebars.CustomHandlebarsView" />-->
-             <property name="order" value="1" />
-             <property name="prefix" value="/page/" />
-             <property name="suffix" value=".html" />
-             <property name="contentType" value="text/html;charset=utf-8" />
-             <property name="failOnMissingFile" value="false" />
-             <property name="cache" value="false" />
-         </bean>
+
 
     <bean name="storagePolicy" class="cn.com.bestpay.storage.StoragePolicy">
         <constructor-arg index="0">
@@ -89,5 +80,25 @@
         </constructor-arg>
     </bean>
 
+    <!-- VIEW RESOLVER -->
+    <bean id="handlebarsViewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+        <!--  <constructor-arg value="com.ruijie.crazy.handlebars.CustomHandlebarsView" />-->
+        <property name="order" value="0" />
+        <property name="prefix" value="/page/" />
+        <property name="contentType" value="text/html;charset=utf-8" />
+        <property name="failOnMissingFile" value="false" />
+        <property name="cache" value="false" />
+        <property name="suffix" value=".html" />
+    </bean>
+    <bean id="viewsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+        <property name="order" value="1" />
+        <property name="prefix" value="/page/" />
+        <property name="suffix" value=".js"/>
+    </bean>
 
+    <bean id="viewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+        <property name="order" value="2" />
+        <property name="prefix" value="/page/" />
+        <property name="suffix" value=".css" />
+    </bean>
 </beans>

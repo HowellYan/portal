@@ -15,9 +15,15 @@ import java.util.Map;
 @RequestMapping("/")
 public class Index {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView getUserInfoByCode() {
+    public ModelAndView index() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("userName", "ypf");
         return new ModelAndView("index",map);
+    }
+    @RequestMapping(value = "/js/index", method = RequestMethod.GET)
+    public ModelAndView indexJS() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userName", "ypf");
+        return new ModelAndView("js/index",map);
     }
 }

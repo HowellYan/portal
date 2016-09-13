@@ -38,6 +38,7 @@
         <spring.version>4.2.4.RELEASE</spring.version>
         <jackson.version>2.7.0</jackson.version>
         <aspectj.version>1.8.8</aspectj.version>
+        <jknack.version>4.0.6</jknack.version>
         <guava>19.0</guava>
     </properties>
 
@@ -143,8 +144,14 @@
             <dependency>
                 <groupId>com.github.jknack</groupId>
                 <artifactId>handlebars</artifactId>
-                <version>4.0.6</version>
+                <version>${jknack.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.jknack</groupId>
+                <artifactId>handlebars-springmvc</artifactId>
+                <version>${jknack.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

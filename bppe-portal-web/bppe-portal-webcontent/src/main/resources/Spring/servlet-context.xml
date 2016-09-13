@@ -36,9 +36,6 @@
 
     <util:properties id="app" location="classpath:app.properties"/>
 
-
-
-
     <import resource="classpath*:Spring/template.engine.xml"/>
     <import resource="controllers.xml"/>
 
@@ -52,6 +49,18 @@
             <aop:around method="storageUpdateAround" pointcut-ref="updatePointcut"/>
         </aop:aspect>
     </aop:config>
+
+
+     <!-- VIEW RESOLVER -->
+         <bean id="handlebarsViewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+             <!--  <constructor-arg value="com.ruijie.crazy.handlebars.CustomHandlebarsView" />-->
+             <property name="order" value="1" />
+             <property name="prefix" value="/page/" />
+             <property name="suffix" value=".html" />
+             <property name="contentType" value="text/html;charset=utf-8" />
+             <property name="failOnMissingFile" value="false" />
+             <property name="cache" value="false" />
+         </bean>
 
     <bean name="storagePolicy" class="cn.com.bestpay.storage.StoragePolicy">
         <constructor-arg index="0">

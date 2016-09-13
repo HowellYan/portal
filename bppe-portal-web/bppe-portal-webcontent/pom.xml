@@ -18,6 +18,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars-springmvc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>bppe-portal-web</groupId>
             <artifactId>bppe-template-engine</artifactId>
             <version>1.0-SNAPSHOT</version>

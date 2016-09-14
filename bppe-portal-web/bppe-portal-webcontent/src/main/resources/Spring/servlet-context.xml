@@ -99,6 +99,9 @@
     <bean id="viewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
         <property name="order" value="2" />
         <property name="prefix" value="/page/" />
-        <property name="suffix" value=".css" />
+        <property name="suffix" value=".hbs" />
     </bean>
+
+    <mvc:resources mapping="/page/**" location="/page/"></mvc:resources>
+
 </beans>

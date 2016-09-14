@@ -1,1 +1,39 @@
-@import "icons";
+*{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline:none;
+}
+a, article, aside, b, blockquote, body, dd, del, dfn, dialog, hr, html, i, iframe,
+div, dl, dt, em, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
+img, label, legend, li, mark, menu, nav, ol, p, pre, q, section, small, span, strong,
+sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *, .page {
+  margin: 0px;
+  padding: 0px; }
+
+a, article, aside, b, blockquote, body, dd, del, dfn, dialog, hr, html, i, iframe,
+div, dl, dt, em, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
+img, label, legend, li, mark, menu, nav, ol, p, pre, q, section, small, span, strong,
+sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button {
+  border: none;
+  font-size: 18px;
+  font-weight: normal;
+  -webkit-tap-highlight-color: transparent; }
+
+article, aside, details, figcaption, figure, footer, header, nav, section {  display: block; }
+
+html {
+  width: 100%;
+  height: auto;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  width: 100%;
+  min-height: 100%;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+body * {
+  -webkit-font-smoothing: antialiased; }

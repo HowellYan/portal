@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="icon" href="https://www.bestpay.com.cn/assets/bestpay/logo.ico" type="images/x-icon"/>
+    <link rel="shortcut icon" href="https://www.bestpay.com.cn/assets/bestpay/logo.ico" type="images/x-icon"/>
 </head>
 <body>
+
 {{userName}}
+
+<ul id="slides">
+    {{#each _DATA_}}
+    <li>{{appId}}-{{appName}}</li>
+    {{/each}}
+</ul>
+
+
+
+{{embedded "templates/user"}}
+
 </body>
 <script src="js/index.js"></script>
 </html>

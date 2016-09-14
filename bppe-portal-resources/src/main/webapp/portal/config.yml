@@ -5,8 +5,9 @@ groups:
     paths:
       - app/scripts
     concat:
-      "/scripts/app.js": "app/**/*.{js,coffee}"
-      "/scripts/vendor.js": "vendor/**/*.{js,coffee}"
+      "/assets/scripts/app.js": "app/**/*.{js,coffee}"
+      "/assets/scripts/vendor.js": "vendor/**/*.{js,coffee}"
+      "/assets/scripts/common.js": "{app/templates/**/view.{js,coffee},app/scripts/*.{js,coffee},app/scripts/common/**/*.{js,coffee}}"
     order:
       - vendor/jquery.js
       - ...
@@ -15,7 +16,8 @@ groups:
     paths:
       - app/styles
     concat:
-      "/styles/app.css": "app/styles/**/[a-z]*.{css,scss,sass}"
+      "/assets/styles/app.css": "app/styles/**/[a-z]*.{css,scss,sass}"
+      "/assets/styles/common.css": "{app/styles/**/[a-z]*.{css,scss,sass},app/templates/**/view.{css,scss,sass}}"
   images:
     paths:
       - app/images
@@ -25,18 +27,19 @@ groups:
     paths:
       - app/views
     copy:
-      "/": "app/views/**/*.html"
+      "templates/layout": "app/views/**/*.{htm,html,hbs}"
+      "templates/": "app/templates/**/*.{htm,html,hbs}"
   templates:
     paths:
       - app/templates
-    precompile:
-      "../vendor/templates.js": "app/templates/**/*.hbs"
+#    precompile:
+#      "../vendor/templates.js": "app/templates/**/*.hbs"
 modules:
   wrapper: cmd
   ignored: vendor/**/*
-  definition: /scripts/app.js
+  definition: /assets/scripts/common.js
 sprites:
-  path: /images/
+  path: /assets/images/
   selector: .icon-
 notification: true
 bundles:

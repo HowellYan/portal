@@ -23,63 +23,63 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class View {
-    @Autowired
-    public ViewRender viewRender;
-
-    /**
-     * 一级域名页面渲染入口
-     */
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    @ResponseBody
-    public String oneView(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
-        Map<String, Object> params = Maps.newHashMap();
-        ((Map)params).put("_ID_", "HIHI!");
-        return viewRender.view("","/"+name,request,response,params,false);
-    }
-
-    /**
-     * 二级域名页面渲染入口
-     */
-    @RequestMapping(value = "/{name}/index", method = RequestMethod.GET)
-    @ResponseBody
-    public String twoView(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
-        Map<String, Object> params = Maps.newHashMap();
-        Paging<AppcenterModel> paging= new Paging<>();
-
-        List<AppcenterModel> modelList = new ArrayList<>();
-
-        AppcenterModel appcenterModel = new AppcenterModel();
-            appcenterModel.setAppId("1");
-            appcenterModel.setAppName("yang");
-            appcenterModel.setAppUrl("123123");
-        modelList.add(appcenterModel);
-            appcenterModel = new AppcenterModel();
-            appcenterModel.setAppId("2");
-            appcenterModel.setAppName("tang");
-            appcenterModel.setAppUrl("123123");
-        modelList.add(appcenterModel);
-            appcenterModel = new AppcenterModel();
-            appcenterModel.setAppId("3");
-            appcenterModel.setAppName("tang");
-            appcenterModel.setAppUrl("123123");
-        modelList.add(appcenterModel);
-
-
-        ((Map)params).put("_DATA_", modelList);
-        String html =  viewRender.view("/index","/layout/"+name,request,response,params,true);
-        return html;
-    }
-
-    /**
-     * 三级域名页面渲染入口
-     */
-    @RequestMapping(value = "/MyLove/appcenter/{name}", method = RequestMethod.GET)
-    @ResponseBody
-    public String otherView(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
-        Map<String, Object> params = Maps.newHashMap();
-
-        String html =  viewRender.view(name,"/layout/MyLove/appcenter/",request,response,params,true);
-        return html;
-    }
+//    @Autowired
+//    public ViewRender viewRender;
+//
+//    /**
+//     * 一级域名页面渲染入口
+//     */
+//    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String oneView(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
+//        Map<String, Object> params = Maps.newHashMap();
+//        ((Map)params).put("_ID_", "HIHI!");
+//        return viewRender.view("","/"+name,request,response,params,false);
+//    }
+//
+//    /**
+//     * 二级域名页面渲染入口
+//     */
+//    @RequestMapping(value = "/{name}/{index}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String twoView(@PathVariable("name") String name, @PathVariable("index") String index,HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
+//        Map<String, Object> params = Maps.newHashMap();
+//        Paging<AppcenterModel> paging= new Paging<>();
+//
+//        List<AppcenterModel> modelList = new ArrayList<>();
+//
+//        AppcenterModel appcenterModel = new AppcenterModel();
+//            appcenterModel.setAppId("1");
+//            appcenterModel.setAppName("yang");
+//            appcenterModel.setAppUrl("123123");
+//        modelList.add(appcenterModel);
+//            appcenterModel = new AppcenterModel();
+//            appcenterModel.setAppId("2");
+//            appcenterModel.setAppName("tang");
+//            appcenterModel.setAppUrl("123123");
+//        modelList.add(appcenterModel);
+//            appcenterModel = new AppcenterModel();
+//            appcenterModel.setAppId("3");
+//            appcenterModel.setAppName("tang");
+//            appcenterModel.setAppUrl("123123");
+//        modelList.add(appcenterModel);
+//
+//
+//        ((Map)params).put("_DATA_", modelList);
+//        String html =  viewRender.view("","/layout/"+name,request,response,params,true);
+//        return html;
+//    }
+//
+//    /**
+//     * 三级域名页面渲染入口
+//     */
+//    @RequestMapping(value = "/MyLove/appcenter/{name}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String otherView(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse response, Map<String, Object> context) {
+//        Map<String, Object> params = Maps.newHashMap();
+//
+//        String html =  viewRender.view(name,"layout/MyLove/appcenter/",request,response,params,true);
+//        return html;
+//    }
 }
 

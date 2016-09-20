@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
+<html lang="en" ng-app="">
+<head ng-include="'../../lib/templates/header/head.hbs'">
+    <title></title>
+    <link rel="icon" href="../../lib/img/common/logo.ico" type="images/x-icon"/>
+    <link rel="shortcut icon" href="../../lib/img/common/logo.ico" type="images/x-icon"/>
+    <link rel="bookmark" href="../../lib/img/common/logo.ico" type="images/x-icon"/>
 </head>
-<body ng-app="phonerechargecard">
-    <div ng-include="'../../lib/templates/header/header.html'"></div>
+<body>
+    <div ng-include="'../../lib/templates/header/header.hbs'"></div>
 
 
 
 
 
-    <div ng-include="'../../lib/templates/footer/footer.html'"></div>
+    <div ng-include="'../../lib/templates/footer/footer.hbs'"></div>
 </body>
 <script src="../../lib/js/angular.min.js"></script>
 </html>

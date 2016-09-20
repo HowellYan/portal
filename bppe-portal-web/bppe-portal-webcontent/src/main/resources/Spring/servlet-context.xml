@@ -103,5 +103,5 @@
     </bean>
 
     <mvc:resources mapping="/page/**" location="/page/"></mvc:resources>
-
+    <mvc:resources mapping="/website/**" location="/website/"></mvc:resources>
 </beans>

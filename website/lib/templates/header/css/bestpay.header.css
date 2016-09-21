@@ -59,3 +59,34 @@
     background-repeat: no-repeat;
     cursor: pointer;
 }
+.header .header_menu {
+    float: right;
+    height: 52px;
+    line-height: 52px;
+    margin-top: 10px;
+}
+.header .header_menu LI.menu {
+    border-radius: 5px;
+}
+.header .menu {
+    width: 90px;
+    cursor: pointer;
+    text-align: center;
+}
+.header .header_menu UL LI A {
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #4c4c4c;
+}
+.header .menu-link {
+    width: 90px;
+    height: 34px;
+    display: inline-block;
+}
+.header .menu-select {
+    width: 72px;
+    background-image: url(/bppf/static/img/common/header_menu_small_bg.png)
+}
+
+

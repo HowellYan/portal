@@ -1,0 +1,43 @@
+.header {
+    position: relative;
+    width: 980px;
+    left: 50%;
+    right: 50%;
+    margin: 0px -490px 0px -490px;
+    padding: 0px;
+    width: 980px;
+    z-index: 3;
+    height: auto;
+}
+.header #header_shortcut {
+    height: 30px;
+    padding: 0px;
+}
+.header UL {
+    height: 30px;
+    line-height: 30px;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.header #intro {
+    float: left;
+}
+.header UL LI {
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    margin: 0px 8px 0px 8px;
+    vertical-align: bottom;
+}
+.header UL LI A {
+    outline: none;
+    color: #0b6bb8;
+    border: 0;
+    text-indent: 0px;
+    text-decoration: none;
+    font-size: 14px;
+    text-indent: 0px;
+    cursor: pointer;
+}

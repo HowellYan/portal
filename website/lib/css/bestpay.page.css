@@ -1,0 +1,22 @@
+a, article, aside, b, blockquote, body, dd, del, dfn, dialog, hr, html, i, iframe,
+div, dl, dt, em, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
+img, label, legend, li, mark, menu, nav, ol, p, pre, q, section, small, span, strong,
+sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu;
+}
+.pageBody .common-body-style {
+    margin: 0 auto;
+    width: 980px;
+    padding-top: 20px;
+    overflow: hidden;
+    min-height: 260px;
+}
+.cf {
+    zoom: 1;
+}
+.kf-li-float {
+    float: left;
+}

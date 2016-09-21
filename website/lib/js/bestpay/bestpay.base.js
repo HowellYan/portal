@@ -8,7 +8,6 @@ require.config({
     paths : {
         'jquery' : '../../../lib/js/thirdParty/jquery-1.12.4.min',
         'angular' : '../../../lib/js/thirdParty/angular.min',
-        'bestpay.head' : '../../../lib/js/bestpay/bestpay.head',
         'bestpay.lang' : '../../../lib/js/bestpay/bestpay.lang',
         'bestpay.ui' : '../../../lib/js/bestpay/bestpay.ui',
         'bestpay.http' : '../../../lib/js/bestpay/bestpay.http',
@@ -21,7 +20,7 @@ require.config({
 });
 
 
-require(['jquery', 'angular', 'bestpay.head'], function($, ng, head) {
+require(['jquery', 'angular'], function($, ng) {
 
 
 

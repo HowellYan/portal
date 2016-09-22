@@ -84,9 +84,17 @@
     height: 34px;
     display: inline-block;
 }
-.header .menu-select {
+.header .menu-link:hover {
     width: 72px;
-    background-image: url(/bppf/static/img/common/header_menu_small_bg.png)
+    text-align: center;
+    background-image: url('../img/header_menu_small_bg.png?v=&version&')
+}
+.header .menu-select {
+    background-image: url('../img/header_menu_big_bg_orage.png?v=&version&')
+}
+.header .menu-select:hover {
+    width: 90px;
+    background-image: url('../img/header_menu_big_bg_orage.png?v=&version&')
 }
 
 

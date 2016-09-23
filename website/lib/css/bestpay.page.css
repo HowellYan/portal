@@ -9,10 +9,19 @@ sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
 }
 .pageBody .common-body-style {
     margin: 0 auto;
-    width: 980px;
-    padding-top: 20px;
     overflow: hidden;
-    min-height: 260px;
+    min-height: 480px;
+}
+.header-line {
+    height: 2px;
+    width: 100%;
+    background-image: url("../img/common/line.png?v=&version&");
+    min-width: 980px;
+    margin: 5px 0px 5px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    position: absolute;
+    top: 25px;
 }
 .cf {
     zoom: 1;

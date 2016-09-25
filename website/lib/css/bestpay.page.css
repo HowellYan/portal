@@ -9,6 +9,7 @@ sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
 }
 .pageBody .common-body-style {
     margin: 0 auto;
+    width: 980px;
     overflow: hidden;
     min-height: 480px;
 }

@@ -24,14 +24,14 @@ require.config({
 });
 
 
-require(['jquery', 'angular','global','subconfig'], function($, ng, config, subconfig) {
+require(['global','subconfig'], function($, ng, config, subconfig) {
     // 将模块中的配置覆盖全局配置
     for (var prop in subconfig) {
         config[prop] = subconfig[prop];
     }
 
-    require([_subclass.toString()], function(subclass) {
+    require(['subclass','jquery','angular'], function(subclass) {
         console.log(_subclass);
-        new subclass().initApp();
+        subclass.initApp();
     });
 });

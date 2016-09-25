@@ -8,7 +8,7 @@ define(['bestpay.http'],function(HTTP) {
     }
 
     IndexAction.prototype.initApp = function () {
-        alert(1)
+
     };
 
     return new IndexAction();

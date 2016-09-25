@@ -32,6 +32,6 @@ require(['global','subconfig'], function($, ng, config, subconfig) {
 
     require(['subclass','jquery','angular'], function(subclass) {
         console.log(_subclass);
-        subclass.initApp();
+        subclass;
     });
 });

@@ -1,0 +1,34 @@
+/**
+ * Created by susie on 2016/9/25.
+ */
+define({
+    'pageName':'主页头部模板',
+    'menuArray':[
+        {
+            'menuID':'0',
+            'menuName':'首页',
+            'menuUrl':'#index',
+            'menuTip':''
+        },{
+            'menuID':'1',
+            'menuName':'交费易',
+            'menuUrl':'#pay',
+            'menuTip':''
+        },{
+            'menuID':'2',
+            'menuName':'企业理财',
+            'menuUrl':'',
+            'menuTip':''
+        },{
+            'menuID':'3',
+            'menuName':'交易查询',
+            'menuUrl':'',
+            'menuTip':''
+        },{
+            'menuID':'4',
+            'menuName':'账户管理',
+            'menuUrl':'#account',
+            'menuTip':''
+        }
+    ]
+});

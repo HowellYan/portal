@@ -3,8 +3,9 @@
  * Email:th15817161961@gmail.com
  */
 var _url = window.location.href,
-    _subclass = _url.substring(_url.lastIndexOf('/') + 1, _url.lastIndexOf('.html'));
-
+    _subclass = _url.substring(0, _url.indexOf('.html')+5);
+    _subclass = _subclass.substring(_subclass.lastIndexOf('/') + 1, _subclass.indexOf('.html'));
+console.log("init : "+_subclass);
 require.config({
     baseUrl : "js",
     waitSeconds: 0,
@@ -24,14 +25,14 @@ require.config({
 });
 
 
-require(['global','subconfig'], function($, ng, config, subconfig) {
+require(['global','subconfig'], function(config, subconfig) {
     // 将模块中的配置覆盖全局配置
     for (var prop in subconfig) {
         config[prop] = subconfig[prop];
     }
 
-    require(['subclass','jquery','angular'], function(subclass) {
-        console.log(_subclass);
+    require(['subclass','jquery','angular','angular.route'], function(subclass, $, ng,ng_route) {
+
         subclass;
     });
 });

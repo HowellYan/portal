@@ -3,6 +3,9 @@ package cn.com.bestpay.portal.filter;
 import cn.com.bestpay.portal.filter.tool.CharResponseWrapper;
 import cn.com.bestpay.portal.filter.tool.ClosureJs;
 import cn.com.bestpay.portal.filter.tool.SetVersion;
+import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
+import com.googlecode.htmlcompressor.velocity.CssCompressorDirective;
+import com.yahoo.platform.yui.compressor.CssCompressor;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +53,10 @@ public class ResourcesResponseFilter implements Filter {
             String extensionName = getExtensionName(url);
             if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
                 content = SetVersion.setFileVersion(content);
+            }
+            if(extensionName.equals("html")){
+                HtmlCompressor htmlCompressor = new HtmlCompressor();
+                content = htmlCompressor.compress(content);
             }
             if(extensionName.equals("css")){
                 content = SetVersion.chinaToUnicode(content);

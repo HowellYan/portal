@@ -1,28 +1,37 @@
-package cn.com.bestpay.portal.filter.tool;
+package cn.com.bestpay.portal.config.filter.tool;
 
+import cn.com.bestpay.portal.config.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.Random;
 
 /**
  * Created by yfzx_gd_yanghh on 2016/9/28.
  */
+@Component
 public class SetVersion {
     private static Logger logger = LoggerFactory.getLogger(SetVersion.class);
 
     private static String resourceVersion;
+
+    @Autowired
+    private static ConfigProperty configProperty;
     /**
      * Response 注入静态资源版本号
      * @param content
      * @return
      */
     public static String setFileVersion(String content){
+
         if(resourceVersion == null){
             resourceVersion=RandomString(9);
         }
+        logger.debug("isDebug:"+configProperty.getDebug());
         return content.replaceAll("v=&version&","v="+resourceVersion);
     }
 

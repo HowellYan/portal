@@ -1,4 +1,4 @@
-package cn.com.bestpay.portal.filter.tool;
+package cn.com.bestpay.portal.config.filter.tool;
 
 import com.google.javascript.jscomp.*;
 import com.google.javascript.jscomp.Compiler;

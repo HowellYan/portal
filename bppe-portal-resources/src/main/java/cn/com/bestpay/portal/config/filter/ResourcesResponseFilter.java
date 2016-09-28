@@ -1,12 +1,9 @@
-package cn.com.bestpay.portal.filter;
+package cn.com.bestpay.portal.config.filter;
 
-import cn.com.bestpay.portal.filter.tool.CharResponseWrapper;
-import cn.com.bestpay.portal.filter.tool.ClosureJs;
-import cn.com.bestpay.portal.filter.tool.SetVersion;
+import cn.com.bestpay.portal.config.filter.tool.CharResponseWrapper;
+import cn.com.bestpay.portal.config.filter.tool.ClosureJs;
+import cn.com.bestpay.portal.config.filter.tool.SetVersion;
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
-import com.googlecode.htmlcompressor.velocity.CssCompressorDirective;
-import com.yahoo.platform.yui.compressor.CssCompressor;
-import org.springframework.web.filter.OncePerRequestFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +36,7 @@ public class ResourcesResponseFilter implements Filter {
          // 请求的uri
             String url = ((HttpServletRequest)servletRequest).getRequestURI();
             if (!url.equals("/healthcheck.html")){
-                logger.info("请求：" + url);
+                logger.debug("请求：" + url);
             }
 
             CharResponseWrapper crw = new CharResponseWrapper((HttpServletResponse)servletResponse);

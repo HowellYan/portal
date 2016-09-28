@@ -7,8 +7,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,45 +21,62 @@ import java.io.PrintWriter;
         filterName = "ResourcesResponseFilter",
         urlPatterns = {"*.html","*.js","*.css","*.hbs"}
 )
-public class ResourcesResponseFilter  extends OncePerRequestFilter {
+public class ResourcesResponseFilter implements Filter {
 
     private static Logger logger = LoggerFactory.getLogger(ResourcesResponseFilter.class);
 
     public ResourcesResponseFilter() {
     }
 
-    protected void doFilterInternal(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, javax.servlet.FilterChain filterChain) throws ServletException, IOException {
-        // 请求的uri
-        String url = httpServletRequest.getRequestURI();
-        if (!url.equals("/healthcheck.html")){
-            logger.info("请求：" + url);
-        }
+    public void init(FilterConfig filterConfig) throws ServletException {
 
-        CharResponseWrapper crw = new CharResponseWrapper((HttpServletResponse)httpServletResponse);
-        filterChain.doFilter(httpServletRequest, crw);
-
-        String content = crw.getContent();//response流的内容
-        //此处可以对content做处理,然后再把content写回到输出流中
-        String extensionName = getExtensionName(url);
-        if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("css") ||  extensionName.equals("hbs")){
-            content = SetVersion.setFileVersion(content);
-        }
-        if(extensionName.equals("js")){
-            content = ClosureJs.miniJS(content);
-        }
-        if(!extensionName.equals("map") && !extensionName.equals("jsp")){
-            if(!extensionName.equals("html")){
-                httpServletResponse.setContentLength(content.length());
-            }else {
-                httpServletResponse.setContentLength(-1);
-            }
-            PrintWriter out = httpServletResponse.getWriter();
-            out.write(content);
-            out.flush();
-            out.close();
-        }
     }
 
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+         // 请求的uri
+            String url = ((HttpServletRequest)servletRequest).getRequestURI();
+            if (!url.equals("/healthcheck.html")){
+                logger.info("请求：" + url);
+            }
+
+            CharResponseWrapper crw = new CharResponseWrapper((HttpServletResponse)servletResponse);
+            filterChain.doFilter(servletRequest, crw);
+
+            String content = crw.getContent();//response流的内容
+            int replaceNumer = 0, oldNumer = content.length();
+            String[] strArray = content.split("v=&version&");
+
+            //此处可以对content做处理,然后再把content写回到输出流中
+            String extensionName = getExtensionName(url);
+            if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
+                content = SetVersion.setFileVersion(content);
+            }
+            if(extensionName.equals("css")){
+                content = SetVersion.chinaToUnicode(content);
+                content = SetVersion.setFileVersion(content);
+            }
+            if(extensionName.equals("js")){
+                String miniJS = ClosureJs.miniJS(content);
+                if (!miniJS.equals("JS Closure Errors!")){
+                    content = miniJS;
+                }
+            }
+            if(!extensionName.equals("map") && !extensionName.equals("jsp")){
+                if(extensionName.equals("html") || extensionName.equals("hbs")){
+                    servletResponse.setContentLength(-1);
+                } else {
+                    servletResponse.setContentLength(content.length());
+                }
+                PrintWriter out = servletResponse.getWriter();
+                out.write(content);
+                out.flush();
+                out.close();
+            }
+    }
+
+    public void destroy() {
+
+    }
     public static String getExtensionName(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
             int dot = filename.lastIndexOf('.');

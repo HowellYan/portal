@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .footer .copyrightInfo {
     background-color: #ededed;
     padding: 42px 0;
@@ -50,6 +51,11 @@
     color: #000;
     font-weight: 400;
 }
+
+.footer .widget .widgetName span{
+    margin-left: 6px;
+}
+
 .footer .widget .widgetContent {
     margin: 15px 0 0 20px;
 }
@@ -108,4 +114,7 @@
 .footer .widget .widgetRows {
     font-size: 13px;
     line-height: 22px;
+}
+.footer .kf-li-float {
+    float: left;
 }

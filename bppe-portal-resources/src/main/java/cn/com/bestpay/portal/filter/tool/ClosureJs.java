@@ -38,7 +38,6 @@ public class ClosureJs {
             JSError[] jsError = compiler.getErrors();
             for(int k=0;k<jsError.length;k++){
                 logger.info("JS Closure Errors:", jsError[k].toString());
-                logger.debug("JS Closure Errors:",compiler.getErrors()[k].toString());
             }
             return "JS Closure Errors!";
         }

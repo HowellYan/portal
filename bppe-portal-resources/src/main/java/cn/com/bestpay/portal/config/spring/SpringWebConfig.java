@@ -14,11 +14,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @ComponentScan({
         "cn.com.bestpay.portal.controller",
-        "cn.com.bestpay.portal.config"
+        "cn.com.bestpay.portal.*"
 })
-
 @ImportResource({ "classpath:properties/spring/mvc_config.xml" } )
+@PropertySource(name = "systemProperty",value={"classpath:properties/system.properties"})
+
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
-
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }

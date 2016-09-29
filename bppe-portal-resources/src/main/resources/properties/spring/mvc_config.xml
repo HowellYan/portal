@@ -9,7 +9,6 @@
     <!-- 注入 properties文件 -->
     <util:properties id="systemProperties" location="classpath:properties/system.properties"/>
 
-
     <mvc:resources mapping="/**" location="/website/" />
 
     <!-- ModelAndView -->

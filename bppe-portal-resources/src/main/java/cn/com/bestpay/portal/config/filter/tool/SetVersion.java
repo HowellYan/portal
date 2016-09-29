@@ -1,25 +1,28 @@
 package cn.com.bestpay.portal.config.filter.tool;
 
 
+import cn.com.bestpay.portal.config.property.SystemProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.Properties;
 import java.util.Random;
 
 /**
  * Created by yfzx_gd_yanghh on 2016/9/28.
  */
+@Component
 public class SetVersion {
     private static Logger logger = LoggerFactory.getLogger(SetVersion.class);
 
     private static String resourceVersion;
 
-    @Value("#{systemProperties['debug']}")
-    private static String debug;
     /**
      * Response 注入静态资源版本号
      * @param content
@@ -30,7 +33,7 @@ public class SetVersion {
         if(resourceVersion == null){
             resourceVersion=RandomString(9);
         }
-        logger.debug("isDebug:"+debug);
+        logger.debug("isDebug:"+ SystemProperty.getValueParam("system.debug"));
         return content.replaceAll("v=&version&","v="+resourceVersion);
     }
 

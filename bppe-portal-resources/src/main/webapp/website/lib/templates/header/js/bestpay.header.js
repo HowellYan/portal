@@ -19,16 +19,16 @@ define(['/lib/templates/header/js/config.js'],function (headerConfig) {
         $("#index_menu").html(menuHTML);
         console.log("a");
 
-        var bestpayApp = angular.module('bestpayApp',['ngRoute']);
-        bestpayApp.config(['$routeProvider', function($routeProvider){
-                    console.log("b");
-                    $routeProvider
-                        .when('/index',{template:'这是首页页面'})
-                        .when('/pay',{template:'/view/computers.html'})
-                        .when('/account',{template:'这是打印机页面'})
-                        .otherwise({redirectTo:'/index'});
-
-                }]);
+        // var bestpayApp = angular.module('BestpayApp',['ngRoute']);
+        // bestpayApp.config(['$routeProvider', function($routeProvider){
+        //             console.log("b");
+        //             $routeProvider
+        //                 .when('/index',{template:'这是首页页面'})
+        //                 .when('/pay',{template:'/view/computers.html'})
+        //                 .when('/account',{template:'这是打印机页面'})
+        //                 .otherwise({redirectTo:'/index'});
+        //
+        //         }]);
         console.log(bestpayApp);
     };
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app id="ng-app">
+<html lang="en">
 <head id="head">
     <meta charset="UTF-8">
     <link rel="icon" href="../lib/img/common/logo.ico" type="images/x-icon"/>
@@ -16,13 +16,27 @@
     <link type="text/css" rel="stylesheet" href="../lib/templates/header/css/bestpay.header.css?v=&version&" />
     <link type="text/css" rel="stylesheet" href="../lib/templates/footer/css/bestpay.footer.css?v=&version&" />
 </head>
-<body class="pageBody" ng-app="bestpayApp">
+<body class="pageBody" ng-app="BestpayApp">
     <div ng-include="'/lib/templates/header/bestpay.header.hbs?v=&version&'"></div>
     <div class="common-body-style" >
         <div ng-view></div>
     </div>
     {{userName}}
     <div ng-include="'/lib/templates/footer/bestpay.footer.hbs?v=&version&'"></div>
+    <!--<script src="/lib/js/thirdParty/jquery-1.12.4.min.js?v=&version&"></script>-->
+    <script src="/lib/js/thirdParty/angular.min.js?v=&version&"></script>
+    <script src="/lib/js/thirdParty/angular-route.min.js?v=&version&"></script>
+    <script>
+        angular.module('BestpayApp',['ngRoute'])
+                .config(['$routeProvider', function($routeProvider){
+                    $routeProvider
+                            .when('/',{template:'这是首页页面'})
+                            .when('/computers',{template:'sss'})
+                            .when('/printers',{template:'这是打印机页面'})
+                            .otherwise({redirectTo:'/'});
+                    console.log("b");
+                }]);
+    </script>
 </body>
-<script src="/lib/js/thirdParty/require.js?v=&version&"></script>
+<!--<script src="/lib/js/thirdParty/require.js?v=&version&"></script>-->
 </html>

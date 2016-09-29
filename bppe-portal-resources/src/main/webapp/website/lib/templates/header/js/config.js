@@ -7,12 +7,12 @@ define({
         {
             'menuID':'0',
             'menuName':'首页',
-            'menuUrl':'#index',
+            'menuUrl':'#computers',
             'menuTip':''
         },{
             'menuID':'1',
             'menuName':'交费易',
-            'menuUrl':'#pay',
+            'menuUrl':'#printers',
             'menuTip':''
         },{
             'menuID':'2',

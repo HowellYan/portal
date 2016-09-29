@@ -18,9 +18,9 @@ define(['/lib/templates/header/js/config.js'],function (headerConfig) {
         }
         $("#index_menu").html(menuHTML);
         console.log("a");
-        $(function () {
-            angular.module('bestpayApp',['ngRoute'])
-                .config(['$routeProvider', function($routeProvider){
+
+        var bestpayApp = angular.module('bestpayApp',['ngRoute']);
+        bestpayApp.config(['$routeProvider', function($routeProvider){
                     console.log("b");
                     $routeProvider
                         .when('/index',{template:'这是首页页面'})
@@ -29,8 +29,7 @@ define(['/lib/templates/header/js/config.js'],function (headerConfig) {
                         .otherwise({redirectTo:'/index'});
 
                 }]);
-        });
-
+        console.log(bestpayApp);
     };
 
     return new Header();

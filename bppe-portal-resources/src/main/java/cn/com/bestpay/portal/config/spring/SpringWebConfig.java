@@ -13,12 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @Configuration
 @ComponentScan({
-        "cn.com.bestpay.portal.controller",
-        "cn.com.bestpay.portal.*"
+        "cn.com.bestpay.portal.controller"
 })
 @ImportResource({ "classpath:properties/spring/mvc_config.xml" } )
-@PropertySource(name = "systemProperty",value={"classpath:properties/system.properties"})
-
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

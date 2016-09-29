@@ -26,13 +26,16 @@ require.config({
 });
 
 
-require(['global','subconfig'], function(config, subconfig) {
+require(['global','subconfig','jquery'], function(config, subconfig, $) {
     // 将模块中的配置覆盖全局配置
     for (var prop in subconfig) {
         config[prop] = subconfig[prop];
     }
-
-    require(['subclass','jquery','angular','angular.route'], function(subclass, $, ng, ng_route) {
-        subclass;
+    require(['angular'],function(ng){
+        require(['angular.route'],function(ng_route){
+            require(['subclass'], function(subclass) {
+                subclass;
+            });
+        });
     });
 });

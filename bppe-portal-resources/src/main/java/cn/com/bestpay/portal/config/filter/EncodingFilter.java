@@ -16,6 +16,5 @@ import javax.servlet.annotation.WebInitParam;
                 @WebInitParam(name = "forceEncoding",value = "true")
         }
 )
-
 public class EncodingFilter extends CharacterEncodingFilter {
 }

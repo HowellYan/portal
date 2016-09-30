@@ -3,21 +3,24 @@
  * Email:th15817161961@gmail.com
  */
 
-define(['/lib/templates/header/js/config.js'],function (headerConfig) {
+define([],function () {
     var Header = function () {
         this.initApp();
     };
 
     Header.prototype.initApp = function () {
-        var menuArray = headerConfig['menuArray'], menuHTML = "";
+        var menuArray = config['HeaderMenuArray'], menuHTML = "";
         for(var i = 0; i < menuArray.length; i++){
             var menuItem = menuArray[i];
             menuHTML+='<li tip="'+menuItem['menuTip']+'" class="menu" ' +
                 'url="'+menuItem['menuUrl']+'" select="true" menuId="'+menuItem['menuID']+'">';
             menuHTML += '<a href="'+menuItem['menuUrl']+'" class="menu-link menu-select">'+menuItem['menuName']+'</a> </li>'
         }
+
         $("#index_menu").html(menuHTML);
         console.log("a");
+
+
 
         // var bestpayApp = angular.module('BestpayApp',['ngRoute']);
         // bestpayApp.config(['$routeProvider', function($routeProvider){
@@ -29,7 +32,7 @@ define(['/lib/templates/header/js/config.js'],function (headerConfig) {
         //                 .otherwise({redirectTo:'/index'});
         //
         //         }]);
-        console.log(bestpayApp);
+        //console.log(bestpayApp);
     };
 
     return new Header();

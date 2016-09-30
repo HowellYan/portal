@@ -11,31 +11,26 @@ require.config({
     baseUrl : "js",
     waitSeconds: 0,
     paths : {
-        'jquery' : '../../../lib/js/thirdParty/jquery-1.12.4.min',
-        'angular' : '../../../lib/js/thirdParty/angular.min',
-        'angular.route' : '../../../lib/js/thirdParty/angular-route.min',
-        'bestpay.lang' : '../../../lib/js/bestpay/bestpay.lang',
-        'bestpay.ui' : '../../../lib/js/bestpay/bestpay.ui',
-        'bestpay.http' : '../../../lib/js/bestpay/bestpay.http',
-        'global' : '../../../lib/js/bestpay/global',
+        'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',
+        'angular' : '&CDN_Url&/lib/js/thirdParty/angular.min',
+        'angularRoute' : '&CDN_Url&/lib/js/thirdParty/angular-route.min',
+        'bestpay.lang' : '&CDN_Url&/lib/js/bestpay/bestpay.lang',
+        'bestpay.ui' : '&CDN_Url&/lib/js/bestpay/bestpay.ui',
+        'bestpay.http' : '&CDN_Url&/lib/js/bestpay/bestpay.http',
+        'bestpay.global' : '&CDN_Url&/lib/js/bestpay/bestpay.global',
+        'app' : '&CDN_Url&/lib/js/bestpay/app',
+        'inject': '&CDN_Url&/lib/js/bestpay/inject',
         // 子应用特有
         'subconfig' : 'config',
         'subclass'  : _subclass
     },
-    urlArgs : "v=&version&"
+    shim: {
+        angular: ['jquery'],
+        angularRoute: ["angular"]
+    },
+urlArgs : "v=&version&"
 });
 
+require(["inject"], function() {});
 
-require(['global','subconfig','jquery'], function(config, subconfig, $) {
-    // 将模块中的配置覆盖全局配置
-    for (var prop in subconfig) {
-        config[prop] = subconfig[prop];
-    }
-    require(['angular'],function(ng){
-        require(['angular.route'],function(ng_route){
-            require(['subclass'], function(subclass) {
-                subclass;
-            });
-        });
-    });
-});
+

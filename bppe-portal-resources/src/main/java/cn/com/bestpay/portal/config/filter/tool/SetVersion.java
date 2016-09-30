@@ -24,7 +24,8 @@ public class SetVersion {
         if(resourceVersion == null || SystemProperty.getValueParam("system.debug").equals("true")){
             resourceVersion=RandomString(9);
         }
-        return content.replaceAll("v=&version&","v="+resourceVersion);
+        return content.replaceAll("v=&version&","v="+resourceVersion)
+                .replace("&CDN_Url&",SystemProperty.getValueParam("system.CDN_Url"));
     }
 
 

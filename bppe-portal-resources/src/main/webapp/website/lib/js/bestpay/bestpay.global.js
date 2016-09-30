@@ -1,0 +1,39 @@
+/**
+ * Created by yfzx_gd_yanghh on 2016/9/30.
+ */
+define({
+    'HeaderMenuArray':[
+        {
+            'menuID':'0',
+            'menuName':'首页',
+            'menuUrl':'#Index',
+            'template':'',
+            'menuTip':''
+        },{
+            'menuID':'1',
+            'menuName':'交费易',
+            'menuUrl':'#Pay',
+            'template':'',
+            'menuTip':''
+        },{
+            'menuID':'2',
+            'menuName':'企业理财',
+            'menuUrl':'#Finances',
+            'template':'',
+            'menuTip':'',
+            'skipping':'true'//跳转
+        },{
+            'menuID':'3',
+            'menuName':'交易查询',
+            'menuUrl':'#Inquiry',
+            'template':'',
+            'menuTip':''
+        },{
+            'menuID':'4',
+            'menuName':'账户管理',
+            'menuUrl':'#Account',
+            'template':'',
+            'menuTip':''
+        }
+    ]
+});

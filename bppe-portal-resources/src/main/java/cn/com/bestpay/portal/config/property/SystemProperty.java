@@ -44,14 +44,16 @@ public class SystemProperty {
     public static String getValueParam(String key) {
        return SystemProperty.param.get(key);
     }
+
     /**
-     * 初始化用户配置.
+     * 初始化system.property文件配置.
      *
      */
     private static void initSystemConf() {
         Map<String, String> param = new HashMap<String, String>();
         Properties properties = SystemProperty.readConfig(GlobalProperty.systemConf);
         param.put("system.debug", properties.getProperty("debug"));
+        param.put("system.CDN_Url", properties.getProperty("CDN_Url"));
 
         SystemProperty.setParam(param);
     }

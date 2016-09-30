@@ -80,19 +80,21 @@
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
-    color: #4c4c4c;
 }
 .header .menu-link {
     width: 90px;
     height: 34px;
     display: inline-block;
+    color: #4c4c4c;
 }
 .header .menu-link:hover {
     width: 72px;
     text-align: center;
+    color: #ffffff;
     background-image: url('../img/header_menu_small_bg.png?v=&version&')
 }
 .header .menu-select {
+    color: #ffffff;
     background-image: url('../img/header_menu_big_bg_orage.png?v=&version&')
 }
 .header .menu-select:hover {

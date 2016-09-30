@@ -11,9 +11,7 @@ define(["app"],function(app) {
         console.log("IndexAction init!");
         require(["/lib/templates/header/js/bestpay.header.js"],function (header) {
             header;
-            console.log(app);
         });
-
     };
 
     return new IndexAction();

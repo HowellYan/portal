@@ -3,18 +3,26 @@
  */
 define("app",["angular","angularRoute","jquery"], function() {
     var app = angular.module('app', ['ngRoute']);
-        app.config(["$routeProvider",
-            function($routeProvider) {
+        app.config(["$routeProvider", function($routeProvider) {
                 console.log("b");
-                var menuArray = config['HeaderMenuArray'];
-
                 $routeProvider
-                    .when('/Index',{template:'这是首页页面'})
-                    .when('/Pay',{template:'/view/computers.html'})
-                    .when('/Finances',{template:'这是打印机页面'})
-                    .when('/Inquiry',{})
-                    .when('/Account',{})
+                    .when('/Index',{templateUrl:'&CDN_Url&/index/index.hbs?v=&version&',controller:'headerMenu'})
+                    .when('/Pay',{templateUrl:'&CDN_Url&/pay/index/index.hbs?v=&version&',controller:'headerMenu'})
+                    .when('/Finances',{templateUrl:'/',controller:'headerMenu'})
+                    .when('/Inquiry',{templateUrl:'&CDN_Url&/inquiry/index/index.hbs?v=&version&',controller:'headerMenu'})
+                    .when('/Account',{templateUrl:'&CDN_Url&/account/index/index.hbs?v=&version&',controller:'headerMenu'})
                     .otherwise({redirectTo:'/Index'});
-            }]);
+        }]);
+        app.controller('headerMenu', ["$scope", "$routeParams", '$location', function($scope, $routeParams,$location) {
+            $scope.params = $routeParams;
+            $scope.message = "1111";
+            console.log($location);
+
+            console.log($location.path());
+            $("#index_menu .menu").(function (item) {
+                console.log(item);
+            })
+        }]);
+
     return app;
 });

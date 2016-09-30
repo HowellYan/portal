@@ -12,27 +12,17 @@ define([],function () {
         var menuArray = config['HeaderMenuArray'], menuHTML = "";
         for(var i = 0; i < menuArray.length; i++){
             var menuItem = menuArray[i];
-            menuHTML+='<li tip="'+menuItem['menuTip']+'" class="menu" ' +
-                'url="'+menuItem['menuUrl']+'" select="true" menuId="'+menuItem['menuID']+'">';
-            menuHTML += '<a href="'+menuItem['menuUrl']+'" class="menu-link menu-select">'+menuItem['menuName']+'</a> </li>'
+            menuHTML += '<li tip="'+menuItem['menuTip']+'" class="menu" ' + 'url="';
+            menuHTML += menuItem['menuUrl']+'" select="true" menuId="'+menuItem['menuID']+'">';
+            menuHTML += '<a href="'+menuItem['menuUrl']+'"';
+            if(i == 0){
+                menuHTML += ' class="menu-link menu-select">';
+            } else {
+                menuHTML += ' class="menu-link">';
+            }
+            menuHTML += menuItem['menuName']+'</a> </li>'
         }
-
         $("#index_menu").html(menuHTML);
-        console.log("a");
-
-
-
-        // var bestpayApp = angular.module('BestpayApp',['ngRoute']);
-        // bestpayApp.config(['$routeProvider', function($routeProvider){
-        //             console.log("b");
-        //             $routeProvider
-        //                 .when('/index',{template:'这是首页页面'})
-        //                 .when('/pay',{template:'/view/computers.html'})
-        //                 .when('/account',{template:'这是打印机页面'})
-        //                 .otherwise({redirectTo:'/index'});
-        //
-        //         }]);
-        //console.log(bestpayApp);
     };
 
     return new Header();

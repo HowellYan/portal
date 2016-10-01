@@ -3,7 +3,7 @@
  * Email:th15817161961@gmail.com
  */
 
-define([],function () {
+define('bestpay.header',[],function () {
     var Header = function () {
         this.initApp();
     };
@@ -23,6 +23,15 @@ define([],function () {
             menuHTML += menuItem['menuName']+'</a> </li>'
         }
         $("#index_menu").html(menuHTML);
+    };
+
+    Header.prototype.SelectItem = function (path) {
+        $('#index_menu .menu-select').removeClass("menu-select");
+        $('#index_menu .menu-link').each(function () {
+            if($(this).attr("href").replace("#","")==path.replace("/","")){
+                $(this).addClass("menu-select");
+            }
+        });
     };
 
     return new Header();

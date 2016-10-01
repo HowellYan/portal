@@ -22,7 +22,7 @@ public class HTMLController {
 
     @RequestMapping("/")
     @ResponseBody
-    public  String state(){
+    public String state(){
         return "online_H5 Start state";
     }
     @RequestMapping(value = "/{First}.html", method = RequestMethod.GET)

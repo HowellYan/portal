@@ -11,15 +11,18 @@ require.config({
     baseUrl : "js",
     waitSeconds: 0,
     paths : {
-        'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',
-        'angular' : '&CDN_Url&/lib/js/thirdParty/angular.min',
-        'angularRoute' : '&CDN_Url&/lib/js/thirdParty/angular-route.min',
+        'bestpay.app' : '&CDN_Url&/lib/js/bestpay/bestpay.app',
+        'bestpay.inject': '&CDN_Url&/lib/js/bestpay/bestpay.inject',
         'bestpay.lang' : '&CDN_Url&/lib/js/bestpay/bestpay.lang',
         'bestpay.ui' : '&CDN_Url&/lib/js/bestpay/bestpay.ui',
         'bestpay.http' : '&CDN_Url&/lib/js/bestpay/bestpay.http',
         'bestpay.global' : '&CDN_Url&/lib/js/bestpay/bestpay.global',
-        'app' : '&CDN_Url&/lib/js/bestpay/app',
-        'inject': '&CDN_Url&/lib/js/bestpay/inject',
+        'bestpay.header':'&CDN_Url&/lib/templates/header/js/bestpay.header',
+
+        'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',
+        'angular' : '&CDN_Url&/lib/js/thirdParty/angular.min',
+        'angularRoute' : '&CDN_Url&/lib/js/thirdParty/angular-route.min',
+        'header.router' : '&CDN_Url&/lib/templates/header/js/header.router',
         // 子应用特有
         'subconfig' : 'config',
         'subclass'  : _subclass
@@ -31,6 +34,6 @@ require.config({
 urlArgs : "v=&version&"
 });
 
-require(["inject"], function() {});
+require(["bestpay.inject"], function() {});
 
 

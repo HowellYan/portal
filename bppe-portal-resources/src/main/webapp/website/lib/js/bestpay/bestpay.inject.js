@@ -20,13 +20,15 @@
 
     //路由配置
     var BestpayRoute = function (subclass) {
-        this.config();
+        this.IndexMenuConfig();
         this.controller(subclass);
+        this.PayMenuConfig();
     };
 
-    BestpayRoute.prototype.config = function () {
+    //配置主页菜单路由
+    BestpayRoute.prototype.IndexMenuConfig = function () {
         BestpayApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
-            console.log("b");
+            console.log("init index router config");
             $stateProvider.state('Index', {
                 url:"/Index",
                 templateUrl: "&CDN_Url&/index/index.hbs?v=&version&",
@@ -52,10 +54,30 @@
         }]);
     };
 
+    //配置pay菜单路由
+    BestpayRoute.prototype.PayMenuConfig = function () {
+        BestpayApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+            console.log("init pay router config");
+            $stateProvider.state('Pay.phonerechargecard', {
+                url:"/phonerechargecard",
+                templateUrl: "&CDN_Url&/pay/phonerechargecard/phonerechargecard.hbs?v=&version&",
+                controller:"PayMenu"
+            }).state('Pay.SDMpay', {
+                url:"/SDMpay",
+                templateUrl: "&CDN_Url&/pay/SDMpay/SDMpay.hbs?v=&version&",
+                controller:"PayMenu"
+            });
+        }]);
+    };
+
+
     BestpayRoute.prototype.controller = function (subclass) {
         BestpayApp.controller('headerMenu', ['$scope', '$location', function($scope,$location) {
             console.log($location.path());
             subclass.SetMenuHeader($location.path(),$scope);
+        }]).controller('PayMenu', ['$scope', '$location', function($scope,$location) {
+            console.log($location.path());
+            //subclass.SetMenuHeader($location.path(),$scope);
         }]);
     };
 

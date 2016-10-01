@@ -26,9 +26,15 @@ define('bestpay.header',[],function () {
     };
 
     Header.prototype.SelectItem = function (path) {
+        path = path.replace("/","");
+        if(path.indexOf("/") > 0){
+            path = path.substring(0, path.indexOf("/"));
+        }
         $('#index_menu .menu-select').removeClass("menu-select");
         $('#index_menu .menu-link').each(function () {
-            if($(this).attr("href").replace("#","")==path.replace("/","")){
+            var thisPath = $(this).attr("href").replace("#","");
+            console.log(thisPath);
+            if(thisPath == path){
                 $(this).addClass("menu-select");
             }
         });

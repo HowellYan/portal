@@ -36,7 +36,8 @@ public class ResourcesResponseFilter implements Filter {
          // 请求的uri
             String url = ((HttpServletRequest)servletRequest).getRequestURI();
             if (!url.equals("/healthcheck.html")){
-                logger.debug("请求：" + url);
+                //logger.debug("请求：" + url);
+                logger.info("请求：" + ((HttpServletRequest)servletRequest).getRequestURL()+"?" + ((HttpServletRequest)servletRequest).getQueryString());
             }
 
             CharResponseWrapper crw = new CharResponseWrapper((HttpServletResponse)servletResponse);

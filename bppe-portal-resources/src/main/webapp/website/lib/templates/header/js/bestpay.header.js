@@ -33,7 +33,6 @@ define('bestpay.header',[],function () {
         $('#index_menu .menu-select').removeClass("menu-select");
         $('#index_menu .menu-link').each(function () {
             var thisPath = $(this).attr("href").replace("#","");
-            console.log(thisPath);
             if(thisPath == path){
                 $(this).addClass("menu-select");
             }

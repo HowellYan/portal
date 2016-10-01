@@ -21,7 +21,7 @@ require.config({
 
         'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',
         'angular' : '&CDN_Url&/lib/js/thirdParty/angular.min',
-        'angularRoute' : '&CDN_Url&/lib/js/thirdParty/angular-route.min',
+        'angularUIRouter': '&CDN_Url&/lib/js/thirdParty/angular-ui-router.min',
         'header.router' : '&CDN_Url&/lib/templates/header/js/header.router',
         // 子应用特有
         'subconfig' : 'config',
@@ -29,7 +29,7 @@ require.config({
     },
     shim: {
         angular: ['jquery'],
-        angularRoute: ["angular"]
+        angularUIRouter: ["angular"]
     },
 urlArgs : "v=&version&"
 });

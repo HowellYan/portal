@@ -3,7 +3,6 @@
  */
 !(function () {
     'use strict';
-    //当然了这个scripts的数据完全可以从服务器上动态获取回来加载
     var scripts = ['bestpay.global','subconfig',"bestpay.inject"];
 
     require(scripts, function(config, subconfig) {
@@ -13,28 +12,51 @@
         }
         window.config = config;
         require(['subclass'], function(subclass) {
-
-            BestpayApp.config(["$routeProvider", function($routeProvider) {
-                console.log("b");
-                $routeProvider
-                    .when('/Index',{templateUrl:'&CDN_Url&/index/index.hbs?v=&version&',controller:'headerMenu'})
-                    .when('/Pay',{templateUrl:'&CDN_Url&/pay/index/index.hbs?v=&version&',controller:'headerMenu'})
-                    .when('/Finances',{templateUrl:'/?v=&version&',controller:'headerMenu'})
-                    .when('/Inquiry',{templateUrl:'&CDN_Url&/inquiry/index/index.hbs?v=&version&',controller:'headerMenu'})
-                    .when('/Account',{templateUrl:'&CDN_Url&/account/index/index.hbs?v=&version&',controller:'headerMenu'})
-                    .otherwise({redirectTo:'/Index'});
-            }]);
-            BestpayApp.controller('headerMenu', ["$scope", "$routeParams", '$location', function($scope, $routeParams,$location) {
-                $scope.params = $routeParams;
-                console.log($location.path());
-                subclass.SetMenuHeader($location.path(),$scope);
-            }]);
-
+            new BestpayRoute(subclass);
             //渲染
             angular.bootstrap(document, ['bestpay.app']);
         });
     });
 
+    //路由配置
+    var BestpayRoute = function (subclass) {
+        this.config();
+        this.controller(subclass);
+    };
 
+    BestpayRoute.prototype.config = function () {
+        BestpayApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+            console.log("b");
+            $stateProvider.state('Index', {
+                url:"/Index",
+                templateUrl: "&CDN_Url&/index/index.hbs?v=&version&",
+                controller:"headerMenu"
+            }).state('Pay', {
+                url:"/Pay",
+                templateUrl: "&CDN_Url&/pay/index/index.hbs?v=&version&",
+                controller:"headerMenu"
+            }).state('Finances', {
+                url:"/Finances",
+                templateUrl: "/?v=&version&",
+                controller:"headerMenu"
+            }).state('Inquiry', {
+                url:"/Inquiry",
+                templateUrl: "&CDN_Url&/inquiry/index/index.hbs?v=&version&",
+                controller:"headerMenu"
+            }).state('Account', {
+                url:"/Account",
+                templateUrl: "&CDN_Url&/account/index/index.hbs?v=&version&",
+                controller:"headerMenu"
+            });
+            $urlRouterProvider.otherwise('/Index');
+        }]);
+    };
+
+    BestpayRoute.prototype.controller = function (subclass) {
+        BestpayApp.controller('headerMenu', ['$scope', '$location', function($scope,$location) {
+            console.log($location.path());
+            subclass.SetMenuHeader($location.path(),$scope);
+        }]);
+    };
 
 }());

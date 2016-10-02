@@ -34,6 +34,7 @@ public class ResourcesResponseFilter implements Filter {
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
          // 请求的uri
+        try {
             String url = ((HttpServletRequest)servletRequest).getRequestURI();
             if (!url.equals("/healthcheck.html")){
                 //logger.debug("请求：" + url);
@@ -77,6 +78,13 @@ public class ResourcesResponseFilter implements Filter {
                 out.flush();
                 out.close();
             }
+        } catch (Exception e){
+            PrintWriter out = servletResponse.getWriter();
+            out.write("");
+            out.flush();
+            out.close();
+            logger.error(e.getMessage().toString());
+        }
     }
 
     public void destroy() {

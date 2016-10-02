@@ -37,6 +37,16 @@ define('bestpay.header',[],function () {
                 $(this).addClass("menu-select");
             }
         });
+        this.InjectJS(path);
+    };
+
+    Header.prototype.InjectJS = function(path){
+
+        require(["&CDN_Url&/"+path+"/index/js/index.js"],function(menuClass){
+            menuClass.initApp();
+            console.log("InjectJS:"+path);
+        });
+
     };
 
     return new Header();

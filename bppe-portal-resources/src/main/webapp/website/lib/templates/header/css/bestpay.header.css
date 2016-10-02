@@ -57,8 +57,8 @@
     height: 56px;
     width: 321px;
     float: left;
-    background-image: url('../img/header_logo.png?v=&version&');
-    background-image: url('../img/header_logo_jfy.png?v=&version&');
+    background-image: url('&CDN_Url&/lib/templates/header/img/header_logo.png?v=&version&');
+    background-image: url('&CDN_Url&/lib/templates/header/img/header_logo_jfy.png?v=&version&');
     background-repeat: no-repeat;
     cursor: pointer;
 }
@@ -91,15 +91,15 @@
     width: 72px;
     text-align: center;
     color: #ffffff;
-    background-image: url('../img/header_menu_small_bg.png?v=&version&')
+    background-image: url('&CDN_Url&/lib/templates/header/img/header_menu_small_bg.png?v=&version&')
 }
 .header .menu-select {
     color: #ffffff;
-    background-image: url('../img/header_menu_big_bg_orage.png?v=&version&')
+    background-image: url('&CDN_Url&/lib/templates/header/img/header_menu_big_bg_orage.png?v=&version&')
 }
 .header .menu-select:hover {
     width: 90px;
-    background-image: url('../img/header_menu_big_bg_orage.png?v=&version&')
+    background-image: url('&CDN_Url&/lib/templates/header/img/header_menu_big_bg_orage.png?v=&version&')
 }
 
 

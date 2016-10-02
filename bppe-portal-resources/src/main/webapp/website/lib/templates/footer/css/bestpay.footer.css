@@ -63,7 +63,7 @@
     display: table;
 }
 .footer .appClient {
-    background: url('../img/clientBg.png?v=&version&') no-repeat center center;
+    background: url('&CDN_Url&/lib/templates/footer/img/clientBg.png?v=&version&') no-repeat center center;
     margin-top: 15px;
     width: 377px;
     height: 116px;
@@ -84,7 +84,7 @@
     left: 270px;
 }
 .footer .down01 {
-    background-image: url('../img/down01.png?v=&version&');
+    background-image: url('&CDN_Url&/lib/templates/footer/img/down01.png?v=&version&');
     height: 14px;
     position: absolute;
     bottom: 6px;
@@ -92,7 +92,7 @@
     width: 61px;
 }
 .footer .down02 {
-    background-image: url('../img/down02.png?v=&version&');
+    background-image: url('&CDN_Url&/lib/templates/footer/img/down02.png?v=&version&');
     width: 85px;
     height: 15px;
     position: absolute;
@@ -108,7 +108,7 @@
 .footer #kfBg {
     height: 94px;
     width: 67px;
-    background-image: url("../img/kf_bg_default.png?v=&version&");
+    background-image: url("&CDN_Url&/lib/templates/footer/img/kf_bg_default.png?v=&version&");
 }
 
 .footer .widget .widgetRows {

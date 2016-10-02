@@ -16,25 +16,6 @@
             //渲染
             angular.bootstrap(document, ['bestpay.app']);
 
-            /*global angular */
-            (function (ng) {
-                'use strict';
-                var app = ng.module('ngLoadScript', []);
-                app.directive('script', function() {
-                    return {
-                        restrict: 'E',
-                        scope: false,
-                        link: function(scope, elem, attr) {
-                            if (attr.type=='text/javascript-lazy') {
-                                var code = elem.text();
-                                var f = new Function(code);
-                                f();
-                            }
-                        }
-                    };
-                });
-            }(angular));
-
         });
     });
 
@@ -51,23 +32,23 @@
             console.log("init index router config");
             $stateProvider.state('Index', {
                 url:"/Index",
-                templateUrl: "&CDN_Url&/index/index.hbs?v=&version&",
+                templateUrl: "&CDN_Url&/Index/index/index.hbs?v=&version&",
                 controller:"headerMenu"
             }).state('Pay', {
                 url:"/Pay",
-                templateUrl: "&CDN_Url&/pay/index/index.hbs?v=&version&",
+                templateUrl: "&CDN_Url&/Pay/index/index.hbs?v=&version&",
                 controller:"headerMenu"
             }).state('Finances', {
                 url:"/Finances",
-                templateUrl: "/?v=&version&",
+                templateUrl: "&CDN_Url&/Finances/index/index.hbs?v=&version&",
                 controller:"headerMenu"
             }).state('Inquiry', {
                 url:"/Inquiry",
-                templateUrl: "&CDN_Url&/inquiry/index/index.hbs?v=&version&",
+                templateUrl: "&CDN_Url&/Inquiry/index/index.hbs?v=&version&",
                 controller:"headerMenu"
             }).state('Account', {
                 url:"/Account",
-                templateUrl: "&CDN_Url&/account/index/index.hbs?v=&version&",
+                templateUrl: "&CDN_Url&/Account/index/index.hbs?v=&version&",
                 controller:"headerMenu"
             });
             $urlRouterProvider.otherwise('/Index');
@@ -80,11 +61,11 @@
             console.log("init pay router config");
             $stateProvider.state('Pay.phonerechargecard', {
                 url:"/phonerechargecard",
-                templateUrl: "&CDN_Url&/pay/phonerechargecard/phonerechargecard.hbs?v=&version&",
+                templateUrl: "&CDN_Url&/Pay/phonerechargecard/phonerechargecard.hbs?v=&version&",
                 controller:"PayMenu"
             }).state('Pay.SDMpay', {
                 url:"/SDMpay",
-                templateUrl: "&CDN_Url&/pay/SDMpay/SDMpay.hbs?v=&version&",
+                templateUrl: "&CDN_Url&/Pay/SDMpay/SDMpay.hbs?v=&version&",
                 controller:"PayMenu"
             });
         }]);

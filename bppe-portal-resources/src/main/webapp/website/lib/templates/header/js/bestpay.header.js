@@ -26,10 +26,6 @@ define('bestpay.header',[],function () {
     };
 
     Header.prototype.SelectItem = function (path) {
-        path = path.replace("/","");
-        if(path.indexOf("/") > 0){
-            path = path.substring(0, path.indexOf("/"));
-        }
         $('#index_menu .menu-select').removeClass("menu-select");
         $('#index_menu .menu-link').each(function () {
             var thisPath = $(this).attr("href").replace("#","");

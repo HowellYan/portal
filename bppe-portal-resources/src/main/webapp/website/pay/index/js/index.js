@@ -4,10 +4,10 @@
  */
 define([],function() {
     function PayAction() {
-
     }
 
     PayAction.prototype.initApp = function(){
+        $("#pay-menu").show();
         console.log("Init PayAction");
     };
 

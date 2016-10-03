@@ -28,6 +28,17 @@
 
     //配置主页菜单路由
     BestpayRoute.prototype.IndexMenuConfig = function () {
+        //css file
+        BestpayApp.config(['$cssProvider',function ($cssProvider) {
+            angular.extend($cssProvider.defaults, {
+                container: 'head',
+                method: 'append',
+                persist: true,
+                preload: true,
+                bustCache: true
+            });
+        }]);
+
         BestpayApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
             console.log("init index router config");
             $stateProvider.state('Index', {
@@ -73,9 +84,15 @@
 
 
     BestpayRoute.prototype.controller = function (subclass) {
-        BestpayApp.controller('headerMenu', ['$scope', '$location', function($scope,$location) {
+        BestpayApp.controller('headerMenu', ['$scope', '$location','$css', function($scope,$location,$css) {
             console.log($location.path());
-            subclass.SetMenuHeader($location.path(),$scope);
+            var path = $location.path().replace("/","");
+            if(path.indexOf("/") > 0){
+                path = path.substring(0, path.indexOf("/"));
+            }
+            $css.bind("&CDN_Url&/"+path+"/index/css/index.css?v=&version&",$scope);
+            subclass.SetMenuHeader(path,$scope);
+
         }]).controller('PayMenu', ['$scope', '$location', function($scope,$location) {
             console.log($location.path());
             //subclass.SetMenuHeader($location.path(),$scope);

@@ -51,6 +51,9 @@ public class ResourcesResponseFilter implements Filter {
             //此处可以对content做处理,然后再把content写回到输出流中
             String extensionName = getExtensionName(url);
             if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
+                if(extensionName.equals("hbs")){
+                    content = SetVersion.chinaToUnicode(content);
+                }
                 content = SetVersion.setFileVersion(content);
             }
             if(extensionName.equals("html")){
@@ -68,7 +71,7 @@ public class ResourcesResponseFilter implements Filter {
                 }
             }
             if(!extensionName.equals("map") && !extensionName.equals("jsp")){
-                if(extensionName.equals("html") || extensionName.equals("hbs")){
+                if(extensionName.equals("html")){
                     servletResponse.setContentLength(-1);
                 } else {
                     servletResponse.setContentLength(content.length());

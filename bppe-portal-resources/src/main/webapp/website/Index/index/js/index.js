@@ -1,7 +1,7 @@
 /**
  * Created by Howell on 2/10/16.
  */
-define([],function(app) {
+define([],function() {
     function IndexAction() {
 
     }

@@ -73,6 +73,7 @@ public class ResourcesResponseFilter implements Filter {
                 } else {
                     servletResponse.setContentLength(content.length());
                 }
+                ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin","*");
                 PrintWriter out = servletResponse.getWriter();
                 out.write(content);
                 out.flush();

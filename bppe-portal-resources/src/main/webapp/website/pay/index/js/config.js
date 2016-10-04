@@ -9,13 +9,14 @@ define({
         'payMenu':[
             {
                 'menuID':'0',
-                'menuName':'首页',
-                'menuSref':'',
-                'menuUrl':'#Index'
+                'menuName':'充值卡',
+                'menuSref':'.phonerechargecard',
+                'menuUrl':'#/Pay/phonerechargecard'
             },{
                 'menuID':'1',
-                'menuName':'交费易',
-                'menuUrl':'#Pay'
+                'menuName':'水电煤',
+                'menuSref':'.SDMpay',
+                'menuUrl':'#/Pay/SDMpay'
             }]
     }
 });

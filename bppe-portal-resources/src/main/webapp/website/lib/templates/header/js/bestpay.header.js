@@ -42,12 +42,13 @@ define('bestpay.header',[],function () {
             for (var prop in config) {
                 window.config[prop] = config[prop];
             }
-        });
-        require(["&CDN_Url&/"+path+"/index/js/index.js"],function(menuClass){
-            menuClass.initApp();
-            console.log("InjectJS:"+path);
-        });
 
+            require(["&CDN_Url&/"+path+"/index/js/index.js"],function(menuClass){
+                menuClass.initApp();
+                console.log("InjectJS:"+path);
+            });
+
+        });
     };
 
     return new Header();

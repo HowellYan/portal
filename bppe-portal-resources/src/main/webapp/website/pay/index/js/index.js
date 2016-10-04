@@ -6,9 +6,22 @@ define([],function() {
     function PayAction() {
     }
 
-    PayAction.prototype.initApp = function(){
+    PayAction.prototype.initApp = function() {
         $("#pay-menu").show();
         console.log("Init PayAction:"+config['pageName']);
+        this.setMenu();
+    };
+
+    PayAction.prototype.setMenu = function() {
+        var payMenuArray = config['PayConfig']['payMenu'],menuHTML="";
+        for(var i = 0; i < payMenuArray.length; i++){
+            var menuItem = payMenuArray[i];
+            menuHTML += '<div ui-sref="'+menuItem['menuSref']+' href="'+menuItem['menuUrl']+'"">';
+            menuHTML += '<a class="menu-item" href="'+menuItem['menuUrl']+'">'+menuItem['menuName']+'</a>';
+            menuHTML += '</div>';
+        }
+        $("#pay-menu").html(menuHTML);
+
     };
 
 

@@ -51,12 +51,10 @@ public class ResourcesResponseFilter implements Filter {
             //此处可以对content做处理,然后再把content写回到输出流中
             String extensionName = getExtensionName(url);
             if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
-                if(extensionName.equals("hbs")){
-                    content = SetVersion.chinaToUnicode(content);
-                }
                 content = SetVersion.setFileVersion(content);
+
             }
-            if(extensionName.equals("html")){
+            if(extensionName.equals("html")||extensionName.equals("hbs")){
                 HtmlCompressor htmlCompressor = new HtmlCompressor();
                 content = htmlCompressor.compress(content);
             }
@@ -71,11 +69,14 @@ public class ResourcesResponseFilter implements Filter {
                 }
             }
             if(!extensionName.equals("map") && !extensionName.equals("jsp")){
-                if(extensionName.equals("html")){
-                    servletResponse.setContentLength(-1);
-                } else {
-                    servletResponse.setContentLength(content.length());
-                }
+                servletResponse.setContentLength(content.getBytes().length);
+//                if(extensionName.equals("html")){
+//                    servletResponse.setContentLength(-1);
+//                } else if(extensionName.equals("hbs")){
+//                    servletResponse.setContentLength(content.getBytes().length);
+//                } else {
+//                    servletResponse.setContentLength(content.length());
+//                }
                 ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin","*");
                 PrintWriter out = servletResponse.getWriter();
                 out.write(content);

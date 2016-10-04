@@ -7,7 +7,7 @@ define([],function() {
     }
 
     AccountAction.prototype.initApp = function(){
-        console.log("Account Init IndexAction");
+        console.log("Init AccountAction:"+config['pageName']);
     };
 
 

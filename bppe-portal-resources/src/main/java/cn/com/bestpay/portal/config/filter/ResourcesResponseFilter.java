@@ -1,7 +1,8 @@
 package cn.com.bestpay.portal.config.filter;
 
 import cn.com.bestpay.portal.config.filter.tool.CharResponseWrapper;
-import cn.com.bestpay.portal.config.filter.tool.ClosureJs;
+import cn.com.bestpay.portal.config.filter.tool.CompilerCss;
+import cn.com.bestpay.portal.config.filter.tool.CompilerJs;
 import cn.com.bestpay.portal.config.filter.tool.SetVersion;
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import org.slf4j.Logger;
@@ -61,9 +62,10 @@ public class ResourcesResponseFilter implements Filter {
             if(extensionName.equals("css")){
                 content = SetVersion.chinaToUnicode(content);
                 content = SetVersion.setFileVersion(content);
+                content = CompilerCss.miniCSS(content);
             }
             if(extensionName.equals("js")){
-                String miniJS = ClosureJs.miniJS(content);
+                String miniJS = CompilerJs.miniJS(content);
                 if (!miniJS.equals("JS Closure Errors!")){
                     content = miniJS;
                 }

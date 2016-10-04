@@ -11,8 +11,8 @@ import java.util.logging.Level;
 /**
  * Created by yfzx_gd_yanghh on 2016/9/28.
  */
-public class ClosureJs {
-    private static Logger logger = LoggerFactory.getLogger(ClosureJs.class);
+public class CompilerJs {
+    private static Logger logger = LoggerFactory.getLogger(CompilerJs.class);
 
     public static String miniJS(String codeStr){
         Compiler.setLoggingLevel(Level.OFF);

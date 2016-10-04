@@ -37,7 +37,12 @@ define('bestpay.header',[],function () {
     };
 
     Header.prototype.InjectJS = function(path){
-
+        require(["&CDN_Url&/"+path+"/index/js/config.js"],function(config){
+            // 将模块中的配置覆盖全局配置
+            for (var prop in config) {
+                window.config[prop] = config[prop];
+            }
+        });
         require(["&CDN_Url&/"+path+"/index/js/index.js"],function(menuClass){
             menuClass.initApp();
             console.log("InjectJS:"+path);

@@ -16,8 +16,8 @@ public class CompilerCss {
         try {
             CssCompressor cssCompressor = new CssCompressor(in);
             StringWriter writer = new StringWriter();
-            cssCompressor.compress(writer,1);
-            codeStr = writer.getBuffer().toString();
+            cssCompressor.compress(writer,0);
+            codeStr = writer.getBuffer().toString().replaceAll("\n","").replaceAll("\r","");
         } catch (IOException e) {
             e.printStackTrace();
             logger.error(e.getMessage().toString());

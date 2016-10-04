@@ -35,7 +35,7 @@
                 method: 'append',
                 persist: true,
                 preload: true,
-                bustCache: true
+                bustCache: false
             });
         }]);
 
@@ -84,7 +84,7 @@
 
 
     BestpayRoute.prototype.controller = function (subclass) {
-        BestpayApp.controller('headerMenu', ['$scope', '$location','$css', function($scope,$location,$css) {
+        BestpayApp.controller('headerMenu', ['$scope', '$location', '$css', function($scope,$location,$css) {
             console.log($location.path());
             var path = $location.path().replace("/","");
             if(path.indexOf("/") > 0){
@@ -93,8 +93,11 @@
             $css.bind("&CDN_Url&/"+path+"/index/css/index.css?v=&version&",$scope);
             subclass.SetMenuHeader(path,$scope);
 
-        }]).controller('PayMenu', ['$scope', '$location', function($scope,$location) {
-            console.log($location.path());
+        }]).controller('PayMenu', ['$scope', '$location', '$css', function($scope,$location,$css) {
+            var path = $location.path();
+            console.log(path);
+            $css.bind("&CDN_Url&"+path+"/css/"+path.replace("/Pay/","")+".css?v=&version&",$scope);
+
             //subclass.SetMenuHeader($location.path(),$scope);
         }]);
     };

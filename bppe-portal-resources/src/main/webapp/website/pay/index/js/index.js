@@ -8,6 +8,7 @@ define([],function() {
 
     PayAction.prototype.initApp = function() {
         $("#pay-menu").show();
+        $("#pay-content").show();
         console.log("Init PayAction:"+config['pageName']);
         this.setMenu();
     };

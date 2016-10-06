@@ -4,6 +4,7 @@
  */
 define([],function() {
     function PayAction() {
+
     }
 
     PayAction.prototype.initApp = function() {
@@ -25,8 +26,9 @@ define([],function() {
             menuHTML += '</div>';
         }
         $("#pay-menu").html(menuHTML);
-
     };
+
+
 
 
     return new PayAction();

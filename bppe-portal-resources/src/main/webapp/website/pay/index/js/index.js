@@ -10,7 +10,10 @@ define([],function() {
         $("#pay-menu").show();
         $("#pay-content").show();
         console.log("Init PayAction:"+config['pageName']);
-        this.setMenu();
+        //this.setMenu();
+        $('.tree-toggle').click(function () {
+            $(this).parent().children('ul.tree').toggle(200);
+        });
     };
 
     PayAction.prototype.setMenu = function() {

@@ -24,6 +24,7 @@ require.config({
         'angularUIRouter': '&CDN_Url&/lib/js/thirdParty/angular-ui-router.min',
         'angularCSS' : '&CDN_Url&/lib/js/thirdParty/angular-css.min',
         'header.router' : '&CDN_Url&/lib/templates/header/js/header.router',
+        'bootstrap':'&CDN_Url&/lib/js/thirdParty/bootstrap.min',
         // 子应用特有
         'subconfig' : 'config',
         'subclass'  : _subclass
@@ -31,7 +32,8 @@ require.config({
     shim: {
         angular: ['jquery'],
         angularUIRouter: ['angular'],
-        angularCSS: ['angular']
+        angularCSS: ['angular'],
+        bootstrap:['angular','jquery']
     },
 urlArgs : "v=&version&"
 });

@@ -1,3 +1,10 @@
+.nav-list .nav-header{
+    text-align: center;
+    font-size: 15px;
+}
+.nav-list>li>a{
+    text-align: center;
+}
 .pay-menu .menu-item{
     color: blue;
 }

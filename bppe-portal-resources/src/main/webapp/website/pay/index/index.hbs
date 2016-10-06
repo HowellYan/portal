@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<div id="pay-menu" style="display: none;" class="pay-menu" >
+<div style="display: none;" class="pay-menu" >
     <!--<div ui-sref=".phonerechargecard">-->
         <!--<a class="menu-item" href="#">充值卡</a>-->
     <!--</div>-->
@@ -7,6 +7,44 @@
         <!--<a href="#">水电煤</a>-->
     <!--</div>-->
 </div>
-<div id="pay-content" style="display: none;">
-    <div ui-view></div>
+<div id="pay-menu" class="row" style="display: none;">
+    <div class="span3">
+        <div class="well">
+            <div>
+                <ul class="nav nav-list">
+                    <li><label class="tree-toggle nav-header">生活便民</label>
+                        <ul class="nav nav-list tree">
+                            <li><a href="#Pay/phonerechargecard">充值卡</a></li>
+                            <li><a href="#Pay/SDMpay">水电煤</a></li>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggle nav-header">账户中心</label>
+                        <ul class="nav nav-list tree" style="display: none">
+                            <li><a href="#">Overview</a></li>
+                            <li><a href="#">CSS</a></li>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggle nav-header">交易管理</label>
+                        <ul class="nav nav-list tree" style="display: none">
+                            <li><a href="#">Overview</a></li>
+                            <li><a href="#">CSS</a></li>
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggle nav-header">交易查询</label>
+                        <ul class="nav nav-list tree" style="display: none">
+                            <li><a href="#">Overview</a></li>
+                            <li><a href="#">CSS</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="pay-content" style="display: none;" class="span7">
+        <div ui-view></div>
+    </div>
 </div>
+

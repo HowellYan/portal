@@ -5,7 +5,6 @@
 var _url = window.location.href,
     _subclass = _url.substring(0, _url.indexOf('.html')+5);
     _subclass = _subclass.substring(_subclass.lastIndexOf('/') + 1, _subclass.indexOf('.html'));
-console.log("init : "+_subclass);
 
 require.config({
     baseUrl : "js",
@@ -37,6 +36,14 @@ require.config({
     },
 urlArgs : "v=&version&"
 });
+
+if ('&debug&' != 'true') {
+    console.log = function () {};
+    console.info = function () {};
+    console.error = function() {};
+}
+
+console.log("init : "+_subclass);
 
 require(["bestpay.inject"], function() {});
 

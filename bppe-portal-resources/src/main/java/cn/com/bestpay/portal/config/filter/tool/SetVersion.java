@@ -28,6 +28,15 @@ public class SetVersion {
                 .replace("&CDN_Url&",SystemProperty.getValueParam("system.CDN_Url"));
     }
 
+    /**
+     * 注入 Debug 变量
+     * @param content
+     * @return
+     */
+    public static String setDebugVersion(String content){
+        return content.replaceAll("&debug&",SystemProperty.getValueParam("system.debug"));
+    }
+
 
     /** 产生一个随机的字符串*/
     public static String RandomString(int length) {

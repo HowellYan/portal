@@ -4,6 +4,7 @@ import cn.com.bestpay.portal.config.filter.tool.CharResponseWrapper;
 import cn.com.bestpay.portal.config.filter.tool.CompilerCss;
 import cn.com.bestpay.portal.config.filter.tool.CompilerJs;
 import cn.com.bestpay.portal.config.filter.tool.SetVersion;
+import cn.com.bestpay.portal.config.property.SystemProperty;
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,32 +54,31 @@ public class ResourcesResponseFilter implements Filter {
             String extensionName = getExtensionName(url);
             if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
                 content = SetVersion.setFileVersion(content);
-
             }
             if(extensionName.equals("html")||extensionName.equals("hbs")){
                 HtmlCompressor htmlCompressor = new HtmlCompressor();
-                content = htmlCompressor.compress(content);
+                if(!SystemProperty.getValueParam("system.debug").equals("true")){
+                    content = htmlCompressor.compress(content);
+                }
             }
             if(extensionName.equals("css")){
                 content = SetVersion.chinaToUnicode(content);
                 content = SetVersion.setFileVersion(content);
-                content = CompilerCss.miniCSS(content);
+                if(!SystemProperty.getValueParam("system.debug").equals("true")) {
+                    content = CompilerCss.miniCSS(content);
+                }
             }
             if(extensionName.equals("js")){
-                String miniJS = CompilerJs.miniJS(content);
-                if (!miniJS.equals("JS Closure Errors!")){
-                    content = miniJS;
+                content = SetVersion.setDebugVersion(content);
+                if(!SystemProperty.getValueParam("system.debug").equals("true")){
+                    String miniJS = CompilerJs.miniJS(content);
+                    if (!miniJS.equals("JS Closure Errors!")){
+                        content = miniJS;
+                    }
                 }
             }
             if(!extensionName.equals("map") && !extensionName.equals("jsp")){
                 servletResponse.setContentLength(content.getBytes().length);
-//                if(extensionName.equals("html")){
-//                    servletResponse.setContentLength(-1);
-//                } else if(extensionName.equals("hbs")){
-//                    servletResponse.setContentLength(content.getBytes().length);
-//                } else {
-//                    servletResponse.setContentLength(content.length());
-//                }
                 ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin","*");
                 PrintWriter out = servletResponse.getWriter();
                 out.write(content);

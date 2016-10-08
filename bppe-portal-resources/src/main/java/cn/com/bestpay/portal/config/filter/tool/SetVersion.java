@@ -21,7 +21,8 @@ public class SetVersion {
      * @return
      */
     public static String setFileVersion(String content){
-        if(resourceVersion == null || SystemProperty.getValueParam("system.debug").equals("true")){
+        //if(resourceVersion == null || SystemProperty.getValueParam("system.debug").equals("true")){
+        if(resourceVersion == null){
             resourceVersion=RandomString(9);
         }
         return content.replaceAll("v=&version&","v="+resourceVersion)

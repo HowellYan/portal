@@ -28,14 +28,14 @@
 
     <bean id="viewsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
         <property name="order" value="1" />
-        <property name="prefix" value="/page/" />
+        <property name="prefix" value="/website/" />
+        <property name="contentType" value="application/x-javascript;charset=UTF-8" />
         <property name="suffix" value=".js"/>
     </bean>
 
     <bean id="viewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
         <property name="order" value="2" />
-        <property name="prefix" value="/page/" />
+        <property name="prefix" value="/website/" />
         <property name="suffix" value=".hbs" />
     </bean>
-
 </beans>

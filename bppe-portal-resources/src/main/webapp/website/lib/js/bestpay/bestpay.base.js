@@ -15,7 +15,7 @@ require.config({
         'bestpay.lang' : '&CDN_Url&/lib/js/bestpay/bestpay.lang',
         'bestpay.ui' : '&CDN_Url&/lib/js/bestpay/bestpay.ui',
         'bestpay.http' : '&CDN_Url&/lib/js/bestpay/bestpay.http',
-        'bestpay.global' : '&CDN_Url&/lib/js/bestpay/bestpay.global',
+        'bestpay.global' : '/lib/js/bestpay/bestpay.global',
         'bestpay.header':'&CDN_Url&/lib/templates/header/js/bestpay.header',
 
         'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',

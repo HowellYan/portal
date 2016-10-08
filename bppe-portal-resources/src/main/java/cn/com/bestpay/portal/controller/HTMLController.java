@@ -35,7 +35,7 @@ public class HTMLController {
     @RequestMapping(value = "/{First}/{Second}.html", method = RequestMethod.GET)
     public ModelAndView Second(@PathVariable("First")String First, @PathVariable("Second")String Second) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userName", "Hi!");
+        map.put("userName", "\"#!@#$%^&*()',.\\?/'Hi',首页!");
         return new ModelAndView(First+"/"+Second, map);
     }
 

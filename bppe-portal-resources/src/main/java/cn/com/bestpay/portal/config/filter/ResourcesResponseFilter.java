@@ -55,12 +55,12 @@ public class ResourcesResponseFilter implements Filter {
             if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
                 content = SetVersion.setFileVersion(content);
             }
-            if(extensionName.equals("html")||extensionName.equals("hbs")){
-                HtmlCompressor htmlCompressor = new HtmlCompressor();
-                if(!SystemProperty.getValueParam("system.debug").equals("true")){
-                    content = htmlCompressor.compress(content);
-                }
-            }
+//            if(extensionName.equals("html")||extensionName.equals("hbs")){
+//                if(!SystemProperty.getValueParam("system.debug").equals("true")){
+//                    HtmlCompressor htmlCompressor = new HtmlCompressor();
+//                    content = htmlCompressor.compress(content);
+//                }
+//            }
             if(extensionName.equals("css")){
                 content = SetVersion.chinaToUnicode(content);
                 content = SetVersion.setFileVersion(content);
@@ -75,10 +75,18 @@ public class ResourcesResponseFilter implements Filter {
                     if (!miniJS.equals("JS Closure Errors!")){
                         content = miniJS;
                     }
+                } else {
+                    content = SetVersion.chinaToUnicode(content);
                 }
             }
             if(!extensionName.equals("map") && !extensionName.equals("jsp")){
-                servletResponse.setContentLength(content.getBytes().length);
+                if(extensionName.equals("html") || extensionName.equals("hbs")){
+                    servletResponse.setContentLength(-1);
+                    ((HttpServletResponse) servletResponse).addHeader("Content-Type","text/html;charset=UTF-8");
+                } else {
+                    servletResponse.setContentLength(content.getBytes().length);
+                }
+
                 ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin","*");
                 PrintWriter out = servletResponse.getWriter();
                 out.write(content);

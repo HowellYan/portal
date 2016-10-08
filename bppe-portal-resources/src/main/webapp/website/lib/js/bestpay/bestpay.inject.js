@@ -12,10 +12,10 @@
         }
         window.config = config;
         require(['subclass'], function(subclass) {
+            //渲染路由配置
             new BestpayRoute(subclass);
             //渲染
             angular.bootstrap(document, ['bestpay.app']);
-
         });
     });
 
@@ -72,12 +72,14 @@
             console.log("init pay router config");
             $stateProvider.state('Pay.phonerechargecard', {
                 url:"/phonerechargecard",
-                templateUrl: "&CDN_Url&/Pay/phonerechargecard/phonerechargecard.hbs?v=&version&",
-                controller:"PayMenu"
+                controller:"PayMenu",
+                templateUrl: "&CDN_Url&/Pay/phonerechargecard/phonerechargecard.hbs?v=&version&"
+
             }).state('Pay.SDMpay', {
                 url:"/SDMpay",
-                templateUrl: "&CDN_Url&/Pay/SDMpay/SDMpay.hbs?v=&version&",
-                controller:"PayMenu"
+                controller:"PayMenu",
+                templateUrl: "&CDN_Url&/Pay/SDMpay/SDMpay.hbs?v=&version&"
+
             });
         }]);
     };
@@ -97,8 +99,9 @@
             var path = $location.path();
             console.log(path);
             $css.bind("&CDN_Url&"+path+"/css/"+path.replace("/Pay/","")+".css?v=&version&",$scope);
-
-            //subclass.SetMenuHeader($location.path(),$scope);
+            require(["&CDN_Url&"+path+"/js/"+path.replace("/Pay/","")+".js?v=&version&"],function(PayItemClass){
+                PayItemClass.initApp();
+            });
         }]);
     };
 

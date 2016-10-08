@@ -6,14 +6,16 @@ define('subclass',["bestpay.app"],function(app) {
     function MainAction() {
         this.initApp();
         //var blob=new Blob([{'msg':'Hello world'}],{type:'text/plain'});
+
         BestpayApp.controller('post',['$scope','$http',function($scope,$http){
             $http({
                 method:'POST',
                 url:'/api/index/main',
                 data:{"msg":"Hi!"}
-            })
+            }).success(function(data){
+                $scope.main = data;
+            });
         }]);
-
 
     }
 

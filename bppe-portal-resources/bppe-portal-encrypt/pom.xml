@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>bppe-portal-encrypt</artifactId>
     <packaging>jar</packaging>
-    <name>compressor Maven Mojo</name>
+    <name>compressor Maven Jar</name>
     <url>http://maven.apache.org</url>
     <dependencies>
 

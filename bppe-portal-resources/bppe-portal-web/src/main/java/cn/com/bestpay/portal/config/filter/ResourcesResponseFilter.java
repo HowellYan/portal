@@ -52,22 +52,7 @@ public class ResourcesResponseFilter implements Filter {
 
             //此处可以对content做处理,然后再把content写回到输出流中
             String extensionName = getExtensionName(url);
-            if(extensionName.equals("html") || extensionName.equals("js") ||  extensionName.equals("hbs")){
-                content = SetVersion.setFileVersion(content);
-            }
-//            if(extensionName.equals("html")||extensionName.equals("hbs")){
-//                if(!SystemProperty.getValueParam("system.debug").equals("true")){
-//                    HtmlCompressor htmlCompressor = new HtmlCompressor();
-//                    content = htmlCompressor.compress(content);
-//                }
-//            }
-            if(extensionName.equals("css")){
-                content = SetVersion.chinaToUnicode(content);
-                content = SetVersion.setFileVersion(content);
-                if(!SystemProperty.getValueParam("system.debug").equals("true")) {
-                    content = CompilerCss.miniCSS(content);
-                }
-            }
+
             if(extensionName.equals("js")){
                 content = SetVersion.setDebugVersion(content);
 

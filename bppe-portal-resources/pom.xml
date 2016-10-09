@@ -2,10 +2,14 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>bppe-portal-resources</groupId>
-  <artifactId>web</artifactId>
-  <packaging>war</packaging>
+  <artifactId>root</artifactId>
+  <packaging>pom</packaging>
   <version>1.0.0</version>
-  <name>web Maven Webapp</name>
+  <modules>
+    <module>bppe-portal-web</module>
+    <module>bppe-portal-compressor</module>
+  </modules>
+  <name>root Maven Pom</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.version>0.0.1</project.version>
@@ -17,6 +21,7 @@
     <jknack.version>4.0.6</jknack.version>
     <guava>19.0</guava>
   </properties>
+  <dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -70,5 +75,5 @@
     </dependency>
 
   </dependencies>
-
+  </dependencyManagement>
 </project>

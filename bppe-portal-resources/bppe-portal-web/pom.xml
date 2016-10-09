@@ -6,7 +6,7 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>web</artifactId>
+    <artifactId>bppe-portal-web</artifactId>
     <packaging>war</packaging>
     <name>web Maven Webapp</name>
     <url>http://maven.apache.org</url>
@@ -54,7 +54,12 @@
         </dependency>
 
     </dependencies>
+
     <build>
-        <finalName>web</finalName>
+        <directory>../target</directory>
+        <plugins>
+
+        </plugins>
     </build>
+
 </project>

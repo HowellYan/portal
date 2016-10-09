@@ -10,128 +10,6 @@
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
     <mojo>
-      <goal>jslint</goal>
-      <description>Check JS files with jslint.</description>
-      <requiresDirectInvocation>false</requiresDirectInvocation>
-      <requiresProject>true</requiresProject>
-      <requiresReports>false</requiresReports>
-      <aggregator>false</aggregator>
-      <requiresOnline>false</requiresOnline>
-      <inheritedByDefault>true</inheritedByDefault>
-      <phase>process-resources</phase>
-      <implementation>cn.com.innovation.tool.JSLintMojo</implementation>
-      <language>java</language>
-      <instantiationStrategy>per-lookup</instantiationStrategy>
-      <executionStrategy>once-per-session</executionStrategy>
-      <threadSafe>true</threadSafe>
-      <parameters>
-        <parameter>
-          <name>excludeResources</name>
-          <type>boolean</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>Excludes files from resources directories.</description>
-        </parameter>
-        <parameter>
-          <name>excludeWarSourceDirectory</name>
-          <type>boolean</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>Excludes files from webapp directory</description>
-        </parameter>
-        <parameter>
-          <name>excludes</name>
-          <type>java.util.List</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>list of additional excludes</description>
-        </parameter>
-        <parameter>
-          <name>failOnWarning</name>
-          <type>boolean</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>define if plugin must stop/fail on warnings.</description>
-        </parameter>
-        <parameter>
-          <name>includes</name>
-          <type>java.util.List</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>list of additional includes</description>
-        </parameter>
-        <parameter>
-          <name>jswarn</name>
-          <type>boolean</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>[js only] Display possible errors in the code</description>
-        </parameter>
-        <parameter>
-          <name>outputDirectory</name>
-          <type>java.io.File</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>The output directory into which to copy the resources.</description>
-        </parameter>
-        <parameter>
-          <name>project</name>
-          <type>org.apache.maven.project.MavenProject</type>
-          <required>true</required>
-          <editable>false</editable>
-          <description></description>
-        </parameter>
-        <parameter>
-          <name>resources</name>
-          <type>java.util.List</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>The list of resources we want to transfer.</description>
-        </parameter>
-        <parameter>
-          <name>skip</name>
-          <type>boolean</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>Whether to skip execution.</description>
-        </parameter>
-        <parameter>
-          <name>sourceDirectory</name>
-          <type>java.io.File</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>Javascript source directory. (result will be put to outputDirectory).
-This allow project with &quot;src/main/js&quot; structure.</description>
-        </parameter>
-        <parameter>
-          <name>warSourceDirectory</name>
-          <type>java.io.File</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>Single directory for extra files to include in the WAR.</description>
-        </parameter>
-        <parameter>
-          <name>webappDirectory</name>
-          <type>java.io.File</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description>The directory where the webapp is built.</description>
-        </parameter>
-      </parameters>
-      <configuration>
-        <excludeResources implementation="boolean" default-value="false"/>
-        <failOnWarning implementation="boolean" default-value="false">${maven.yuicompressor.failOnWarning}</failOnWarning>
-        <jswarn implementation="boolean" default-value="true">${maven.yuicompressor.jswarn}</jswarn>
-        <outputDirectory implementation="java.io.File">${project.build.outputDirectory}</outputDirectory>
-        <project implementation="org.apache.maven.project.MavenProject">${project}</project>
-        <resources implementation="java.util.List">${project.resources}</resources>
-        <skip implementation="boolean" default-value="false">${maven.yuicompressor.skip}</skip>
-        <sourceDirectory implementation="java.io.File">${project.build.sourceDirectory}/../js</sourceDirectory>
-        <warSourceDirectory implementation="java.io.File">${basedir}/src/main/webapp</warSourceDirectory>
-        <webappDirectory implementation="java.io.File">${project.build.directory}/${project.build.finalName}</webappDirectory>
-      </configuration>
-    </mojo>
-    <mojo>
       <goal>compress</goal>
       <description>Apply compression on JS and CSS (using YUI Compressor).</description>
       <requiresDirectInvocation>false</requiresDirectInvocation>
@@ -320,6 +198,13 @@ This allow project with &quot;src/main/js&quot; structure.</description>
           <description>The output filename suffix.</description>
         </parameter>
         <parameter>
+          <name>systemProperty</name>
+          <type>java.lang.String</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Read the input file using &quot;encoding&quot;.</description>
+        </parameter>
+        <parameter>
           <name>useSmallestFile</name>
           <type>boolean</type>
           <required>false</required>
@@ -362,7 +247,130 @@ This allow project with &quot;src/main/js&quot; structure.</description>
         <sourceDirectory implementation="java.io.File">${project.build.sourceDirectory}/../js</sourceDirectory>
         <statistics implementation="boolean" default-value="true">${maven.yuicompressor.statistics}</statistics>
         <suffix implementation="java.lang.String" default-value="-min">${maven.yuicompressor.suffix}</suffix>
+        <systemProperty implementation="java.lang.String" default-value="">${file.systemProperty}</systemProperty>
         <useSmallestFile implementation="boolean" default-value="true">${maven.yuicompressor.useSmallestFile}</useSmallestFile>
+        <warSourceDirectory implementation="java.io.File">${basedir}/src/main/webapp</warSourceDirectory>
+        <webappDirectory implementation="java.io.File">${project.build.directory}/${project.build.finalName}</webappDirectory>
+      </configuration>
+    </mojo>
+    <mojo>
+      <goal>jslint</goal>
+      <description>Check JS files with jslint.</description>
+      <requiresDirectInvocation>false</requiresDirectInvocation>
+      <requiresProject>true</requiresProject>
+      <requiresReports>false</requiresReports>
+      <aggregator>false</aggregator>
+      <requiresOnline>false</requiresOnline>
+      <inheritedByDefault>true</inheritedByDefault>
+      <phase>process-resources</phase>
+      <implementation>cn.com.innovation.tool.JSLintMojo</implementation>
+      <language>java</language>
+      <instantiationStrategy>per-lookup</instantiationStrategy>
+      <executionStrategy>once-per-session</executionStrategy>
+      <threadSafe>true</threadSafe>
+      <parameters>
+        <parameter>
+          <name>excludeResources</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Excludes files from resources directories.</description>
+        </parameter>
+        <parameter>
+          <name>excludeWarSourceDirectory</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Excludes files from webapp directory</description>
+        </parameter>
+        <parameter>
+          <name>excludes</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>list of additional excludes</description>
+        </parameter>
+        <parameter>
+          <name>failOnWarning</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>define if plugin must stop/fail on warnings.</description>
+        </parameter>
+        <parameter>
+          <name>includes</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>list of additional includes</description>
+        </parameter>
+        <parameter>
+          <name>jswarn</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] Display possible errors in the code</description>
+        </parameter>
+        <parameter>
+          <name>outputDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The output directory into which to copy the resources.</description>
+        </parameter>
+        <parameter>
+          <name>project</name>
+          <type>org.apache.maven.project.MavenProject</type>
+          <required>true</required>
+          <editable>false</editable>
+          <description></description>
+        </parameter>
+        <parameter>
+          <name>resources</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The list of resources we want to transfer.</description>
+        </parameter>
+        <parameter>
+          <name>skip</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Whether to skip execution.</description>
+        </parameter>
+        <parameter>
+          <name>sourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Javascript source directory. (result will be put to outputDirectory).
+This allow project with &quot;src/main/js&quot; structure.</description>
+        </parameter>
+        <parameter>
+          <name>warSourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Single directory for extra files to include in the WAR.</description>
+        </parameter>
+        <parameter>
+          <name>webappDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The directory where the webapp is built.</description>
+        </parameter>
+      </parameters>
+      <configuration>
+        <excludeResources implementation="boolean" default-value="false"/>
+        <failOnWarning implementation="boolean" default-value="false">${maven.yuicompressor.failOnWarning}</failOnWarning>
+        <jswarn implementation="boolean" default-value="true">${maven.yuicompressor.jswarn}</jswarn>
+        <outputDirectory implementation="java.io.File">${project.build.outputDirectory}</outputDirectory>
+        <project implementation="org.apache.maven.project.MavenProject">${project}</project>
+        <resources implementation="java.util.List">${project.resources}</resources>
+        <skip implementation="boolean" default-value="false">${maven.yuicompressor.skip}</skip>
+        <sourceDirectory implementation="java.io.File">${project.build.sourceDirectory}/../js</sourceDirectory>
         <warSourceDirectory implementation="java.io.File">${basedir}/src/main/webapp</warSourceDirectory>
         <webappDirectory implementation="java.io.File">${project.build.directory}/${project.build.finalName}</webappDirectory>
       </configuration>
@@ -524,6 +532,60 @@ This allow project with &quot;src/main/js&quot; structure.</description>
       <artifactId>plexus-build-api</artifactId>
       <type>jar</type>
       <version>0.0.7</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.javascript</groupId>
+      <artifactId>closure-compiler</artifactId>
+      <type>jar</type>
+      <version>r1043</version>
+    </dependency>
+    <dependency>
+      <groupId>args4j</groupId>
+      <artifactId>args4j</artifactId>
+      <type>jar</type>
+      <version>2.0.12</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <type>jar</type>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <type>jar</type>
+      <version>20090211</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <type>jar</type>
+      <version>1.8.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-launcher</artifactId>
+      <type>jar</type>
+      <version>1.8.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <type>jar</type>
+      <version>1.3.9</version>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.htmlcompressor</groupId>
+      <artifactId>htmlcompressor</artifactId>
+      <type>jar</type>
+      <version>1.5.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <type>jar</type>
+      <version>19.0</version>
     </dependency>
   </dependencies>
 </plugin>

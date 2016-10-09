@@ -72,12 +72,22 @@
                     <force>false</force>
                     <skip>false</skip>
                     <nosuffix>true</nosuffix>
+                    <systemProperty>${basedir}/target/classes/properties/system.properties</systemProperty>
                     <linebreakpos>-1</linebreakpos>
                     <includes>
                         <include>**/*.js</include>
                         <include>**/*.css</include>
+                        <include>**/*.html</include>
+                        <include>**/*.hbs</include>
                     </includes>
-
+                    <excludes>
+                        <exclude>**/bestpay.global.js</exclude>
+                        <exclude>**/angular.js</exclude>
+                        <exclude>**/angular-css.js</exclude>
+                        <exclude>**/angular-ui-router.js</exclude>
+                        <exclude>**/*.min.js</exclude>
+                        <exclude>**/*.min.css</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

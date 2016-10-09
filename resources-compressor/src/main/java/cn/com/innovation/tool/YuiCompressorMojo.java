@@ -1,15 +1,18 @@
 package cn.com.innovation.tool;
 
+import cn.com.innovation.tool.property.SystemProperty;
+import com.google.common.io.CharStreams;
+import com.google.javascript.jscomp.*;
+import com.google.javascript.jscomp.Compiler;
+import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import com.yahoo.platform.yui.compressor.CssCompressor;
-import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.IOUtil;
 
 import java.io.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
 /**
@@ -38,6 +41,14 @@ public class YuiCompressorMojo extends MojoSupport {
      * @parameter expression="${maven.yuicompressor.suffix}" default-value="-min"
      */
     private String suffix;
+
+
+    /**
+     * Read the input file using "encoding".
+     *
+     * @parameter expression="${file.systemProperty}" default-value=""
+     */
+    private String systemProperty;
 
     /**
      * If no "suffix" must be add to output filename (maven's configuration manage empty suffix like default).
@@ -127,6 +138,9 @@ public class YuiCompressorMojo extends MojoSupport {
     private long inSizeTotal_;
     private long outSizeTotal_;
 
+    //静态资源版本号
+    private static String resourceVersion;
+
     @Override
     protected String[] getDefaultIncludes() throws Exception {
         return new String[]{"**/*.css", "**/*.js"};
@@ -174,6 +188,11 @@ public class YuiCompressorMojo extends MojoSupport {
 
     @Override
     protected void processFile(SourceFile src) throws Exception {
+        getLog().info("systemProperty:"+systemProperty);
+        if(!systemProperty.equalsIgnoreCase("")){
+            SystemProperty.initSystemConf(systemProperty);
+        }
+        getLog().info("systemProperty:"+SystemProperty.getValueParam("system.debug"));
         if (getLog().isDebugEnabled()) {
             getLog().debug("compress file :" + src.toFile()+ " to " + src.toDestFile(suffix));
         }
@@ -201,14 +220,49 @@ public class YuiCompressorMojo extends MojoSupport {
 
             getLog().debug("start compression");
             out = new OutputStreamWriter(new FileOutputStream(outFileTmp), encoding);
+
+            //InputStreamReader to String
+            String stringFromStream = CharStreams.toString(in);
+
+
+            if(resourceVersion == null){
+                resourceVersion=RandomString(9);
+            }
+
+            if(systemProperty !=null && !systemProperty.equalsIgnoreCase("") && SystemProperty.getValueParam("system.setVersionStr") != null){
+                stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setVersionStr"),"v="+resourceVersion);
+            }
+
+            stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setCDNUrlStr"),SystemProperty.getValueParam("system.CDN_Url"));
+
+            if(systemProperty !=null
+                    && !systemProperty.equalsIgnoreCase("")
+                    && SystemProperty.getValueParam("system.debug") != null){
+                stringFromStream = stringFromStream.replaceAll("&debug&",SystemProperty.getValueParam("system.debug"));
+            }
+
             if (nocompress) {
                 getLog().info("No compression is enabled");
                 IOUtil.copy(in, out);
             } else if (".js".equalsIgnoreCase(src.getExtension())) {
-                JavaScriptCompressor compressor = new JavaScriptCompressor(in, jsErrorReporter_);
-                compressor.compress(out, linebreakpos, !nomunge, jswarn, preserveAllSemiColons, disableOptimizations);
+                stringFromStream = compressJs(stringFromStream);
+                out.write(stringFromStream);
+
+                //InputStream inputStream = new ByteArrayInputStream(stringFromStream.getBytes(encoding));
+                //in = new InputStreamReader(inputStream);
+                //JavaScriptCompressor compressor = new JavaScriptCompressor(in, jsErrorReporter_);
+                //compressor.compress(out, linebreakpos, !nomunge, jswarn, preserveAllSemiColons, disableOptimizations);
             } else if (".css".equalsIgnoreCase(src.getExtension())) {
+
+                InputStream inputStream = new ByteArrayInputStream(stringFromStream.getBytes(encoding));
+                in = new InputStreamReader(inputStream);
                 compressCss(in, out);
+
+            } else if(".html".equalsIgnoreCase(src.getExtension()) || ".hbs".equalsIgnoreCase(src.getExtension())){
+
+                HtmlCompressor htmlCompressor = new HtmlCompressor();
+                stringFromStream = htmlCompressor.compress(stringFromStream);
+                out.write(stringFromStream);
             }
             getLog().debug("end compression");
         } finally {
@@ -243,6 +297,38 @@ public class YuiCompressorMojo extends MojoSupport {
             }
             getLog().info(fileStatistics);
         }
+    }
+
+    private String compressJs(String codeStr){
+        Compiler.setLoggingLevel(Level.OFF);
+        Compiler compiler = new Compiler();
+        //设置压缩级别
+        CompilerOptions options = new CompilerOptions();
+
+        CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
+
+        //警告级别
+        WarningLevel.DEFAULT.setOptionsForWarningLevel(options);
+        List<JSSourceFile> externalJavascriptFiles = new ArrayList<JSSourceFile>();
+        List<JSSourceFile> primaryJavascriptFiles = new ArrayList<JSSourceFile>();
+
+        primaryJavascriptFiles.add(JSSourceFile.fromCode("", codeStr));
+
+        compiler.compile(externalJavascriptFiles, primaryJavascriptFiles, options);
+
+        Result result=  compiler.getResult();
+        if(!result.success){
+            System.out.println(result.success);
+
+            JSError[] jsError = compiler.getErrors();
+            for(int k=0;k<jsError.length;k++){
+                getLog().debug("JS Closure Errors:"+ jsError[k].toString());
+            }
+            return "JS Closure Errors!";
+        }
+        String[] strings= compiler.toSourceArray();
+
+        return strings[0].toString();
     }
 
     private void compressCss(InputStreamReader in, OutputStreamWriter out)
@@ -282,5 +368,18 @@ public class YuiCompressorMojo extends MojoSupport {
         long v100 = Math.max(file100.length(), 1);
         long vX = Math.max(fileX.length(), 1);
         return (vX * 100)/v100;
+    }
+
+
+    /** 产生一个随机的字符串*/
+    protected static String RandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int num = random.nextInt(62);
+            buf.append(str.charAt(num));
+        }
+        return buf.toString();
     }
 }

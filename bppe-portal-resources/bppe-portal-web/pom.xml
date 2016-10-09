@@ -66,6 +66,14 @@
                 <groupId>cn.com.innovation.tool</groupId>
                 <artifactId>resources-compressor</artifactId>
                 <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>compress</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <jswarn>false</jswarn>

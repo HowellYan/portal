@@ -10,31 +10,361 @@
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
     <mojo>
-      <goal>touch</goal>
-      <description>Goal which touches a timestamp file.</description>
+      <goal>jslint</goal>
+      <description>Check JS files with jslint.</description>
       <requiresDirectInvocation>false</requiresDirectInvocation>
       <requiresProject>true</requiresProject>
       <requiresReports>false</requiresReports>
       <aggregator>false</aggregator>
       <requiresOnline>false</requiresOnline>
       <inheritedByDefault>true</inheritedByDefault>
-      <phase>process-sources</phase>
-      <implementation>cn.com.innovation.tool.MyMojo</implementation>
+      <phase>process-resources</phase>
+      <implementation>cn.com.innovation.tool.JSLintMojo</implementation>
       <language>java</language>
       <instantiationStrategy>per-lookup</instantiationStrategy>
       <executionStrategy>once-per-session</executionStrategy>
-      <threadSafe>false</threadSafe>
+      <threadSafe>true</threadSafe>
       <parameters>
+        <parameter>
+          <name>excludeResources</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Excludes files from resources directories.</description>
+        </parameter>
+        <parameter>
+          <name>excludeWarSourceDirectory</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Excludes files from webapp directory</description>
+        </parameter>
+        <parameter>
+          <name>excludes</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>list of additional excludes</description>
+        </parameter>
+        <parameter>
+          <name>failOnWarning</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>define if plugin must stop/fail on warnings.</description>
+        </parameter>
+        <parameter>
+          <name>includes</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>list of additional includes</description>
+        </parameter>
+        <parameter>
+          <name>jswarn</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] Display possible errors in the code</description>
+        </parameter>
         <parameter>
           <name>outputDirectory</name>
           <type>java.io.File</type>
-          <required>true</required>
+          <required>false</required>
           <editable>true</editable>
-          <description>Location of the file.</description>
+          <description>The output directory into which to copy the resources.</description>
+        </parameter>
+        <parameter>
+          <name>project</name>
+          <type>org.apache.maven.project.MavenProject</type>
+          <required>true</required>
+          <editable>false</editable>
+          <description></description>
+        </parameter>
+        <parameter>
+          <name>resources</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The list of resources we want to transfer.</description>
+        </parameter>
+        <parameter>
+          <name>skip</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Whether to skip execution.</description>
+        </parameter>
+        <parameter>
+          <name>sourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Javascript source directory. (result will be put to outputDirectory).
+This allow project with &quot;src/main/js&quot; structure.</description>
+        </parameter>
+        <parameter>
+          <name>warSourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Single directory for extra files to include in the WAR.</description>
+        </parameter>
+        <parameter>
+          <name>webappDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The directory where the webapp is built.</description>
         </parameter>
       </parameters>
       <configuration>
-        <outputDirectory implementation="java.io.File">${project.build.directory}</outputDirectory>
+        <excludeResources implementation="boolean" default-value="false"/>
+        <failOnWarning implementation="boolean" default-value="false">${maven.yuicompressor.failOnWarning}</failOnWarning>
+        <jswarn implementation="boolean" default-value="true">${maven.yuicompressor.jswarn}</jswarn>
+        <outputDirectory implementation="java.io.File">${project.build.outputDirectory}</outputDirectory>
+        <project implementation="org.apache.maven.project.MavenProject">${project}</project>
+        <resources implementation="java.util.List">${project.resources}</resources>
+        <skip implementation="boolean" default-value="false">${maven.yuicompressor.skip}</skip>
+        <sourceDirectory implementation="java.io.File">${project.build.sourceDirectory}/../js</sourceDirectory>
+        <warSourceDirectory implementation="java.io.File">${basedir}/src/main/webapp</warSourceDirectory>
+        <webappDirectory implementation="java.io.File">${project.build.directory}/${project.build.finalName}</webappDirectory>
+      </configuration>
+    </mojo>
+    <mojo>
+      <goal>compress</goal>
+      <description>Apply compression on JS and CSS (using YUI Compressor).</description>
+      <requiresDirectInvocation>false</requiresDirectInvocation>
+      <requiresProject>true</requiresProject>
+      <requiresReports>false</requiresReports>
+      <aggregator>false</aggregator>
+      <requiresOnline>false</requiresOnline>
+      <inheritedByDefault>true</inheritedByDefault>
+      <phase>process-resources</phase>
+      <implementation>cn.com.innovation.tool.YuiCompressorMojo</implementation>
+      <language>java</language>
+      <instantiationStrategy>per-lookup</instantiationStrategy>
+      <executionStrategy>once-per-session</executionStrategy>
+      <threadSafe>true</threadSafe>
+      <parameters>
+        <parameter>
+          <name>aggregations</name>
+          <type>cn.com.innovation.tool.Aggregation[]</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>a list of aggregation/concatenation to do after processing,
+for example to create big js files that contain several small js files.
+Aggregation could be done on any type of file (js, css, ...).</description>
+        </parameter>
+        <parameter>
+          <name>disableOptimizations</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] disable all micro optimizations.</description>
+        </parameter>
+        <parameter>
+          <name>encoding</name>
+          <type>java.lang.String</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Read the input file using &quot;encoding&quot;.</description>
+        </parameter>
+        <parameter>
+          <name>excludeResources</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Excludes files from resources directories.</description>
+        </parameter>
+        <parameter>
+          <name>excludeWarSourceDirectory</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Excludes files from webapp directory</description>
+        </parameter>
+        <parameter>
+          <name>excludes</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>list of additional excludes</description>
+        </parameter>
+        <parameter>
+          <name>failOnWarning</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>define if plugin must stop/fail on warnings.</description>
+        </parameter>
+        <parameter>
+          <name>force</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>force the compression of every files,
+else if compressed file already exists and is younger than source file, nothing is done.</description>
+        </parameter>
+        <parameter>
+          <name>gzip</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>request to create a gzipped version of the yuicompressed/aggregation files.</description>
+        </parameter>
+        <parameter>
+          <name>includes</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>list of additional includes</description>
+        </parameter>
+        <parameter>
+          <name>jswarn</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] Display possible errors in the code</description>
+        </parameter>
+        <parameter>
+          <name>linebreakpos</name>
+          <type>int</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Insert line breaks in output after the specified column number.</description>
+        </parameter>
+        <parameter>
+          <name>nocompress</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] No compression</description>
+        </parameter>
+        <parameter>
+          <name>nomunge</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] Minify only, do not obfuscate.</description>
+        </parameter>
+        <parameter>
+          <name>nosuffix</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>If no &quot;suffix&quot; must be add to output filename (maven&apos;s configuration manage empty suffix like default).</description>
+        </parameter>
+        <parameter>
+          <name>outputDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The output directory into which to copy the resources.</description>
+        </parameter>
+        <parameter>
+          <name>preProcessAggregates</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>aggregate files before minify</description>
+        </parameter>
+        <parameter>
+          <name>preserveAllSemiColons</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>[js only] Preserve unnecessary semicolons.</description>
+        </parameter>
+        <parameter>
+          <name>project</name>
+          <type>org.apache.maven.project.MavenProject</type>
+          <required>true</required>
+          <editable>false</editable>
+          <description></description>
+        </parameter>
+        <parameter>
+          <name>resources</name>
+          <type>java.util.List</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The list of resources we want to transfer.</description>
+        </parameter>
+        <parameter>
+          <name>skip</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Whether to skip execution.</description>
+        </parameter>
+        <parameter>
+          <name>sourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Javascript source directory. (result will be put to outputDirectory).
+This allow project with &quot;src/main/js&quot; structure.</description>
+        </parameter>
+        <parameter>
+          <name>statistics</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>show statistics (compression ratio).</description>
+        </parameter>
+        <parameter>
+          <name>suffix</name>
+          <type>java.lang.String</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The output filename suffix.</description>
+        </parameter>
+        <parameter>
+          <name>useSmallestFile</name>
+          <type>boolean</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>use the input file as output when the compressed file is larger than the original</description>
+        </parameter>
+        <parameter>
+          <name>warSourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Single directory for extra files to include in the WAR.</description>
+        </parameter>
+        <parameter>
+          <name>webappDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>The directory where the webapp is built.</description>
+        </parameter>
+      </parameters>
+      <configuration>
+        <disableOptimizations implementation="boolean" default-value="false">${maven.yuicompressor.disableOptimizations}</disableOptimizations>
+        <encoding implementation="java.lang.String" default-value="UTF-8">${file.encoding}</encoding>
+        <excludeResources implementation="boolean" default-value="false"/>
+        <failOnWarning implementation="boolean" default-value="false">${maven.yuicompressor.failOnWarning}</failOnWarning>
+        <force implementation="boolean" default-value="false">${maven.yuicompressor.force}</force>
+        <gzip implementation="boolean" default-value="false">${maven.yuicompressor.gzip}</gzip>
+        <jswarn implementation="boolean" default-value="true">${maven.yuicompressor.jswarn}</jswarn>
+        <linebreakpos implementation="int" default-value="-1">${maven.yuicompressor.linebreakpos}</linebreakpos>
+        <nocompress implementation="boolean" default-value="false">${maven.yuicompressor.nocompress}</nocompress>
+        <nomunge implementation="boolean" default-value="false">${maven.yuicompressor.nomunge}</nomunge>
+        <nosuffix implementation="boolean" default-value="false">${maven.yuicompressor.nosuffix}</nosuffix>
+        <outputDirectory implementation="java.io.File">${project.build.outputDirectory}</outputDirectory>
+        <preProcessAggregates implementation="boolean" default-value="false">${maven.yuicompressor.preProcessAggregates}</preProcessAggregates>
+        <preserveAllSemiColons implementation="boolean" default-value="false">${maven.yuicompressor.preserveAllSemiColons}</preserveAllSemiColons>
+        <project implementation="org.apache.maven.project.MavenProject">${project}</project>
+        <resources implementation="java.util.List">${project.resources}</resources>
+        <skip implementation="boolean" default-value="false">${maven.yuicompressor.skip}</skip>
+        <sourceDirectory implementation="java.io.File">${project.build.sourceDirectory}/../js</sourceDirectory>
+        <statistics implementation="boolean" default-value="true">${maven.yuicompressor.statistics}</statistics>
+        <suffix implementation="java.lang.String" default-value="-min">${maven.yuicompressor.suffix}</suffix>
+        <useSmallestFile implementation="boolean" default-value="true">${maven.yuicompressor.useSmallestFile}</useSmallestFile>
+        <warSourceDirectory implementation="java.io.File">${basedir}/src/main/webapp</warSourceDirectory>
+        <webappDirectory implementation="java.io.File">${project.build.directory}/${project.build.finalName}</webappDirectory>
       </configuration>
     </mojo>
   </mojos>
@@ -43,7 +373,157 @@
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
       <type>jar</type>
-      <version>2.0</version>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.sisu</groupId>
+      <artifactId>sisu-inject-plexus</artifactId>
+      <type>jar</type>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.sisu</groupId>
+      <artifactId>sisu-inject-bean</artifactId>
+      <type>jar</type>
+      <version>2.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.sisu</groupId>
+      <artifactId>sisu-guice</artifactId>
+      <type>jar</type>
+      <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.sisu</groupId>
+      <artifactId>sisu-guava</artifactId>
+      <type>jar</type>
+      <version>0.9.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings-builder</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-repository-metadata</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model-builder</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-aether-provider</artifactId>
+      <type>jar</type>
+      <version>3.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.aether</groupId>
+      <artifactId>aether-spi</artifactId>
+      <type>jar</type>
+      <version>1.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.aether</groupId>
+      <artifactId>aether-impl</artifactId>
+      <type>jar</type>
+      <version>1.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.aether</groupId>
+      <artifactId>aether-api</artifactId>
+      <type>jar</type>
+      <version>1.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.aether</groupId>
+      <artifactId>aether-util</artifactId>
+      <type>jar</type>
+      <version>1.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-interpolation</artifactId>
+      <type>jar</type>
+      <version>1.14</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <type>jar</type>
+      <version>2.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-classworlds</artifactId>
+      <type>jar</type>
+      <version>2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-component-annotations</artifactId>
+      <type>jar</type>
+      <version>1.5.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.plexus</groupId>
+      <artifactId>plexus-sec-dispatcher</artifactId>
+      <type>jar</type>
+      <version>1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.plexus</groupId>
+      <artifactId>plexus-cipher</artifactId>
+      <type>jar</type>
+      <version>1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.yahoo.platform.yui</groupId>
+      <artifactId>yuicompressor</artifactId>
+      <type>jar</type>
+      <version>2.4.7</version>
+    </dependency>
+    <dependency>
+      <groupId>rhino</groupId>
+      <artifactId>js</artifactId>
+      <type>jar</type>
+      <version>1.6R7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonatype.plexus</groupId>
+      <artifactId>plexus-build-api</artifactId>
+      <type>jar</type>
+      <version>0.0.7</version>
     </dependency>
   </dependencies>
 </plugin>

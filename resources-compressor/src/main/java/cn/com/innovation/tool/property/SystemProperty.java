@@ -36,9 +36,6 @@ public class SystemProperty {
      * @return
      */
     public static String getValueParam(String key) {
-        if(SystemProperty.param == null){
-            return null;
-        }
        return SystemProperty.param.get(key);
     }
 
@@ -55,6 +52,7 @@ public class SystemProperty {
         param.put("system.setCDNUrlStr", properties.getProperty("setCDNUrlStr"));
         SystemProperty.setParam(param);
     }
+
 
     /**
      * @param propFile

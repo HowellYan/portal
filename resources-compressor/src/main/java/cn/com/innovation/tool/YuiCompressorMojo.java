@@ -188,11 +188,11 @@ public class YuiCompressorMojo extends MojoSupport {
 
     @Override
     protected void processFile(SourceFile src) throws Exception {
-        getLog().info("systemProperty:"+systemProperty);
+
         if(!systemProperty.equalsIgnoreCase("")){
             SystemProperty.initSystemConf(systemProperty);
         }
-        getLog().info("systemProperty:"+SystemProperty.getValueParam("system.debug"));
+
         if (getLog().isDebugEnabled()) {
             getLog().debug("compress file :" + src.toFile()+ " to " + src.toDestFile(suffix));
         }
@@ -232,9 +232,9 @@ public class YuiCompressorMojo extends MojoSupport {
             if(systemProperty !=null && !systemProperty.equalsIgnoreCase("") && SystemProperty.getValueParam("system.setVersionStr") != null){
                 stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setVersionStr"),"v="+resourceVersion);
             }
-
-            stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setCDNUrlStr"),SystemProperty.getValueParam("system.CDN_Url"));
-
+            if(systemProperty !=null && !systemProperty.equalsIgnoreCase("") && SystemProperty.getValueParam("system.setCDNUrlStr") != null && SystemProperty.getValueParam("system.CDN_Url") != null) {
+                stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setCDNUrlStr"), SystemProperty.getValueParam("system.CDN_Url"));
+            }
             if(systemProperty !=null
                     && !systemProperty.equalsIgnoreCase("")
                     && SystemProperty.getValueParam("system.debug") != null){

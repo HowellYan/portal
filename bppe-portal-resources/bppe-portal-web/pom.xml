@@ -72,7 +72,7 @@
                     <force>false</force>
                     <skip>false</skip>
                     <nosuffix>true</nosuffix>
-                    <systemProperty>${basedir}/target/classes/properties/system.properties</systemProperty>
+                    <systemProperty>${project.parent.basedir}/target/classes/properties/system.properties</systemProperty>
                     <linebreakpos>-1</linebreakpos>
                     <includes>
                         <include>**/*.js</include>

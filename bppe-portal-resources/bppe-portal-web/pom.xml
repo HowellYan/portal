@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>bppe-portal-web</artifactId>
     <packaging>war</packaging>
-    <name>web Maven Webapp</name>
+    <name>bppe-portal-web</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -53,18 +53,20 @@
             <artifactId>handlebars-springmvc</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.com.innovation.tool</groupId>
-            <artifactId>resources-compressor</artifactId>
+            <groupId>bppe-portal-resources</groupId>
+            <artifactId>bppe-portal-compress</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
 
+
     <build>
+        <finalName>bppe-portal-resources</finalName>
         <directory>../target</directory>
         <plugins>
             <plugin>
-                <groupId>cn.com.innovation.tool</groupId>
-                <artifactId>resources-compressor</artifactId>
+                <groupId>bppe-portal-resources</groupId>
+                <artifactId>bppe-portal-compress</artifactId>
                 <version>1.0.0</version>
                 <executions>
                     <execution>

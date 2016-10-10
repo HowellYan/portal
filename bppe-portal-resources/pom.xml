@@ -8,8 +8,9 @@
   <modules>
     <module>bppe-portal-web</module>
     <module>bppe-portal-encrypt</module>
+      <module>bppe-portal-compress</module>
   </modules>
-  <name>root Maven Pom</name>
+  <name>bppe-portal-resources</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.version>0.0.1</project.version>

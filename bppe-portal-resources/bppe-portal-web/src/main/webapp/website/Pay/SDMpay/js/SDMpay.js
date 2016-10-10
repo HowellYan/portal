@@ -6,7 +6,7 @@ define([],function() {
 
     }
     SDMpay.prototype.initApp = function () {
-        alert(11);
+        alert(3311);
     };
 
     return new SDMpay();

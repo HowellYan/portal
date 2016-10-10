@@ -228,10 +228,15 @@ public class CompressorMojo extends MojoSupport {
                 resourceVersion=RandomString(9);
             }
 
-            if(systemProperty !=null && !systemProperty.equalsIgnoreCase("") && SystemProperty.getValueParam("system.setVersionStr") != null){
+            if(systemProperty !=null
+                    && !systemProperty.equalsIgnoreCase("")
+                    && SystemProperty.getValueParam("system.setVersionStr") != null){
                 stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setVersionStr"),"v="+resourceVersion);
             }
-            if(systemProperty !=null && !systemProperty.equalsIgnoreCase("") && SystemProperty.getValueParam("system.setCDNUrlStr") != null && SystemProperty.getValueParam("system.CDN_Url") != null) {
+            if(systemProperty !=null
+                    && !systemProperty.equalsIgnoreCase("")
+                    && SystemProperty.getValueParam("system.setCDNUrlStr") != null
+                    && SystemProperty.getValueParam("system.CDN_Url") != null) {
                 stringFromStream = stringFromStream.replaceAll(SystemProperty.getValueParam("system.setCDNUrlStr"), SystemProperty.getValueParam("system.CDN_Url"));
             }
             if(systemProperty !=null
@@ -244,7 +249,9 @@ public class CompressorMojo extends MojoSupport {
                 getLog().info("No compression is enabled");
                 IOUtil.copy(in, out);
             } else if (".js".equalsIgnoreCase(src.getExtension())) {
-                stringFromStream = compressJs(stringFromStream);
+                if(!SystemProperty.getValueParam("system.debug").equals("true")){
+                    stringFromStream = compressJs(stringFromStream);
+                }
                 out.write(stringFromStream);
 
                 //InputStream inputStream = new ByteArrayInputStream(stringFromStream.getBytes(encoding));

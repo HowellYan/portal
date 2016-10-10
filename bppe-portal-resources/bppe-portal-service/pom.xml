@@ -17,14 +17,23 @@
             <artifactId>json-lib</artifactId>
             <classifier>jdk15</classifier>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.bestpay.bppe</groupId>-->
-            <!--<artifactId>bppe-portal-service-api</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.bestpay.bpep</groupId>-->
-            <!--<artifactId>bpep-bestpay-foundation</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bestpay.bppe</groupId>
+            <artifactId>bppe-portal-service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bestpay.bpep</groupId>
+            <artifactId>bpep-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

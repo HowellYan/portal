@@ -23,9 +23,11 @@
     <jknack.version>4.0.6</jknack.version>
     <guava>19.0</guava>
     <!-- 2.0包 -->
-    <bpep-bestpay-foundation.version>2.2.0</bpep-bestpay-foundation.version>
+    <bpep-bestpay.version>2.2.0</bpep-bestpay.version>
     <!--portal service-->
     <bppe-portal-service-api.version>1.1.0</bppe-portal-service-api.version>
+
+
   </properties>
   <dependencyManagement>
   <dependencies>
@@ -111,29 +113,46 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    <dependency>
       <groupId>net.sf.json-lib</groupId>
       <artifactId>json-lib</artifactId>
       <version>2.2.3</version>
       <classifier>jdk15</classifier>
     </dependency>
+    <dependency>
+      <groupId>bppe-portal-resources</groupId>
+      <artifactId>bppe-portal-service</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>bppe-portal-resources</groupId>
+      <artifactId>bppe-portal-compress</artifactId>
+      <version>1.0.0</version>
+    </dependency>
     <!-- 2.0引用包 start-->
     <dependency>
       <groupId>com.bestpay.bpep</groupId>
-      <artifactId>bpep-bestpay-foundation</artifactId>
-      <version>${bpep-bestpay-foundation.version}</version>
+      <artifactId>bpep-validator</artifactId>
+      <version>${bpep-bestpay.version}</version>
     </dependency>
     <!-- 2.0引用包 end-->
+    <!--引用包 bppe 模块包 start -->
     <dependency>
       <groupId>com.bestpay.bppe</groupId>
       <artifactId>bppe-portal-service-api</artifactId>
       <version>${bppe-portal-service-api.version}</version>
     </dependency>
-
+    <!--引用包 bppe 模块包 end -->
   </dependencies>
   </dependencyManagement>
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

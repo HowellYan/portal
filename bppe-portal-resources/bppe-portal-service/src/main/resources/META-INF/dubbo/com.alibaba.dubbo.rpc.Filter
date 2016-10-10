@@ -1,0 +1,1 @@
+dubboLogFilter=cn.com.bestpay.portal.config.filter.DubboLogFilter

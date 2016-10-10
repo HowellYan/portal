@@ -22,9 +22,10 @@
     <div ng-include="'&CDN_Url&/lib/templates/header/bestpay.header.hbs?v=&version&'"></div>
     <br/><br/>
     <div class="common-body-style" >
+        公告:{{userName}}
         <div ui-view></div>
     </div>
-    {{userName}}
+
     <div ng-include="'&CDN_Url&/lib/templates/footer/bestpay.footer.hbs?v=&version&'"></div>
 </body>
 <script src="&CDN_Url&/lib/js/thirdParty/require.js?v=&version&"></script>

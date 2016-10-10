@@ -36,7 +36,19 @@ require.config({
         highcharts:['jquery'],
         bootstrap:['angular','jquery']
     },
-urlArgs : "v=&version&"
+    urlArgs : function (id, url) {
+        var args = "v=&version&";
+        if( id == 'jquery' ||
+            id == 'angular' ||
+            id == 'highcharts' ||
+            id == 'angularUIRouter' ||
+            id == 'bootstrap' ||
+            id == 'angularCSS'
+        ){
+            args = "v=1.0.0";
+        }
+        return (url.indexOf('?') === -1 ? '?' : '&') + args;
+    }
 });
 
 if ('&debug&' != 'true') {

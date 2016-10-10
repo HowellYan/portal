@@ -24,6 +24,7 @@ require.config({
         'angularCSS' : '&CDN_Url&/lib/js/thirdParty/angular-css.min',
         'header.router' : '&CDN_Url&/lib/templates/header/js/header.router',
         'bootstrap':'&CDN_Url&/lib/js/thirdParty/bootstrap.min',
+        'highcharts':'&CDN_Url&/lib/js/thirdParty/highcharts.min',
         // 子应用特有
         'subconfig' : 'config',
         'subclass'  : _subclass
@@ -32,6 +33,7 @@ require.config({
         angular: ['jquery'],
         angularUIRouter: ['angular'],
         angularCSS: ['angular'],
+        highcharts:['jquery'],
         bootstrap:['angular','jquery']
     },
 urlArgs : "v=&version&"

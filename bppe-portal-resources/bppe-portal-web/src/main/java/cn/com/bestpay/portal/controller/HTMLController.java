@@ -22,9 +22,11 @@ public class HTMLController {
 
     @RequestMapping("/")
     @ResponseBody
-    public String state(){
-        return "online_H5 Start state";
+    public ModelAndView state(){
+        //return "<div style=\"text-align:center;\"><h1>欢迎使用\"交费易\"门户</h1></div>";
+        return new ModelAndView("/Index/main");
     }
+
     @RequestMapping(value = "/{First}.html", method = RequestMethod.GET)
     public ModelAndView First(@PathVariable("First")String First) {
         Map<String, Object> map = new HashMap<String, Object>();

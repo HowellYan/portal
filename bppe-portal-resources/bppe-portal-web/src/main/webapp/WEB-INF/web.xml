@@ -13,5 +13,8 @@
     <param-name>defaultHtmlEscape</param-name>
     <param-value>true</param-value>
   </context-param>
+  <welcome-file-list>
+    <welcome-file>/Index/main.html</welcome-file>
+  </welcome-file-list>
 
 </web-app>

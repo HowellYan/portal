@@ -9,6 +9,7 @@
     <module>bppe-portal-web</module>
     <module>bppe-portal-encrypt</module>
     <module>bppe-portal-compress</module>
+    <module>bppe-portal-service</module>
   </modules>
   <name>bppe-portal-resources</name>
   <url>http://maven.apache.org</url>
@@ -21,6 +22,10 @@
     <aspectj.version>1.8.8</aspectj.version>
     <jknack.version>4.0.6</jknack.version>
     <guava>19.0</guava>
+    <!-- 2.0包 -->
+    <bpep-bestpay-foundation.version>2.2.0</bpep-bestpay-foundation.version>
+    <!--portal service-->
+    <bppe-portal-service-api.version>1.1.0</bppe-portal-service-api.version>
   </properties>
   <dependencyManagement>
   <dependencies>
@@ -65,6 +70,11 @@
       <version>${spring.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.github.jknack</groupId>
       <artifactId>handlebars</artifactId>
       <version>${jknack.version}</version>
@@ -73,6 +83,50 @@
       <groupId>com.github.jknack</groupId>
       <artifactId>handlebars-springmvc</artifactId>
       <version>${jknack.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <version>1.10</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.4.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>dubbo</artifactId>
+      <version>2.5.3</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>spring</artifactId>
+          <groupId>org.springframework</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.json-lib</groupId>
+      <artifactId>json-lib</artifactId>
+      <version>2.2.3</version>
+      <classifier>jdk15</classifier>
+    </dependency>
+    <!-- 2.0引用包 start-->
+    <dependency>
+      <groupId>com.bestpay.bpep</groupId>
+      <artifactId>bpep-bestpay-foundation</artifactId>
+      <version>${bpep-bestpay-foundation.version}</version>
+    </dependency>
+    <!-- 2.0引用包 end-->
+    <dependency>
+      <groupId>com.bestpay.bppe</groupId>
+      <artifactId>bppe-portal-service-api</artifactId>
+      <version>${bppe-portal-service-api.version}</version>
     </dependency>
 
   </dependencies>

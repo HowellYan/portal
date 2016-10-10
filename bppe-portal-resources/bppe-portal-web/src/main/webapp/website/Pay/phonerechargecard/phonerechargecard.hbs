@@ -1,6 +1,57 @@
 <div class="phonerechargecard">
     电信话费充值卡
 </div>
+
+<ul class="nav nav-tabs">
+    <li><a href="#home" data-toggle="tab">电信充值卡</a></li>
+    <li><a href="#tab1" data-toggle="tab">移动充值卡</a></li>
+    <li><a href="#tab2" data-toggle="tab">联通充值卡</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="home">
+        <p>电信充值卡</p>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="option1"> 30元
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="option2"> 50元
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="options" id="option3"> 100元
+            </label>
+        </div>
+        <p>
+            <button type="button" class="btn btn-default btn-lg ">默认按钮</button>
+            <button type="button" class="btn btn-default btn-lg active">激活按钮</button>
+        </p>
+    </div>
+    <div class="tab-pane fade" id="tab1">
+        <p>移动充值卡</p>
+        <div style="padding: 100px 100px 10px;">
+            <form class="bs-example bs-example-form" role="form">
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" class="form-control" placeholder="twitterhandle">
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-addon">.00</span>
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control">
+                    <span class="input-group-addon">.00</span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="tab2">
+        <p>联通充值卡</p>
+    </div>
+</div>
 <div ng-controller="post">
     {{main}}
 </div>

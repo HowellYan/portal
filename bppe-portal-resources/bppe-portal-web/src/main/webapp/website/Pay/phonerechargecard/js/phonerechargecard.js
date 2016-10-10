@@ -6,7 +6,10 @@ define([],function() {
         
     }
     PhonerechargeCard.prototype.initApp = function () {
-
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show')
+        })
     };
 
     return new PhonerechargeCard();

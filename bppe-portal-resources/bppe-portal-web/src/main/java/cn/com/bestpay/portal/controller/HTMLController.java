@@ -24,7 +24,7 @@ public class HTMLController {
     @ResponseBody
     public ModelAndView state(){
         //return "<div style=\"text-align:center;\"><h1>欢迎使用\"交费易\"门户</h1></div>";
-        return new ModelAndView("/Index/main");
+        return new ModelAndView("redirect:/Index/main.html");
     }
 
     @RequestMapping(value = "/{First}.html", method = RequestMethod.GET)

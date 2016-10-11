@@ -128,25 +128,6 @@
       <artifactId>bppe-portal-service</artifactId>
       <version>1.0.0</version>
     </dependency>
-    <dependency>
-      <groupId>bppe-portal-resources</groupId>
-      <artifactId>bppe-portal-compress</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <!-- 2.0引用包 start-->
-    <dependency>
-      <groupId>com.bestpay.bpep</groupId>
-      <artifactId>bpep-validator</artifactId>
-      <version>${bpep-bestpay.version}</version>
-    </dependency>
-    <!-- 2.0引用包 end-->
-    <!--引用包 bppe 模块包 start -->
-    <dependency>
-      <groupId>com.bestpay.bppe</groupId>
-      <artifactId>bppe-portal-service-api</artifactId>
-      <version>${bppe-portal-service-api.version}</version>
-    </dependency>
-    <!--引用包 bppe 模块包 end -->
   </dependencies>
   </dependencyManagement>
 

@@ -56,10 +56,6 @@
             <groupId>bppe-portal-resources</groupId>
             <artifactId>bppe-portal-service</artifactId>
         </dependency>
-        <dependency>
-            <groupId>bppe-portal-resources</groupId>
-            <artifactId>bppe-portal-compress</artifactId>
-        </dependency>
     </dependencies>
 
 

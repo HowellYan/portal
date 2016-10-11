@@ -62,22 +62,23 @@
     <build>
         <finalName>bppe-portal-resources</finalName>
         <directory>../target</directory>
+
         <plugins>
-            <plugin>
-                <groupId>com.alibaba.citrus.tool</groupId>
-                <artifactId>autoconfig-maven-plugin</artifactId>
-                <version>1.2</version>
-                <configuration>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>autoconfig</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.alibaba.citrus.tool</groupId>-->
+                <!--<artifactId>autoconfig-maven-plugin</artifactId>-->
+                <!--<version>1.2</version>-->
+                <!--<configuration>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>autoconfig</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
             <plugin>
                 <groupId>bppe-portal-resources</groupId>
@@ -85,7 +86,7 @@
                 <version>1.0.0</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>compress</goal>
                         </goals>

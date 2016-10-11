@@ -40,7 +40,7 @@ public class HTMLController {
     @RequestMapping(value = "/{First}/{Second}.html", method = RequestMethod.GET)
     public ModelAndView Second(@PathVariable("First")String First, @PathVariable("Second")String Second) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userName", "\"#!@#$%^&*()',.\\?/'Hi',首页!");
+        map.put("userName", "'Hi',首页!");
         List<AppcenterModel> modelList = new ArrayList<>();
         AppcenterModel appcenterModel = new AppcenterModel();
         appcenterModel.setAppId("1");

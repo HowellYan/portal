@@ -23,6 +23,11 @@
     <br/><br/>
     <div class="common-body-style" >
         <h4>公告:{{userName}}</h4>
+        <ul>
+            {{#each _DATA_}}
+            <li>{{appId}}-{{appName}}</li>
+            {{/each}}
+        </ul>
         <div ui-view></div>
     </div>
 

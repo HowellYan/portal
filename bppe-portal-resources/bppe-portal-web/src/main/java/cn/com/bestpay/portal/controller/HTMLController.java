@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,6 +40,23 @@ public class HTMLController {
     public ModelAndView Second(@PathVariable("First")String First, @PathVariable("Second")String Second) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("userName", "\"#!@#$%^&*()',.\\?/'Hi',首页!");
+        List<AppcenterModel> modelList = new ArrayList<>();
+        AppcenterModel appcenterModel = new AppcenterModel();
+        appcenterModel.setAppId("1");
+        appcenterModel.setAppName("yang");
+        appcenterModel.setAppUrl("123123");
+        modelList.add(appcenterModel);
+        appcenterModel = new AppcenterModel();
+        appcenterModel.setAppId("2");
+        appcenterModel.setAppName("tang");
+        appcenterModel.setAppUrl("123123");
+        modelList.add(appcenterModel);
+        appcenterModel = new AppcenterModel();
+        appcenterModel.setAppId("3");
+        appcenterModel.setAppName("tang");
+        appcenterModel.setAppUrl("123123");
+        modelList.add(appcenterModel);
+        map.put("_DATA_", modelList);
         return new ModelAndView(First+"/"+Second, map);
     }
 

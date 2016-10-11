@@ -24,6 +24,8 @@ require.config({
         'angularCSS' : '&CDN_Url&/lib/js/thirdParty/angular-css.min',
         'header.router' : '&CDN_Url&/lib/templates/header/js/header.router',
         'bootstrap':'&CDN_Url&/lib/js/thirdParty/bootstrap.min',
+        'bootstrapDatetimepicker':'&CDN_Url&/lib/js/thirdParty/bootstrap-datetimepicker.min',
+        'bootstrapDatetimepickerZhCN':'&CDN_Url&/lib/js/thirdParty/bootstrap-datetimepicker.zh-CN',
         'highcharts':'&CDN_Url&/lib/js/thirdParty/highcharts.min',
         // 子应用特有
         'subconfig' : 'config',
@@ -34,7 +36,9 @@ require.config({
         angularUIRouter: ['angular'],
         angularCSS: ['angular'],
         highcharts:['jquery'],
-        bootstrap:['angular','jquery']
+        bootstrap:['angular','jquery'],
+        bootstrapDatetimepicker:['bootstrap','jquery'],
+        bootstrapDatetimepickerZhCN:['bootstrap','jquery','bootstrapDatetimepicker']
     },
     urlArgs : function (id, url) {
         var args = "v=&version&";
@@ -43,7 +47,9 @@ require.config({
             id == 'highcharts' ||
             id == 'angularUIRouter' ||
             id == 'bootstrap' ||
-            id == 'angularCSS'
+            id == 'angularCSS' ||
+            id == 'bootstrapDatetimepicker'||
+            id == 'bootstrapDatetimepickerZhCN'
         ){
             args = "v=1.0.0";
         }

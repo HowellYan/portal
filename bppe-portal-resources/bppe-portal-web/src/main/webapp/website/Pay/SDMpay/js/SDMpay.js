@@ -1,7 +1,7 @@
 /**
  * Created by Howell on 4/10/16.
  */
-define(['bootstrapDatetimepicker'],function(bootstrapDatetimepicker) {
+define(['bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function() {
     function SDMpay() {
 
     }

@@ -62,7 +62,11 @@
     <build>
         <finalName>bppe-portal-resources</finalName>
         <directory>../target</directory>
-
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <!--<plugin>-->
                 <!--<groupId>com.alibaba.citrus.tool</groupId>-->
@@ -79,14 +83,25 @@
                     <!--</execution>-->
                 <!--</executions>-->
             <!--</plugin>-->
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${project.parent.basedir}/target/bppe-portal-resources</directory>
+                            <filtering>false</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>bppe-portal-resources</groupId>
                 <artifactId>bppe-portal-compress</artifactId>
                 <version>1.0.0</version>
                 <executions>
                     <execution>
-                        <phase>process-resources</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>compress</goal>
                         </goals>
@@ -98,6 +113,7 @@
                     <force>false</force>
                     <skip>false</skip>
                     <nosuffix>true</nosuffix>
+                    <!--<systemProperty>${basedir}/target/classes/properties/system.properties</systemProperty>-->
                     <systemProperty>${project.parent.basedir}/target/classes/properties/system.properties</systemProperty>
                     <linebreakpos>-1</linebreakpos>
                     <includes>

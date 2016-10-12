@@ -9,7 +9,7 @@ define('bestpay.header',[],function () {
     };
 
     Header.prototype.initApp = function () {
-        var menuArray = config['HeaderMenuArray'], menuHTML = "";
+        var menuArray = config['injections']['HeaderMenuArray'], menuHTML = "";
         for(var i = 0; i < menuArray.length; i++){
             var menuItem = menuArray[i];
             menuHTML += '<li tip="'+menuItem['menuTip']+'" class="menu" ' + 'url="';

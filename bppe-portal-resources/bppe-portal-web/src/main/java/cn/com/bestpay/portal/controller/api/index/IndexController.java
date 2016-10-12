@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Howell on 6/10/16.
  */
 @RestController
-public class MainController {
-    private static Logger logger = LoggerFactory.getLogger(MainController.class);
+public class IndexController {
+    private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
 
     @RequestMapping(value = "/api/index/main",method = RequestMethod.POST)

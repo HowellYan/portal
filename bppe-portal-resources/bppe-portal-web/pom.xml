@@ -68,6 +68,18 @@
         <directory>../target</directory>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${project.parent.basedir}/target/bppe-portal-resources</directory>
+                            <filtering>false</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.alibaba.citrus.tool</groupId>
                 <artifactId>autoconfig-maven-plugin</artifactId>
                 <version>1.2</version>
@@ -75,7 +87,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>autoconfig</goal>
                         </goals>
@@ -89,7 +101,7 @@
                 <version>1.0.0</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>compress</goal>
                         </goals>

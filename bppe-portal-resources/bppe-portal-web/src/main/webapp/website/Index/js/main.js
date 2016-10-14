@@ -16,7 +16,6 @@ define('subclass',["bestpay.app"],function(app) {
                 $scope.main = data;
             });
         }]);
-
     }
 
     MainAction.prototype.initApp = function () {

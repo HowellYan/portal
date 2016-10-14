@@ -38,4 +38,7 @@
         <property name="prefix" value="/website/" />
         <property name="suffix" value=".hbs" />
     </bean>
+
+
+    <import resource="classpath:properties/spring/spring-session.xml"/>
 </beans>

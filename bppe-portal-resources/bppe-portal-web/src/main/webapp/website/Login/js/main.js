@@ -5,7 +5,6 @@
 define('subclass',["bestpay.app"],function(app) {
     function LoginMainAction() {
         this.initApp();
-
     }
 
     LoginMainAction.prototype.initApp = function () {
@@ -17,5 +16,5 @@ define('subclass',["bestpay.app"],function(app) {
         $scope.message = "1111";
     };
 
-    return new MainAction();
+    return new LoginMainAction();
 });

@@ -17,18 +17,11 @@ import java.util.Map;
  * Created by yfzx_gd_yanghh on 2016/9/28.
  */
 @Controller
-public class HTMLController {
+public class HTMLController extends BaseController{
     /**
      * 应用版本
      * @return project.version
      */
-
-    @RequestMapping("/")
-    @ResponseBody
-    public ModelAndView state(){
-        //return "<div style=\"text-align:center;\"><h1>欢迎使用\"交费易\"门户</h1></div>";
-        return new ModelAndView("redirect:/Index/main.html");
-    }
 
     @RequestMapping(value = "/{First}.html", method = RequestMethod.GET)
     public ModelAndView First(@PathVariable("First")String First) {

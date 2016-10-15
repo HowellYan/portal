@@ -10,10 +10,9 @@ define('subclass',["bestpay.app"],function(app) {
     LoginMainAction.prototype.initApp = function () {
         console.log("MainAction init!");
     };
-
     LoginMainAction.prototype.SetMenuHeader = function (path,$scope) {
 
-        $scope.message = "1111";
+        //$scope.message = "1111";
     };
 
     return new LoginMainAction();

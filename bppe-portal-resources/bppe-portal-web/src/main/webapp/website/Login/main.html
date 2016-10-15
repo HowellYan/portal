@@ -13,17 +13,36 @@
     <meta http-equiv="description" content="翼支付企业账户" />
     <title>翼支付企业客户自服务门户</title>
     <link type="text/css" rel="stylesheet" href="&CDN_Url&/lib/css/bestpay.page.css?v=&version&" media="screen" />
-    <link type="text/css" rel="stylesheet" href="&CDN_Url&/lib/templates/header/css/bestpay.header.css?v=&version&" media="screen" />
+    <link type="text/css" rel="stylesheet" href="&CDN_Url&/Login/templates/header/css/bestpay.header.css?v=&version&" media="screen" />
     <link type="text/css" rel="stylesheet" href="&CDN_Url&/lib/templates/footer/css/bestpay.footer.css?v=&version&" media="screen" />
     <link type="text/css" rel="stylesheet" href="&CDN_Url&/lib/css/bootstrap.min.css?v=1.0.0" media="screen" />
     <link type="text/css" rel="stylesheet" href="&CDN_Url&/lib/css/bootstrap-responsive.min.css?v=1.0.0" media="screen" />
 </head>
 
 <body class="pageBody" >
-<div ng-include="'&CDN_Url&/lib/templates/header/bestpay.header.hbs?v=&version&'"></div>
+<div ng-include="'&CDN_Url&/Login/templates/header/bestpay.header.hbs?v=&version&'"></div>
 <br/><br/>
+
 <div class="common-body-style" >
-    <div ui-view></div>
+    <!--<div ui-view></div>-->
+    <form action="/api/login" method="post">
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+        </div>
+
+        <input type="submit" value="Login">
+
+    </form>
+
+
+
 </div>
 <div ng-include="'&CDN_Url&/lib/templates/footer/bestpay.footer.hbs?v=&version&'"></div>
 </body>

@@ -1,1 +1,10 @@
 /Login/main.html : get
+/api/login : post
+
+.*(.css) : get
+.*(.js) : get
+.*(.png) : get
+.*(.gif) : get
+.*(.jpg) : get
+.*(.svg) : get
+.*(.jsp) : get

@@ -1,1 +1,11 @@
-/Login/main.html  : get
+/api/([\da-z\.-]+)/([\da-z\.-]+) : post
+/api/([\da-z\.-]+) : post
+
+.*(.html) : get
+.*(.css) : get
+.*(.js) : get
+.*(.png) : get
+.*(.gif) : get
+.*(.jpg) : get
+.*(.svg) : get
+.*(.jsp) : get

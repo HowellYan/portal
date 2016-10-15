@@ -48,68 +48,50 @@ public class SessionFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        Boolean isHave = false;
+        Boolean isHave = false, doFilter = true; ;
         HttpSession session = httpServletRequest.getSession();
         // 请求的uri
         String requestURI = httpServletRequest.getRequestURI();
         Matcher matcher = rewritePattern.matcher(requestURI);
         requestURI = matcher.replaceAll("/");
         String method = httpServletRequest.getMethod().toLowerCase();
-        logger.info("请求1：" + requestURI);
+        logger.info("请求：" + requestURI);
 
-        for (SessionModel sessionItem:GetPermissonList.sessionModel) {  //method and uri matches with white list, ok
-            if (sessionItem.httpMethods.contains(method) && sessionItem.pattern.matcher(requestURI).matches()) {
-                isHave = true;
-                break;
-            }
-        }
-
-        if (session.getAttribute("userSession") == null && isHave == false) {
-            logger.info("Session失效");
-            logger.info("appShow session:" + session.getAttribute("userSession"));
-            httpServletResponse.sendRedirect("/Login/main.html");
-        }
-
-        // 是否过滤
-        boolean doFilter = true;
-
+        // 过滤不存在于 white_list 文件的URL
         for (WhiteModel whiteItem : GetPermissonList.whiteModel) {  //method and uri matches with white list, ok
             if (whiteItem.httpMethods.contains(method) && whiteItem.pattern.matcher(requestURI).matches()) {
                 doFilter = false;
                 break;
             }
         }
+        //过滤不存在于 session_list 文件的URL
+        for (SessionModel sessionItem:GetPermissonList.sessionModel) {  //method and uri matches with white list, ok
+            if (sessionItem.httpMethods.contains(method) && sessionItem.pattern.matcher(requestURI).matches()) {
+                isHave = true;
+                break;
+            }
+        }
+        if( requestURI.equalsIgnoreCase("/") ){
+            httpServletResponse.sendRedirect("/Index/main.html");
+        }
 
         if (doFilter) {
             // 执行过滤
             // 从session中获取登录者实体
         } else {
+            //Session 是否失效校验
+            if (session.getAttribute("userSession") == null && isHave == false) {
+                logger.info("Session失效");
+                logger.info("appShow session:" + session.getAttribute("userSession"));
+                httpServletResponse.sendRedirect("/Login/main.html");
+            }
             if (httpServletRequest.isRequestedSessionIdFromURL()) {
                 if (session != null) {
                     session.invalidate();
                 }
             }
-            // wrap response to remove URL encoding
-            HttpServletResponseWrapper wrappedResponse = new HttpServletResponseWrapper(httpServletResponse) {
-                @Override
-                public String encodeRedirectUrl(String url) {
-                    return url;
-                }
-                @Override
-                public String encodeRedirectURL(String url) {
-                    return url;
-                }
-                @Override
-                public String encodeUrl(String url) {
-                    return url;
-                }
-                @Override
-                public String encodeURL(String url) {
-                    return url;
-                }
-            };
             // 如果不执行过滤，则继续
-            filterChain.doFilter(httpServletRequest, wrappedResponse);
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
     }
 

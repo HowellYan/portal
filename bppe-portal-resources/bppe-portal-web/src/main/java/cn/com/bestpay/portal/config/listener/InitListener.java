@@ -17,11 +17,11 @@ public class InitListener  implements ServletContextListener {
     private static Logger logger = LoggerFactory.getLogger(InitListener.class);
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        logger.info("----------启动成功-----------");
+        logger.info("ServletContex初始化");
         SystemProperty systemProperty = new SystemProperty();
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+        logger.info("ServletContex销毁");
     }
 }

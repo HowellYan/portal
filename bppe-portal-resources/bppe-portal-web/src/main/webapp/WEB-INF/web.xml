@@ -9,6 +9,7 @@
           version="2.5">
   <display-name>Archetype Created Web Application</display-name>
 
+
   <context-param>
     <param-name>defaultHtmlEscape</param-name>
     <param-value>true</param-value>

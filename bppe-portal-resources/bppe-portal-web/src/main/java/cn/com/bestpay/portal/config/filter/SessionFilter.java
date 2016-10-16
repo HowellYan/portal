@@ -4,32 +4,19 @@ import cn.com.bestpay.portal.config.filter.Model.ProtectModel;
 import cn.com.bestpay.portal.config.filter.Model.SessionModel;
 import cn.com.bestpay.portal.config.filter.Model.WhiteModel;
 import cn.com.bestpay.portal.config.filter.tool.GetPermissonList;
-import com.google.common.base.Charsets;
-import com.google.common.base.Splitter;
-import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Sets;
-import com.google.common.io.LineProcessor;
-import com.google.common.io.Resources;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Set;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Created by yfzx_gd_yanghh on 2016/10/14.

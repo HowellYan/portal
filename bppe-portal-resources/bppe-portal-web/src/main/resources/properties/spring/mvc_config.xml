@@ -44,5 +44,4 @@
     </bean>
 
 
-    <import resource="classpath:properties/spring/spring-session.xml"/>
 </beans>

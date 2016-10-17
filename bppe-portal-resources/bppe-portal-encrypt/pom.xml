@@ -10,7 +10,5 @@
     <packaging>jar</packaging>
     <name>bppe-portal-encrypt</name>
     <url>http://maven.apache.org</url>
-    <dependencies>
 
-    </dependencies>
 </project>

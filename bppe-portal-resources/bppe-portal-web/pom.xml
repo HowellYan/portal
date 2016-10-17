@@ -105,33 +105,20 @@
             </resource>
         </resources>
         <plugins>
-            <!--<plugin>-->
-                <!--<groupId>com.alibaba.citrus.tool</groupId>-->
-                <!--<artifactId>autoconfig-maven-plugin</artifactId>-->
-                <!--<version>1.2</version>-->
-                <!--<configuration>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>autoconfig</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory>${project.parent.basedir}/target/bppe-portal-resources</directory>
+                            <directory>${project.parent.basedir}/target/bppe-portal-resources/website</directory>
                             <filtering>false</filtering>
+                            <targetPath>website</targetPath>
                         </resource>
                     </webResources>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>bppe-portal-resources</groupId>
                 <artifactId>bppe-portal-compress</artifactId>
@@ -150,7 +137,6 @@
                     <force>false</force>
                     <skip>false</skip>
                     <nosuffix>true</nosuffix>
-                    <!--<systemProperty>${basedir}/target/classes/properties/system.properties</systemProperty>-->
                     <systemProperty>${project.parent.basedir}/target/classes/properties/system.properties</systemProperty>
                     <linebreakpos>-1</linebreakpos>
                     <includes>

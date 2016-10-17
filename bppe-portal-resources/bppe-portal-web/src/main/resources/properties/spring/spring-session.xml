@@ -21,10 +21,9 @@
 
        <constructor-arg index="1">
            <set>
-               <value>localhost:6379</value>
-               <!--<value>172.26.7.33:28379</value>-->
-                <!--<value>172.26.7.34:28379</value>-->
-                <!--<value>172.26.7.35:28379</value>-->
+                <value>172.26.6.12:26379</value>
+                <value>172.26.6.13:26379</value>
+                <value>172.26.8.1:26379</value>
             </set>
         </constructor-arg>
     </bean>

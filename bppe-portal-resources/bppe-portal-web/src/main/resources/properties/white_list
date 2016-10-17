@@ -1,5 +1,8 @@
 /api/([\da-z\.-]+)/([\da-z\.-]+) : post
+/api/([\da-z\.-]+)/([\da-z\.-]+) : get
+
 /api/([\da-z\.-]+) : post
+/api/([\da-z\.-]+) : get
 
 .*(.html) : get
 .*(.css) : get

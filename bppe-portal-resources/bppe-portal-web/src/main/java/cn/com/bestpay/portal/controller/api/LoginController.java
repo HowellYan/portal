@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Controller
 public class LoginController extends BaseController {
-    private static Logger logger = LoggerFactory.getLogger(BaseController.class);
+    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ModelAndView userLogin(HttpServletRequest request, HttpSession session) {
@@ -31,7 +31,7 @@ public class LoginController extends BaseController {
         UserInfoModel userInfoModel = new UserInfoModel();
         userInfoModel.setStaffCode(userName);
         session.setAttribute("userSession",userInfoModel);
-        return new ModelAndView("/Index/main");
+        return new ModelAndView("redirect:/Index/main.html");
     }
 
 }

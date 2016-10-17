@@ -5,10 +5,12 @@
 define('subclass',["bestpay.app"],function(app) {
     function LoginMainAction() {
         this.initApp();
+        window.history.forward()
     }
 
     LoginMainAction.prototype.initApp = function () {
         console.log("MainAction init!");
+        $(".common-body-style").show();
     };
     LoginMainAction.prototype.SetMenuHeader = function (path,$scope) {
 

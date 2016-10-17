@@ -9,6 +9,7 @@ sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
     font-family: "Microsoft YaHei","Microsoft JhengHei", "STHeiti", "MingLiu";
 }
 .pageBody .common-body-style {
+    display: none;
     margin: 0 auto;
     width: 980px;
     overflow: hidden;

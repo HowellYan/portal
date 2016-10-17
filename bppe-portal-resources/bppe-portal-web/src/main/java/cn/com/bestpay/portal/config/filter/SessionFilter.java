@@ -71,6 +71,8 @@ public class SessionFilter extends OncePerRequestFilter {
                 logger.info("Session失效");
                 logger.info("appShow session:" + session.getAttribute("userSession"));
                 httpServletResponse.sendRedirect("/Login/main.html");
+            } else if(session.getAttribute("userSession") != null &&  requestURI.equalsIgnoreCase("/Login/main.html")){
+                httpServletResponse.sendRedirect("/Index/main.html");
             }
             if (httpServletRequest.isRequestedSessionIdFromURL()) {
                 if (session != null) {

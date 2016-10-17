@@ -5,6 +5,7 @@
 define('subclass',["bestpay.app"],function(app) {
     function MainAction() {
         this.initApp();
+        window.history.forward()
         //var blob=new Blob([{'msg':'Hello world'}],{type:'text/plain'});
 
         BestpayApp.controller('post',['$scope','$http',function($scope,$http){
@@ -20,6 +21,7 @@ define('subclass',["bestpay.app"],function(app) {
 
     MainAction.prototype.initApp = function () {
         console.log("MainAction init!");
+        $(".common-body-style").show();
     };
 
     MainAction.prototype.SetMenuHeader = function (path,$scope) {

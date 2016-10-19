@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - Copyright 1999-2011 Alibaba Group. - - Licensed under the Apache License, 
+	Version 2.0 (the "License"); - you may not use this file except in compliance 
+	with the License. - You may obtain a copy of the License at - - http://www.apache.org/licenses/LICENSE-2.0 
+	- - Unless required by applicable law or agreed to in writing, software - 
+	distributed under the License is distributed on an "AS IS" BASIS, - WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. - See the 
+	License for the specific language governing permissions and - limitations 
+	under the License. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+	<import resource="dubbo_url.xml" />
+
+	<!-- dubbo方式调用CMS -->
+		<!-- 在线注册绑定 -->
+	<dubbo:reference  id="cms0301Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0301Service"
+	registry="zk1.0" />
+	
+	<!-- 在线注册 -->
+	<dubbo:reference  id="cms0001Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0001Service"
+	registry="zk1.0" />
+	
+	<dubbo:reference  id="cms0099Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0099Service"
+	registry="zk1.0" />
+	
+	<!-- 认证 -->
+	<dubbo:reference  id="cms0002Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0002Service"
+	registry="zk1.0" />
+	
+	<!-- 认证查询  -->
+	<dubbo:reference  id="cms0102Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0102Service"
+	registry="zk1.0" />
+
+	<!--   -->
+	<dubbo:reference  id="cms0109Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0109Service"
+	registry="zk1.0" />
+	
+	<!-- 第三方平台客户端插件激活  -->
+	<dubbo:reference  id="cms0010Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0010Service"
+	registry="zk1.0" />
+
+	<!-- 第三方平台客户端插件修改密码  -->
+	<dubbo:reference  id="cms0005Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0005Service"
+	registry="zk1.0" />
+	
+	<!-- 第三方平台客户端插件绑定关系 -->
+	<dubbo:reference  id="cms0009Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0009Service"
+	registry="zk1.0" />
+	
+	<!-- 快捷解绑 add by DENGXU 2014-9-28 -->
+	<dubbo:reference  id="cms0302Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0302Service"
+	registry="zk1.0" />
+	
+	<!--验密 add by DENGXU 2014-9-28 -->
+	<dubbo:reference  id="cms0003Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0003Service"
+	registry="zk1.0" />	
+	
+	<!--设备信息 -->
+	<dubbo:reference  id="bcs90001Service" 
+	check="false" 
+	interface="com.bestpay.service.bcs.Bcs90001Service"
+	registry="zk1.0" />	
+	<dubbo:reference  id="bcs90002Service" 
+	check="false" 
+	interface="com.bestpay.service.bcs.Bcs90002Service"
+	registry="zk1.0" />	
+    <dubbo:reference  id="cms0006Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0006Service"
+	registry="zk1.0" />
+	
+	<!--营销方案接口 -->
+	<dubbo:reference  id="cms0401Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0401Service"
+	registry="zk1.0" />	
+	
+	<!--不做短信校验的绑卡 -->
+	<dubbo:reference  id="cms0305Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0305Service"
+	registry="zk1.0" />		
+	
+	<!--理财开户  -->
+	<dubbo:reference  id="cms0011Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0011Service"
+	registry="zk1.0" />	
+	
+	<!--签约验证 -->
+	<dubbo:reference  id="cms0304Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0304Service"
+	registry="zk1.0" />	
+	<dubbo:reference  id="cms0111Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0111Service"
+	registry="zk1.0" />	
+	
+	<!--认证信息已认证次数查询 -->
+	<dubbo:reference  id="cms0112Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0112Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0015Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0015Service"
+	registry="zk1.0" />	
+	
+	<!--账户体系 -->
+	<dubbo:reference  id="cms0501Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0501Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0114Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0114Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0017Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0017Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0115Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0115Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0103Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0103Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0306Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0306Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0019Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0019Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0116Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0116Service"
+	registry="zk1.0" />	
+	
+	<dubbo:reference  id="cms0018Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0018Service"
+	registry="zk1.0" />		
+	
+	<dubbo:reference  id="cms0022Service" 
+	check="false" 
+	interface="com.bestpay.service.cms.Cms0022Service"
+	registry="zk1.0" />				 
+</beans>

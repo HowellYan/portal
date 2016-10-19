@@ -40,6 +40,5 @@ public class ControllerSessionAspect {
         } else {
             return  new PortalException(PortalError.Logout_msg).getParentResp();
         }
-
     }
 }

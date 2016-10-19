@@ -56,14 +56,7 @@
             <groupId>com.github.jknack</groupId>
             <artifactId>handlebars-springmvc</artifactId>
         </dependency>
-        <dependency>
-            <groupId>bppe-portal-resources</groupId>
-            <artifactId>bppe-portal-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>bppe-portal-resources</groupId>
-            <artifactId>bppe-portal-model</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
@@ -104,6 +97,15 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>bppe-portal-resources</groupId>
+            <artifactId>bppe-portal-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>bppe-portal-resources</groupId>
+            <artifactId>bppe-portal-model</artifactId>
         </dependency>
     </dependencies>
 

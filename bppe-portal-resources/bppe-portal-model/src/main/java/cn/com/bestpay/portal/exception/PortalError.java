@@ -10,9 +10,7 @@ package cn.com.bestpay.portal.exception;
 public enum PortalError {
 	Logout_msg("999999", "请重新登陆！");
 
-
 	private String code;
-
 	private String reason;
 
 	PortalError(String code, String reason) {
@@ -35,4 +33,5 @@ public enum PortalError {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+
 }

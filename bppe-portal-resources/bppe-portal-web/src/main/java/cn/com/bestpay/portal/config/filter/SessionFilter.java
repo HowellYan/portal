@@ -78,7 +78,6 @@ public class SessionFilter extends OncePerRequestFilter {
                 }
             }
 
-
             // 如果不执行过滤，则继续
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         }

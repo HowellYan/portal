@@ -1,5 +1,7 @@
 package cn.com.bestpay.portal.aspects;
 
+import cn.com.bestpay.portal.exception.PortalError;
+import cn.com.bestpay.portal.exception.PortalException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -34,16 +36,10 @@ public class ControllerSessionAspect {
     public Object verificationSession(ProceedingJoinPoint point) throws Throwable{
         Object proceed = null;
         if(session.getAttribute("userSession") != null){
-            logger.info("yes================================================================");
             return point.proceed();
         } else {
-            logger.info("no================================================================");
-            proceed = "{'code':'999999','content':'请重新登陆'}";
-            point.proceed();
-            return proceed;
+            return  new PortalException(PortalError.Logout_msg).getParentResp();
         }
-
-
 
     }
 }

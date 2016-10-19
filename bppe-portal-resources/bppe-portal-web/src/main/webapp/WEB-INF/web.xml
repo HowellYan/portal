@@ -9,6 +9,7 @@
           version="2.5">
   <display-name>Archetype Created Web Application</display-name>
 
+
   <filter>
     <filter-name>springSessionRepositoryFilter</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

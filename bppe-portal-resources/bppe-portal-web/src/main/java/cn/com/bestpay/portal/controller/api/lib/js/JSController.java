@@ -1,18 +1,14 @@
 package cn.com.bestpay.portal.controller.api.lib.js;
 
-import cn.com.bestpay.portal.Model.ViewModel.HeaderMenuModel;
-
+import cn.com.bestpay.portal.pojo.ViewModel.HeaderMenuModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

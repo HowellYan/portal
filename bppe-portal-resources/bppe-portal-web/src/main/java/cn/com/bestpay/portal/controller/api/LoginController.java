@@ -26,7 +26,6 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ModelAndView userLogin(HttpServletRequest request, HttpSession session) {
-
          if(loginService.userLogin(request, session)){
              return new ModelAndView("redirect:/Index/main.html");
          } else {

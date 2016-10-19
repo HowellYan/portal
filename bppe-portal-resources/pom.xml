@@ -10,6 +10,7 @@
     <module>bppe-portal-encrypt</module>
     <module>bppe-portal-compress</module>
     <module>bppe-portal-service</module>
+      <module>bppe-portal-model</module>
   </modules>
   <name>bppe-portal-resources</name>
   <url>http://maven.apache.org</url>
@@ -21,6 +22,7 @@
     <jackson.version>2.7.0</jackson.version>
     <aspectj.version>1.8.8</aspectj.version>
     <jknack.version>4.0.6</jknack.version>
+    <commons-lang3.version>3.1</commons-lang3.version>
     <guava>19.0</guava>
     <!-- 2.0包 -->
     <bpep-bestpay.version>2.2.0</bpep-bestpay.version>
@@ -117,6 +119,19 @@
       <artifactId>spring-session</artifactId>
       <version>1.2.2.RELEASE</version>
     </dependency>
+
+    <!-- jackson json -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>com.github.jknack</groupId>
       <artifactId>handlebars</artifactId>
@@ -172,6 +187,11 @@
     <dependency>
       <groupId>bppe-portal-resources</groupId>
       <artifactId>bppe-portal-service</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>bppe-portal-resources</groupId>
+      <artifactId>bppe-portal-model</artifactId>
       <version>1.0.0</version>
     </dependency>
   </dependencies>

@@ -1,9 +1,9 @@
 package cn.com.bestpay.portal.config.filter.tool;
 
-import cn.com.bestpay.portal.config.filter.Model.ProtectModel;
-import cn.com.bestpay.portal.config.filter.Model.SessionModel;
-import cn.com.bestpay.portal.config.filter.Model.WhiteModel;
-import cn.com.bestpay.portal.config.filter.ResourcesResponseFilter;
+
+import cn.com.bestpay.portal.filter.ProtectModel;
+import cn.com.bestpay.portal.filter.SessionModel;
+import cn.com.bestpay.portal.filter.WhiteModel;
 import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;

@@ -1,4 +1,4 @@
-package cn.com.bestpay.portal.config.filter.Model;
+package cn.com.bestpay.portal.filter;
 
 import java.io.Serializable;
 import java.util.Set;

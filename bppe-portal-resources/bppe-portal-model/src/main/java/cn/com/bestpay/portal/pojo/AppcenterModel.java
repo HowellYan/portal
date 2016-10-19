@@ -1,4 +1,4 @@
-package cn.com.bestpay.portal.Model;
+package cn.com.bestpay.portal.pojo;
 
 import java.io.Serializable;
 

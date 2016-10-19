@@ -1,11 +1,9 @@
 package cn.com.bestpay.portal.config.filter;
 
 import cn.com.bestpay.portal.config.filter.tool.CharResponseWrapper;
-import cn.com.bestpay.portal.config.filter.tool.CompilerCss;
 import cn.com.bestpay.portal.config.filter.tool.CompilerJs;
 import cn.com.bestpay.portal.config.filter.tool.SetVersion;
 import cn.com.bestpay.portal.config.property.SystemProperty;
-import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +53,6 @@ public class ResourcesResponseFilter implements Filter {
 
             if(extensionName.equals("js")){
                 content = SetVersion.setDebugVersion(content);
-
                 content = content.replaceAll("&#x27;","\'").replaceAll("&quot;","\"").replaceAll("&amp;","&");
 
                 if(!SystemProperty.getValueParam("system.debug").equals("true")){

@@ -18,7 +18,17 @@ define(['bestpay.lang'],function(Lang) {
 
     /**
      * Ajax call to Web Service
-     * @param settings 字段：service, params, success, error, showLoading, setTime, async, openInject
+     * @param settings 字段：
+     * {
+     *  service : 请求地址,
+     *  params : 请求参数,
+     *  success :,
+     *  error :,
+     *  showLoading :,
+     *  setTime :,
+     *  async :,
+     *  openInject :
+     * }
      */
     Http.prototype.callWebService = function(settings){
         config.isOpen = true;

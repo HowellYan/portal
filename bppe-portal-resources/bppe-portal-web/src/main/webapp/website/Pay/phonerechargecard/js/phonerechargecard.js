@@ -3,17 +3,7 @@
  */
 define(['highcharts','bestpay.http'],function(highcharts, HTTP) {
     function PhonerechargeCard() {
-        //var blob=new Blob([{'msg':'Hello world'}],{type:'text/plain'});
 
-        // BestpayApp.controller('post',['$scope','$http',function($scope,$http){
-        //     $http({
-        //         method:'POST',
-        //         url:'/api/index/main',
-        //         data:{"msg":"Hi!"}
-        //     }).success(function(data){
-        //         $scope.main = data;
-        //     });
-        // }]);
     }
     PhonerechargeCard.prototype.initApp = function () {
         $('#myTab a').click(function (e) {
@@ -45,7 +35,6 @@ define(['highcharts','bestpay.http'],function(highcharts, HTTP) {
     PhonerechargeCard.prototype.callMainSuccessCallback = function (result) {
 
         var injections = config['injections'];
-
         console.log(injections['UserInfoModel']['custName']);
 
         $("#id_main").html(JSON.stringify(result));

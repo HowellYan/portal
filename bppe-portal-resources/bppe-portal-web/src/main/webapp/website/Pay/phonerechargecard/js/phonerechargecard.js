@@ -1,19 +1,60 @@
 /**
  * Created by Howell on 1/10/16.
  */
-define(['highcharts'],function(highcharts) {
+define(['highcharts','bestpay.http'],function(highcharts, HTTP) {
     function PhonerechargeCard() {
-        
+        //var blob=new Blob([{'msg':'Hello world'}],{type:'text/plain'});
+
+        // BestpayApp.controller('post',['$scope','$http',function($scope,$http){
+        //     $http({
+        //         method:'POST',
+        //         url:'/api/index/main',
+        //         data:{"msg":"Hi!"}
+        //     }).success(function(data){
+        //         $scope.main = data;
+        //     });
+        // }]);
     }
     PhonerechargeCard.prototype.initApp = function () {
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show')
         })
-        this.show();
+        this.dataShow();
+        this.callMain();
     };
 
-    PhonerechargeCard.prototype.show = function () {
+
+    PhonerechargeCard.prototype.callMain = function () {
+        var self = this;
+        HTTP.callWebService({
+            'service': '/api/index/main',
+            'params': self.callMainParams(),
+            'showLoading': false,
+            'openInject' : true,
+            'success': self.callMainSuccessCallback
+        });
+    };
+
+    PhonerechargeCard.prototype.callMainParams = function () {
+        var params = {};
+        params = HTTP.setCommonParams(params);
+        return params;
+    };
+
+    PhonerechargeCard.prototype.callMainSuccessCallback = function (result) {
+
+        var injections = config['injections'];
+
+        console.log(injections['UserInfoModel']['custName']);
+
+        $("#id_main").html(JSON.stringify(result));
+
+    };
+
+
+
+    PhonerechargeCard.prototype.dataShow = function () {
         $('#container').highcharts({
             title: {
                 text: 'Monthly Average Temperature',

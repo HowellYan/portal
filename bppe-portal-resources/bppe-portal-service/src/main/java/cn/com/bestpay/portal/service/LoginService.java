@@ -32,6 +32,7 @@ public class LoginService {
         String password = request.getParameter("password");
         logger.info("username:"+userName);
         logger.info("password:"+password);
+
         if(userName.equals("123456") && password.equals("123456")){
             UserInfoModel userInfoModel = new UserInfoModel();
             userInfoModel.setStaffCode(userName);

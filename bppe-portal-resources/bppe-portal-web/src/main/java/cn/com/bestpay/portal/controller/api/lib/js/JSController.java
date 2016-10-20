@@ -1,14 +1,17 @@
 package cn.com.bestpay.portal.controller.api.lib.js;
 
+import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
 import cn.com.bestpay.portal.pojo.ViewModel.HeaderMenuModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,11 +20,14 @@ import java.util.Map;
  */
 @Controller
 public class JSController {
+
+    @Autowired
+    HttpSession session;
+
     /**
      * 应用版本
      * @return project.version
      */
-
     @RequestMapping(value = "/lib/js/bestpay/bestpay.global.js", method = RequestMethod.GET)
     public ModelAndView globalJS() {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -57,7 +63,17 @@ public class JSController {
             e.printStackTrace();
         }
 
-        map.put("HeaderMenuArray", jsonObject.toString());
+        try {
+            if(session.getAttribute("userSession") != null) {
+                jsonObject.put("UserInfoModel", new JSONObject((UserInfoModel) session.getAttribute("userSession")));
+            } else {
+                jsonObject.put("UserInfoModel", new JSONObject());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        map.put("injections", jsonObject.toString());
         return new ModelAndView("/lib/js/bestpay/bestpay.global", map);
     }
 

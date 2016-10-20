@@ -5,18 +5,7 @@
 define('subclass',["bestpay.app"],function(app) {
     function MainAction() {
         this.initApp();
-        window.history.forward()
-        //var blob=new Blob([{'msg':'Hello world'}],{type:'text/plain'});
-
-        BestpayApp.controller('post',['$scope','$http',function($scope,$http){
-            $http({
-                method:'POST',
-                url:'/api/index/main',
-                data:{"msg":"Hi!"}
-            }).success(function(data){
-                $scope.main = data;
-            });
-        }]);
+        window.history.forward();
     }
 
     MainAction.prototype.initApp = function () {
@@ -30,7 +19,6 @@ define('subclass',["bestpay.app"],function(app) {
         });
         $scope.message = "1111";
     };
-
 
     return new MainAction();
 });

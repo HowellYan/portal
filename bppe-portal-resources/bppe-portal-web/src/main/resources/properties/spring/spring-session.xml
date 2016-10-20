@@ -10,7 +10,7 @@
     <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
         <property name="redisNamespace" value="bppe-portal-resources"/>
         <!--1800-->
-        <property name="maxInactiveIntervalInSeconds" value="20"/>
+        <property name="maxInactiveIntervalInSeconds" value="1800"/>
     </bean>
 
     <bean class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">

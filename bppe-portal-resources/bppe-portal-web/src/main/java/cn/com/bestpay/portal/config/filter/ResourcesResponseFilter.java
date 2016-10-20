@@ -55,7 +55,7 @@ public class ResourcesResponseFilter implements Filter {
                 content = SetVersion.setDebugVersion(content);
                 content = content.replaceAll("&#x27;","\'").replaceAll("&quot;","\"").replaceAll("&amp;","&");
 
-                if(!SystemProperty.getValueParam("system.debug").equals("true")){
+                if(SystemProperty.getValueParam("system.debug").equals("true")){
                     String miniJS = CompilerJs.miniJS(content);
                     if (!miniJS.equals("JS Closure Errors!")){
                         content = miniJS;

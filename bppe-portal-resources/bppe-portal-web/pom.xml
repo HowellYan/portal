@@ -56,7 +56,10 @@
             <groupId>com.github.jknack</groupId>
             <artifactId>handlebars-springmvc</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
@@ -107,6 +110,7 @@
             <groupId>bppe-portal-resources</groupId>
             <artifactId>bppe-portal-model</artifactId>
         </dependency>
+
     </dependencies>
 
 

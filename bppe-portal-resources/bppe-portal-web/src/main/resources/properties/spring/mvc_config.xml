@@ -18,6 +18,14 @@
 
     <!-- ModelAndView -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="redirectHttp10Compatible" value="false"/>
+        <property name="prefix" value="/webCommon/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- ModelAndView -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/" />
         <property name="suffix" value=".html" />
     </bean>
@@ -43,4 +51,6 @@
         <property name="prefix" value="/website/" />
         <property name="suffix" value=".hbs" />
     </bean>
+
+
 </beans>

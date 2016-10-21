@@ -2,6 +2,8 @@ package cn.com.bestpay.portal.controller;
 
 
 import cn.com.bestpay.portal.pojo.AppcenterModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,8 @@ import java.util.Map;
  */
 @Controller
 public class HTMLController extends BaseController{
+    private static Logger logger = LoggerFactory.getLogger(HTMLController.class);
+
     /**
      * 应用版本
      * @return project.version
@@ -54,4 +58,10 @@ public class HTMLController extends BaseController{
         return new ModelAndView(First+"/"+Second, map);
     }
 
+    @RequestMapping(value = "/webCommon/SecurityPassword/view/LoginPasswordView.hbs", method = RequestMethod.GET)
+    public ModelAndView getWebCommonView() {
+        ModelAndView modelResp = new ModelAndView();
+        logger.info("getWebCommonView : ");
+        return new ModelAndView("forward:/webCommon/SecurityPassword/view/LoginPasswordView.jsp");
+    }
 }

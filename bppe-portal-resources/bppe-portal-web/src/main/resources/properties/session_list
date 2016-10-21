@@ -1,6 +1,7 @@
 /Login/main.html : get
 /api/login : post
 
+
 .*(.css) : get
 .*(.js) : get
 .*(.png) : get

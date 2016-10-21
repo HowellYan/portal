@@ -328,7 +328,7 @@ public class CompressorMojo extends MojoSupport {
 
             JSError[] jsError = compiler.getErrors();
             for(int k=0;k<jsError.length;k++){
-                getLog().debug("JS Closure Errors:"+ jsError[k].toString());
+                getLog().error("JS Closure Errors:"+ jsError[k].toString());
             }
             return "JS Closure Errors!";
         }

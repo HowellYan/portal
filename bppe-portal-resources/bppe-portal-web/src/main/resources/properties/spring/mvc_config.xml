@@ -14,6 +14,7 @@
     <util:properties id="systemProperties" location="classpath:properties/system.properties"/>
 
     <mvc:resources mapping="/**" location="/website/" />
+    <mvc:resources mapping="/webCommon/**" location="/webCommon/" />
 
     <!-- ModelAndView -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -110,7 +110,10 @@
             <groupId>bppe-portal-resources</groupId>
             <artifactId>bppe-portal-model</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>bppe-portal-resources</groupId>
+            <artifactId>bppe-portal-encrypt</artifactId>
+        </dependency>
     </dependencies>
 
 

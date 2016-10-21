@@ -123,6 +123,19 @@
       <version>1.2.2.RELEASE</version>
     </dependency>
 
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- jackson json -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -204,6 +217,11 @@
       <artifactId>bppe-portal-model</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>bppe-portal-resources</groupId>
+      <artifactId>bppe-portal-encrypt</artifactId>
+      <version>1.0.0</version>
+    </dependency>
 
     <!-- cms依赖 -->
     <dependency>
@@ -212,6 +230,17 @@
       <version>${cms.version}</version>
     </dependency>
 
+
+    <dependency>
+      <groupId>tisson</groupId>
+      <artifactId>AESWithJCE</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>tisson</groupId>
+      <artifactId>jce</artifactId>
+      <version>1.0.0</version>
+    </dependency>
 
   </dependencies>
   </dependencyManagement>

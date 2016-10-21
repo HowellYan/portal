@@ -50,6 +50,8 @@ public class SessionFilter extends OncePerRequestFilter {
                 break;
             }
         }
+
+
         //过滤不存在于 session_list 文件的URL
         for (SessionModel sessionItem:GetPermissonList.sessionModel) {  //method and uri matches with white list, ok
             if (sessionItem.httpMethods.contains(method) && sessionItem.pattern.matcher(requestURI).matches()) {
@@ -62,6 +64,7 @@ public class SessionFilter extends OncePerRequestFilter {
         }
 
         if (doFilter) {
+            logger.info("过滤，返回为空！");
             // 执行过滤
             // 从session中获取登录者实体
         } else {

@@ -31,25 +31,16 @@
         <property name="suffix" value=".html" />
     </bean>
 
-    <bean id="viewsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+    <bean id="jsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
         <property name="order" value="1" />
         <property name="prefix" value="/website/" />
         <property name="contentType" value="application/x-javascript;charset=UTF-8" />
         <property name="suffix" value=".js"/>
     </bean>
 
-    <bean id="viewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+    <bean id="hbsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
         <property name="order" value="2" />
         <property name="prefix" value="/website/" />
         <property name="suffix" value=".hbs" />
     </bean>
-
-    <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <constructor-arg value="UTF-8" />
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-
 </beans>

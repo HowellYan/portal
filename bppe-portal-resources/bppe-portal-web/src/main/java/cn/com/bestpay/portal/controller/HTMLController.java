@@ -54,12 +54,4 @@ public class HTMLController extends BaseController{
         return new ModelAndView(First+"/"+Second, map);
     }
 
-    @RequestMapping(value = "/{First}/{Second}/{Third}.html", method = RequestMethod.GET)
-    public ModelAndView Third(@PathVariable("First")String First,
-                             @PathVariable("Second")String Second,
-                             @PathVariable("Third")String Third) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userName", "Hi!");
-        return new ModelAndView(First+"/"+Second+"/"+Third, map);
-    }
 }

@@ -4,6 +4,9 @@
 /api/([\da-z\.-]+) : post
 /api/([\da-z\.-]+) : get
 
+
+
+
 .*(.html) : get
 .*(.css) : get
 .*(.js) : get
@@ -12,3 +15,5 @@
 .*(.jpg) : get
 .*(.svg) : get
 .*(.jsp) : get
+.*(.hbs) : get
+.*(.ico) : get

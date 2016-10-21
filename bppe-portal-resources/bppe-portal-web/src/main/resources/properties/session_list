@@ -8,3 +8,5 @@
 .*(.jpg) : get
 .*(.svg) : get
 .*(.jsp) : get
+.*(.hbs) : get
+.*(.ico) : get

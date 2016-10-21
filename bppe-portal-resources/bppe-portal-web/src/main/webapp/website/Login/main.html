@@ -38,7 +38,13 @@
         <input type="submit" class="btn" value="Login">
 
     </form>
-    <div ng-include="http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs"></div>
+    <div ng-controller="AppController">
+        <div ng-bind-html="explicitlyTrustedHtml" id="explicitlyTrustedHtml"></div>
+    </div>
+
+    <!--<div ng-include="{{trustSrc}}"></div>-->
+
+    <!--<div ng-include="http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs"></div>-->
 </div>
 
 

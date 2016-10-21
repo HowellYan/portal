@@ -327,7 +327,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 						if (this.osBrowser==1 || this.osBrowser==3) {
 							code = control.GetIPMacList();
 						} else if (this.osBrowser==2 || this.osBrowser==4 || this.osBrowser==5) {
-							control.package=0;
+							control['package']=0;
 							code = control.output(9);
 						}else if (this.osBrowser==6 || this.osBrowser==8) {
 							code = control.get_output7(0);

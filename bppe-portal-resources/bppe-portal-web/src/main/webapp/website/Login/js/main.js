@@ -11,9 +11,16 @@ define('subclass',["bestpay.app"],function(app) {
     LoginMainAction.prototype.initApp = function () {
         console.log("MainAction init!");
         $(".common-body-style").show();
-    };
-    LoginMainAction.prototype.SetMenuHeader = function (path,$scope) {
 
+        BestpayApp.controller('AppController', ['$scope','$sce',function($scope,$sce) {
+            var url = $sce.trustAs($sce.HTML,"http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs");
+            console.log(url);
+            $scope.trustSrc = url;
+        }]);
+
+    };
+
+    LoginMainAction.prototype.SetMenuHeader = function (path,$scope) {
         //$scope.message = "1111";
     };
 

@@ -33,12 +33,9 @@ define(['highcharts','bestpay.http'],function(highcharts, HTTP) {
     };
 
     PhonerechargeCard.prototype.callMainSuccessCallback = function (result) {
-
         var injections = config['injections'];
         console.log(injections['UserInfoModel']['custName']);
-
         $("#id_main").html(JSON.stringify(result));
-
     };
 
 

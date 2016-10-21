@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
 
 /**
  * Created by yfzx_gd_yanghh on 2016/10/17.
@@ -21,12 +20,9 @@ public class LogoutController extends BaseController {
     @RequestMapping(value = "/api/logout", method = RequestMethod.GET)
     public ModelAndView userLogin( HttpSession session) {
         session.removeAttribute("userSession");
-        Enumeration<String> enm = session.getAttributeNames();
-        while (enm.hasMoreElements()) {
-            session.removeAttribute(enm.nextElement());
-        }
         session.invalidate();
         session = null;
+
         return new ModelAndView("redirect:/Login/main.html");
     }
 }

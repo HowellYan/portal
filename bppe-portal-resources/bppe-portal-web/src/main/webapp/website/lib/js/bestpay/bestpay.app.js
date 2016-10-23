@@ -5,10 +5,10 @@ define("bestpay.app",["angular","angularUIRouter","jquery","angularCSS","bootstr
 
     var app = angular.module('bestpay.app', ['ui.router','angularCSS']);
     app.config(["$sceDelegateProvider",function ($sceDelegateProvider) {
-        $sceDelegateProvider.resourceUrlWhitelist([
-            // Allow same origin resource loads.
-            'self'
-        ]);
+        // $sceDelegateProvider.resourceUrlWhitelist([
+        //     // Allow same origin resource loads.
+        //     'self'
+        // ]);
     }]);
     window.BestpayApp = app;
 

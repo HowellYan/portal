@@ -7,9 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/webCommon/SecurityPassword/model/LoginPassword.jsp"%>
-<script type="text/javascript" src="http://localhost:9090/lib/js/thirdParty/jquery-1.12.4.min.js?v=1.0.0"></script>
-<script type="text/javascript" src="http://localhost:9090/lib/js/SecurityPassword/Base64.js"></script>
-<script type="text/javascript" src="http://localhost:9090/lib/js/SecurityPassword/PassGuardCtrl.js"></script>
+<%--<script type="text/javascript" src="http://localhost:9090/lib/js/thirdParty/jquery-1.12.4.min.js?v=1.0.0"></script>--%>
+<%--<script type="text/javascript" src="http://localhost:9090/lib/js/SecurityPassword/Base64.js"></script>--%>
+<%--<script type="text/javascript" src="http://localhost:9090/lib/js/SecurityPassword/PassGuardCtrl.js"></script>--%>
 
 <div>
 <LoginPassword:write

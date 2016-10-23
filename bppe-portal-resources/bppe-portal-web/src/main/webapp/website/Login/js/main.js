@@ -2,7 +2,7 @@
  * Created by Howell on 2016/9/21.
  * Email:th15817161961@gmail.com
  */
-define('subclass',["bestpay.app"],function(app) {
+define('subclass',["Base64","PassGuardCtrl","bestpay.app"],function(Base64,PassGuardCtrl,app) {
     function LoginMainAction() {
         this.initApp();
         window.history.forward()
@@ -12,11 +12,11 @@ define('subclass',["bestpay.app"],function(app) {
         console.log("MainAction init!");
         $(".common-body-style").show();
 
-        BestpayApp.controller('AppController', ['$scope','$sce',function($scope,$sce) {
-            var url = $sce.trustAs($sce.HTML,"http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs");
-            console.log(url);
-            $scope.trustSrc = url;
-        }]);
+        // BestpayApp.controller('AppController', ['$scope','$sce',function($scope,$sce) {
+        //     var url = $sce.trustAs($sce.HTML,"http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs");
+        //     console.log(url);
+        //     $scope.trustSrc = url;
+        // }]);
 
     };
 

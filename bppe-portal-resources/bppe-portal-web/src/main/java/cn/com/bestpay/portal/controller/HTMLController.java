@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -64,4 +65,13 @@ public class HTMLController extends BaseController{
         logger.info("getWebCommonView : ");
         return new ModelAndView("forward:/webCommon/SecurityPassword/view/LoginPasswordView.jsp");
     }
+
+    @RequestMapping(value = "/webCommon/*/*.hbs", method = RequestMethod.GET)
+    @ResponseBody
+    public String getWebCommonHbs() {
+        //new ModelAndView("forward:/webCommon/SecurityPassword/view/LoginPasswordView.jsp");
+
+        return "asdasd111";
+    }
+
 }

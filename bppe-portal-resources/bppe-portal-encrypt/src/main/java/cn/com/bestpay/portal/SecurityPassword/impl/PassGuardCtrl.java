@@ -58,9 +58,9 @@ public class PassGuardCtrl implements PasswordInf {
 	    HttpSession session = request.getSession();
 	    String rd = (String) session.getAttribute(sessionKey);
 		String target = "PassGuardCtrl"+id.toLowerCase();
-		String str = "<script type=\"text/javascript\">var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
-				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".pgInitialize();});"+target+".generate();</script>" +
-				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/>";
+		String str = "<script type=\"text/javascript\">$(function(){var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
+				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".pgInitialize();});"+target+".generate();})</script>" +
+				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/><div id=\"_id_PassGuardCtrl_show_text\"></div>";
 		if(!Charset.isEmpty(rdName)) {
 		    session.setAttribute(rdName, rd);
 		}

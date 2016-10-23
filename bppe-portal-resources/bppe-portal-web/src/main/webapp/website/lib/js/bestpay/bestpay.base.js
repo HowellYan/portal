@@ -18,6 +18,9 @@ require.config({
         'bestpay.global' : '/lib/js/bestpay/bestpay.global',
         'bestpay.header':'&CDN_Url&/lib/templates/header/js/bestpay.header',
 
+        'Base64' : '&CDN_Url&/lib/js/SecurityPassword/Base64',
+        'PassGuardCtrl' : '&CDN_Url&/lib/js/SecurityPassword/PassGuardCtrl',
+
         'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',
         'angular' : '&CDN_Url&/lib/js/thirdParty/angular.min',
         'angularUIRouter': '&CDN_Url&/lib/js/thirdParty/angular-ui-router.min',
@@ -37,6 +40,7 @@ require.config({
         angularCSS: ['angular'],
         highcharts:['jquery'],
         bootstrap:['angular','jquery'],
+        PassGuardCtrl:['jquery'],
         bootstrapDatetimepicker:['bootstrap','jquery'],
         bootstrapDatetimepickerZhCN:['bootstrap','jquery','bootstrapDatetimepicker']
     },
@@ -48,8 +52,10 @@ require.config({
             id == 'angularUIRouter' ||
             id == 'bootstrap' ||
             id == 'angularCSS' ||
-            id == 'bootstrapDatetimepicker'||
-            id == 'bootstrapDatetimepickerZhCN'
+            id == 'bootstrapDatetimepicker' ||
+            id == 'bootstrapDatetimepickerZhCN' ||
+            id == 'Base64' ||
+            id == 'PassGuardCtrl'
         ){
             args = "v=1.0.0";
         }

@@ -2,10 +2,20 @@
  *create by 2012-08-25 pm 17:48
  *@author hexinglun@gmail.com
  *BASE64 Encode and Decode By UTF-8 unicode
- *¿ÉÒÔºÍjavaµÄBASE64±àÂëºÍ½âÂë»¥Ïà×ª»¯
+ *å¯ä»¥å’Œjavaçš„BASE64ç¼–ç å’Œè§£ç äº’ç›¸è½¬åŒ–
  */
 (function(){
-/*	var BASE64_MAPPING = [
+	/*	var BASE64_MAPPING = [
+	 'A','B','C','D','E','F','G','H',
+	 'I','J','K','L','M','N','O','P',
+	 'Q','R','S','T','U','V','W','X',
+	 'Y','Z','a','b','c','d','e','f',
+	 'g','h','i','j','k','l','m','n',
+	 'o','p','q','r','s','t','u','v',
+	 'w','x','y','z','0','1','2','3',
+	 '4','5','6','7','8','9','+','/'
+	 ];*/
+	var BASE64_MAPPING = [
 		'A','B','C','D','E','F','G','H',
 		'I','J','K','L','M','N','O','P',
 		'Q','R','S','T','U','V','W','X',
@@ -13,18 +23,8 @@
 		'g','h','i','j','k','l','m','n',
 		'o','p','q','r','s','t','u','v',
 		'w','x','y','z','0','1','2','3',
-		'4','5','6','7','8','9','+','/'
-	];*/
-	var BASE64_MAPPING = [
-	              		'A','B','C','D','E','F','G','H',
-	              		'I','J','K','L','M','N','O','P',
-	              		'Q','R','S','T','U','V','W','X',
-	              		'Y','Z','a','b','c','d','e','f',
-	              		'g','h','i','j','k','l','m','n',
-	              		'o','p','q','r','s','t','u','v',
-	              		'w','x','y','z','0','1','2','3',
-	              		'4','5','6','7','8','9','_','-'
-	              	];
+		'4','5','6','7','8','9','_','-'
+	];
 	/**
 	 *ascii convert to binary
 	 */
@@ -36,12 +36,12 @@
 			binary.push(b);
 		}
 		/*
-		var len = binary.length;
-		if(6-len > 0){
-			for(var i = 6-len ; i > 0 ; --i){
-				binary.push(0);
-			}
-		}*/
+		 var len = binary.length;
+		 if(6-len > 0){
+		 for(var i = 6-len ; i > 0 ; --i){
+		 binary.push(0);
+		 }
+		 }*/
 		binary.reverse();
 		return binary;
 	};
@@ -95,135 +95,135 @@
 	};
 
 	var __BASE64 = {
+		/**
+		 *BASE64 Encode
+		 */
+		encoder:function(str){
+			var base64_Index = [];
+			var binaryArray = [];
+			for(var i = 0 , len = str.length ; i < len ; ++i){
+				var unicode = str.charCodeAt(i);
+				var _tmpBinary = _toBinary(unicode);
+				if(unicode < 0x80){
+					var _tmpdiff = 8 - _tmpBinary.length;
+					while(--_tmpdiff >= 0){
+						_tmpBinary.unshift(0);
+					}
+					binaryArray = binaryArray.concat(_tmpBinary);
+				}else if(unicode >= 0x80 && unicode <= 0x7FF){
+					binaryArray = binaryArray.concat(_toUTF8Binary(2 , _tmpBinary));
+				}else if(unicode >= 0x800 && unicode <= 0xFFFF){//UTF-8 3byte
+					binaryArray = binaryArray.concat(_toUTF8Binary(3 , _tmpBinary));
+				}else if(unicode >= 0x10000 && unicode <= 0x1FFFFF){//UTF-8 4byte
+					binaryArray = binaryArray.concat(_toUTF8Binary(4 , _tmpBinary));
+				}else if(unicode >= 0x200000 && unicode <= 0x3FFFFFF){//UTF-8 5byte
+					binaryArray = binaryArray.concat(_toUTF8Binary(5 , _tmpBinary));
+				}else if(unicode >= 4000000 && unicode <= 0x7FFFFFFF){//UTF-8 6byte
+					binaryArray = binaryArray.concat(_toUTF8Binary(6 , _tmpBinary));
+				}
+			}
+
+			var extra_Zero_Count = 0;
+			for(var i = 0 , len = binaryArray.length ; i < len ; i+=6){
+				var diff = (i+6)-len;
+				if(diff == 2){
+					extra_Zero_Count = 2;
+				}else if(diff == 4){
+					extra_Zero_Count = 4;
+				}
+				//if(extra_Zero_Count > 0){
+				//	len += extra_Zero_Count+1;
+				//}
+				var _tmpExtra_Zero_Count = extra_Zero_Count;
+				while(--_tmpExtra_Zero_Count >= 0){
+					binaryArray.push(0);
+				}
+				base64_Index.push(_toDecimal(binaryArray.slice(i , i+6)));
+			}
+
+			var base64 = '';
+			for(var i = 0 , len = base64_Index.length ; i < len ; ++i){
+				base64 += BASE64_MAPPING[base64_Index[i]];
+			}
+
+			for(var i = 0 , len = extra_Zero_Count/2 ; i < len ; ++i){
+				base64 += '=';
+			}
+			return base64;
+		},
+		/**
+		 *BASE64  Decode for UTF-8
+		 */
+		decoder : function(_base64Str){
+			var _len = _base64Str.length;
+			var extra_Zero_Count = 0;
 			/**
-			 *BASE64 Encode
+			 *è®¡ç®—åœ¨è¿›è¡ŒBASE64ç¼–ç çš„æ—¶å€™ï¼Œè¡¥äº†å‡ ä¸ª0
 			 */
-			encoder:function(str){
-				var base64_Index = [];
-				var binaryArray = [];
-				for(var i = 0 , len = str.length ; i < len ; ++i){
-					var unicode = str.charCodeAt(i);
-					var _tmpBinary = _toBinary(unicode);
-					if(unicode < 0x80){
-						var _tmpdiff = 8 - _tmpBinary.length;
-						while(--_tmpdiff >= 0){
-							_tmpBinary.unshift(0);
-						}
-						binaryArray = binaryArray.concat(_tmpBinary);
-					}else if(unicode >= 0x80 && unicode <= 0x7FF){
-						binaryArray = binaryArray.concat(_toUTF8Binary(2 , _tmpBinary));
-					}else if(unicode >= 0x800 && unicode <= 0xFFFF){//UTF-8 3byte
-						binaryArray = binaryArray.concat(_toUTF8Binary(3 , _tmpBinary));
-					}else if(unicode >= 0x10000 && unicode <= 0x1FFFFF){//UTF-8 4byte
-						binaryArray = binaryArray.concat(_toUTF8Binary(4 , _tmpBinary));	
-					}else if(unicode >= 0x200000 && unicode <= 0x3FFFFFF){//UTF-8 5byte
-						binaryArray = binaryArray.concat(_toUTF8Binary(5 , _tmpBinary));
-					}else if(unicode >= 4000000 && unicode <= 0x7FFFFFFF){//UTF-8 6byte
-						binaryArray = binaryArray.concat(_toUTF8Binary(6 , _tmpBinary));
-					}
+			if(_base64Str.charAt(_len-1) == '='){
+				//alert(_base64Str.charAt(_len-1));
+				//alert(_base64Str.charAt(_len-2));
+				if(_base64Str.charAt(_len-2) == '='){//ä¸¤ä¸ªç­‰å·è¯´æ˜Žè¡¥äº†4ä¸ª0
+					extra_Zero_Count = 4;
+					_base64Str = _base64Str.substring(0 , _len-2);
+				}else{//ä¸€ä¸ªç­‰å·è¯´æ˜Žè¡¥äº†2ä¸ª0
+					extra_Zero_Count = 2;
+					_base64Str = _base64Str.substring(0 , _len - 1);
 				}
+			}
 
-				var extra_Zero_Count = 0;
-				for(var i = 0 , len = binaryArray.length ; i < len ; i+=6){
-					var diff = (i+6)-len;
-					if(diff == 2){
-						extra_Zero_Count = 2;
-					}else if(diff == 4){
-						extra_Zero_Count = 4;
-					}
-					//if(extra_Zero_Count > 0){
-					//	len += extra_Zero_Count+1;
-					//}
-					var _tmpExtra_Zero_Count = extra_Zero_Count;
-					while(--_tmpExtra_Zero_Count >= 0){
-						binaryArray.push(0);
-					}
-					base64_Index.push(_toDecimal(binaryArray.slice(i , i+6)));
-				}
-
-				var base64 = '';
-				for(var i = 0 , len = base64_Index.length ; i < len ; ++i){
-					base64 += BASE64_MAPPING[base64_Index[i]];
-				}
-
-				for(var i = 0 , len = extra_Zero_Count/2 ; i < len ; ++i){
-					base64 += '=';
-				}
-				return base64;
-			},
-			/**
-			 *BASE64  Decode for UTF-8 
-			 */
-			decoder : function(_base64Str){
-				var _len = _base64Str.length;
-				var extra_Zero_Count = 0;
-				/**
-				 *¼ÆËãÔÚ½øÐÐBASE64±àÂëµÄÊ±ºò£¬²¹ÁË¼¸¸ö0
-				 */
-				if(_base64Str.charAt(_len-1) == '='){
-					//alert(_base64Str.charAt(_len-1));
-					//alert(_base64Str.charAt(_len-2));
-					if(_base64Str.charAt(_len-2) == '='){//Á½¸öµÈºÅËµÃ÷²¹ÁË4¸ö0
-						extra_Zero_Count = 4;
-						_base64Str = _base64Str.substring(0 , _len-2);
-					}else{//Ò»¸öµÈºÅËµÃ÷²¹ÁË2¸ö0
-						extra_Zero_Count = 2;
-						_base64Str = _base64Str.substring(0 , _len - 1);
-					}
-				}
-
-				var binaryArray = [];
-				for(var i = 0 , len = _base64Str.length; i < len ; ++i){
-					var c = _base64Str.charAt(i);
-					for(var j = 0 , size = BASE64_MAPPING.length ; j < size ; ++j){
-						if(c == BASE64_MAPPING[j]){
-							var _tmp = _toBinary(j);
-							/*²»×ã6Î»µÄ²¹0*/
-							var _tmpLen = _tmp.length;
-							if(6-_tmpLen > 0){
-								for(var k = 6-_tmpLen ; k > 0 ; --k){
-									_tmp.unshift(0);
-								}
+			var binaryArray = [];
+			for(var i = 0 , len = _base64Str.length; i < len ; ++i){
+				var c = _base64Str.charAt(i);
+				for(var j = 0 , size = BASE64_MAPPING.length ; j < size ; ++j){
+					if(c == BASE64_MAPPING[j]){
+						var _tmp = _toBinary(j);
+						/*ä¸è¶³6ä½çš„è¡¥0*/
+						var _tmpLen = _tmp.length;
+						if(6-_tmpLen > 0){
+							for(var k = 6-_tmpLen ; k > 0 ; --k){
+								_tmp.unshift(0);
 							}
-							binaryArray = binaryArray.concat(_tmp);
+						}
+						binaryArray = binaryArray.concat(_tmp);
+						break;
+					}
+				}
+			}
+
+			if(extra_Zero_Count > 0){
+				binaryArray = binaryArray.slice(0 , binaryArray.length - extra_Zero_Count);
+			}
+
+			var unicode = [];
+			var unicodeBinary = [];
+			for(var i = 0 , len = binaryArray.length ; i < len ; ){
+				if(binaryArray[i] == 0){
+					unicode=unicode.concat(_toDecimal(binaryArray.slice(i,i+8)));
+					i += 8;
+				}else{
+					var sum = 0;
+					while(i < len){
+						if(binaryArray[i] == 1){
+							++sum;
+						}else{
 							break;
 						}
+						++i;
 					}
-				}
-
-				if(extra_Zero_Count > 0){
-					binaryArray = binaryArray.slice(0 , binaryArray.length - extra_Zero_Count);
-				}
-
-				var unicode = [];
-				var unicodeBinary = [];
-				for(var i = 0 , len = binaryArray.length ; i < len ; ){
-					if(binaryArray[i] == 0){
-						unicode=unicode.concat(_toDecimal(binaryArray.slice(i,i+8)));
+					unicodeBinary = unicodeBinary.concat(binaryArray.slice(i+1 , i+8-sum));
+					i += 8 - sum;
+					while(sum > 1){
+						unicodeBinary = unicodeBinary.concat(binaryArray.slice(i+2 , i+8));
 						i += 8;
-					}else{
-						var sum = 0;
-						while(i < len){
-							if(binaryArray[i] == 1){
-								++sum;
-							}else{
-								break;
-							}
-							++i;
-						}
-						unicodeBinary = unicodeBinary.concat(binaryArray.slice(i+1 , i+8-sum));
-						i += 8 - sum;
-						while(sum > 1){
-							unicodeBinary = unicodeBinary.concat(binaryArray.slice(i+2 , i+8));
-							i += 8;
-							--sum;
-						}
-						unicode = unicode.concat(_toDecimal(unicodeBinary));
-						unicodeBinary = [];
+						--sum;
 					}
+					unicode = unicode.concat(_toDecimal(unicodeBinary));
+					unicodeBinary = [];
 				}
-				return unicode;
 			}
+			return unicode;
+		}
 	};
 
 	window.BASE64 = __BASE64;

@@ -18,10 +18,10 @@ var PGEdit_MacOs_VERSION="1.0.0.3";
 var PGEdit_MacOs_Safari="PassGuardSafari.dmg";
 var PGEdit_MacOs_Safari_VERSION="1.0.0.1";
 
-var UPEdit_Update="1";//∑«IEøÿº˛ «∑Ò«ø÷∆…˝º∂ 1«ø÷∆…˝º∂,0≤ª«ø÷∆…˝º∂
+var UPEdit_Update="1";//ÈùûIEÊéß‰ª∂ÊòØÂê¶Âº∫Âà∂ÂçáÁ∫ß 1Âº∫Âà∂ÂçáÁ∫ß,0‰∏çÂº∫Âà∂ÂçáÁ∫ß
 
 if(navigator.userAgent.indexOf("MSIE")<0){
-	   navigator.plugins.refresh();
+	navigator.plugins.refresh();
 }
 
 (function($) {
@@ -50,10 +50,10 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 		},
 
 		prototype: {
-			init: function() {				
-			    this.pgeDownText = "\u8BF7\u70B9\u6B64\u5B89\u88C5\u63A7\u4EF6";
-			    this.osBrowser = this.checkOsBrowser();
-				this.pgeVersion = this.getVersion();			    			
+			init: function() {
+				this.pgeDownText = "\u8BF7\u70B9\u6B64\u5B89\u88C5\u63A7\u4EF6";
+				this.osBrowser = this.checkOsBrowser();
+				this.pgeVersion = this.getVersion();
 				this.isInstalled = this.checkInstall();
 			},
 
@@ -75,16 +75,16 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 						this.pgeditFFExe=PGEdit_FF;
 					}
 				}else if((navigator.platform=="Win64")){
-					if(navigator.userAgent.indexOf("Windows NT 6.2")>0 || navigator.userAgent.indexOf("windows nt 6.2")>0){		
+					if(navigator.userAgent.indexOf("Windows NT 6.2")>0 || navigator.userAgent.indexOf("windows nt 6.2")>0){
 						userosbrowser=1;//windows32ie32
 						this.pgeditIEClassid=PGEdit_IE32_CLASSID;
 						this.pgeditIECab=PGEdit_IE32_CAB;
-						this.pgeditIEExe=PGEdit_IE32_EXE;						
+						this.pgeditIEExe=PGEdit_IE32_EXE;
 					}else if(navigator.userAgent.indexOf("MSIE")>0 || navigator.userAgent.indexOf("msie")>0 || navigator.userAgent.indexOf("Trident")>0 || navigator.userAgent.indexOf("trident")>0){
 						userosbrowser=3;//windows64ie64
 						this.pgeditIEClassid=PGEdit_IE64_CLASSID;
 						this.pgeditIECab=PGEdit_IE64_CAB;
-						this.pgeditIEExe=PGEdit_IE64_EXE;			
+						this.pgeditIEExe=PGEdit_IE64_EXE;
 					}else{
 						userosbrowser=2;//windowsff
 						this.pgeditFFExe=PGEdit_FF;
@@ -98,21 +98,21 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 						this.pgeditFFExe=PGEdit_Linux32;
 					}
 					if(navigator.userAgent.indexOf("Android")>0){
-                        userosbrowser=7;//Android
-                     }					
+						userosbrowser=7;//Android
+					}
 				}else if(navigator.userAgent.indexOf("Macintosh")>0){
 					if(navigator.userAgent.indexOf("Safari")>0 && (navigator.userAgent.indexOf("Version/5.1")>0 || navigator.userAgent.indexOf("Version/5.2")>0 || navigator.userAgent.indexOf("Version/6")>0 )){
 						userosbrowser=8;//macos Safari 5.1 more
 						this.pgeditFFExe=PGEdit_MacOs_Safari;
 					}else if(navigator.userAgent.indexOf("Firefox")>0 || navigator.userAgent.indexOf("Chrome")>0){
 						userosbrowser=6;//macos
-						this.pgeditFFExe=PGEdit_MacOs;						
+						this.pgeditFFExe=PGEdit_MacOs;
 					}else if(navigator.userAgent.indexOf("Opera")>=0 && (navigator.userAgent.indexOf("Version/11.6")>0 || navigator.userAgent.indexOf("Version/11.7")>0)){
 						userosbrowser=6;//macos
-						this.pgeditFFExe=PGEdit_MacOs;						
+						this.pgeditFFExe=PGEdit_MacOs;
 					}else if(navigator.userAgent.indexOf("Safari")>=0 && (navigator.userAgent.indexOf("Version/4.0")>0 || navigator.userAgent.indexOf("Version/5.0")>0)){
 						userosbrowser=6;//macos
-						this.pgeditFFExe=PGEdit_MacOs;			
+						this.pgeditFFExe=PGEdit_MacOs;
 					}else{
 						userosbrowser=0;//macos
 						this.pgeditFFExe="";
@@ -120,133 +120,133 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 				}
 				return userosbrowser;
 			},
-			
+
 			getpgeHtml: function() {
 				if (this.osBrowser==1 || this.osBrowser==3) {
 
-					return '<span id="'+this.settings.pgeId+'_pge" style="z-index: 1;display:none;width:135px !important; height:19px !important;"><OBJECT ID="' + this.settings.pgeId + '" CLASSID="CLSID:' + this.pgeditIEClassid + '" codebase="' 
-					         
-					        +this.settings.pgePath+ this.pgeditIECab + '" onkeydown="if(13==event.keyCode || 27==event.keyCode)'+this.settings.pgeOnkeydown+';" onfocus="' + this.settings.pgeOnfocus + '" tabindex="'+this.settings.pgeTabindex+'" class="' + this.settings.pgeClass + '">' 
-					        
-					        + '<param name="edittype" value="'+ this.settings.pgeEdittype + '"><param name="maxlength" value="' + this.settings.pgeMaxlength +'">' 
+					return '<span id="'+this.settings.pgeId+'_pge" style="z-index: 1;display:none;width:135px !important; height:19px !important;"><OBJECT ID="' + this.settings.pgeId + '" CLASSID="CLSID:' + this.pgeditIEClassid + '" codebase="'
 
-							+ '<param name="input2" value="'+ this.settings.pgeEreg1 + '"><param name="input3" value="'+ this.settings.pgeEreg2 + '"></OBJECT></span>'
-							
-							+ '<span id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;display:none;"><a href="'+this.settings.pgePath+this.pgeditIEExe+'">'+this.pgeDownText+'</a></span>';
+						+this.settings.pgePath+ this.pgeditIECab + '" onkeydown="if(13==event.keyCode || 27==event.keyCode)'+this.settings.pgeOnkeydown+';" onfocus="' + this.settings.pgeOnfocus + '" tabindex="'+this.settings.pgeTabindex+'" class="' + this.settings.pgeClass + '">'
+
+						+ '<param name="edittype" value="'+ this.settings.pgeEdittype + '"><param name="maxlength" value="' + this.settings.pgeMaxlength +'">'
+
+						+ '<param name="input2" value="'+ this.settings.pgeEreg1 + '"><param name="input3" value="'+ this.settings.pgeEreg2 + '"></OBJECT></span>'
+
+						+ '<span id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;display:none;"><a href="'+this.settings.pgePath+this.pgeditIEExe+'">'+this.pgeDownText+'</a></span>';
 
 				} else if (this.osBrowser==2 || this.osBrowser==4 || this.osBrowser==5) {
-					
+
 					var pgeOcx='<embed ID="' + this.settings.pgeId + '"  maxlength="'+this.settings.pgeMaxlength+'" input_2="'+this.settings.pgeEreg1+'" input_3="'+this.settings.pgeEreg2+'" edittype="'+this.settings.pgeEdittype+'" type="application/x-pass-guard" tabindex="'+this.settings.pgeTabindex+'" class="' + this.settings.pgeClass + '" ';
-					
+
 					if(this.settings.pgeOnkeydown!=undefined && this.settings.pgeOnkeydown!="") pgeOcx+=' input_1013="'+this.settings.pgeOnkeydown+'"';
-					
+
 					if(this.settings.tabCallback!=undefined && this.settings.tabCallback!="") pgeOcx+=' input_1009="document.getElementById(\''+this.settings.tabCallback+'\').focus()"';
-					
+
 					if(this.settings.pgeFontName!=undefined && this.settings.pgeFontName!="") pgeOcx+=' FontName="'+this.settings.pgeFontName+'"';
-					
-					if(this.settings.pgeFontSize!=undefined && this.settings.pgeFontSize!="") pgeOcx+=' FontSize='+Number(this.settings.pgeFontSize)+'';					
-					
+
+					if(this.settings.pgeFontSize!=undefined && this.settings.pgeFontSize!="") pgeOcx+=' FontSize='+Number(this.settings.pgeFontSize)+'';
+
 					pgeOcx+=' >';
-					
+
 					return pgeOcx;
 
 				} else if (this.osBrowser==6) {
-					
+
 					return '<embed ID="' + this.settings.pgeId + '" input2="'+ this.settings.pgeEreg1 + '" input3="'+ this.settings.pgeEreg2 + '" input4="'+Number(this.settings.pgeMaxlength)+'" input0="'+Number(this.settings.pgeEdittype)+'" type="application/microdone-passguard-plugin" version="'+PGEdit_MacOs_VERSION+'" tabindex="'+this.settings.pgeTabindex+'" class="' + this.settings.pgeClass + '">';
-				
+
 				} else if (this.osBrowser==8) {
 
 					return '<embed ID="' + this.settings.pgeId + '" input2="'+ this.settings.pgeEreg1 + '" input3="'+ this.settings.pgeEreg2 + '" input4="'+Number(this.settings.pgeMaxlength)+'" input0="'+Number(this.settings.pgeEdittype)+'" type="application/microdone-passguard-safari-plugin" version="'+PGEdit_MacOs_Safari_VERSION+'" tabindex="'+this.settings.pgeTabindex+'" class="' + this.settings.pgeClass + '">';
 
 				} else {
 
-					return '<div id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;">‘›≤ª÷ß≥÷¥À‰Ø¿¿∆˜</div>';
+					return '<div id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;">ÊöÇ‰∏çÊîØÊåÅÊ≠§ÊµèËßàÂô®</div>';
 
-				}				
+				}
 			},
-			
+
 			getDownHtml: function() {
 				if (this.osBrowser==1 || this.osBrowser==3) {
 					return '<span id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;"><a href="'+this.settings.pgePath+this.pgeditIEExe+'">'+this.pgeDownText+'</a></span>';
 				} else if (this.osBrowser==2 || this.osBrowser==4 || this.osBrowser==5 || this.osBrowser==6 || this.osBrowser==8) {
 
 					return '<span id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;"><a href="'+this.settings.pgePath+this.pgeditFFExe+'">'+this.pgeDownText+'</a></span>';
-				
+
 				} else {
 
-					return '<div id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;">‘›≤ª÷ß≥÷¥À‰Ø¿¿∆˜</div>';
+					return '<div id="'+this.settings.pgeId+'_down" class="'+this.settings.pgeInstallClass+'" style="text-align:center;">ÊöÇ‰∏çÊîØÊåÅÊ≠§ÊµèËßàÂô®</div>';
 
-				}				
+				}
 			},
-			
-			load: function() {				
+
+			load: function() {
 				if (!this.checkInstall()) {
 					return this.getDownHtml();
-				}else{		
-				   if(this.osBrowser==2){  
+				}else{
+					if(this.osBrowser==2){
 						if(this.pgeVersion!=PGEdit_FF_VERSION && UPEdit_Update==1){
 							this.setDownText();
-							return this.getDownHtml();	
-						}				    
-				   }else if(this.osBrowser==4 || this.osBrowser==5){
+							return this.getDownHtml();
+						}
+					}else if(this.osBrowser==4 || this.osBrowser==5){
 						if(this.pgeVersion!=PGEdit_Linux_VERSION && UPEdit_Update==1){
 							this.setDownText();
-							return this.getDownHtml();	
+							return this.getDownHtml();
 						}
 					} else if (this.osBrowser==6) {
 						if(this.pgeVersion!=PGEdit_MacOs_VERSION && UPEdit_Update==1){
 							this.setDownText();
-							return this.getDownHtml();	
+							return this.getDownHtml();
 						}
 					}else if (this.osBrowser==8) {
 						if(this.pgeVersion!=PGEdit_MacOs_Safari_VERSION && UPEdit_Update==1){
 							this.setDownText();
-							return this.getDownHtml();	
+							return this.getDownHtml();
 						}
-					}					
+					}
 					return this.getpgeHtml();
 				}
 			},
-			
+
 			generate: function() {
 
-				   if(this.osBrowser==2){
-					   if(this.isInstalled==false){
-						   return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-					   }else if(this.pgeVersion!=PGEdit_FF_VERSION && UPEdit_Update==1){
-							this.setDownText();
-							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-						}
-			       }else if(this.osBrowser==4 || this.osBrowser==5){   
-			    	   if(this.isInstalled==false){
-						   return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-					   }else if(this.pgeVersion!=PGEdit_Linux_VERSION && UPEdit_Update==1){
-							this.setDownText();
-							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-						}
-					} else if (this.osBrowser==6) {
-						if(this.isInstalled==false){
-							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-						}else if(this.pgeVersion!=PGEdit_MacOs_VERSION && UPEdit_Update==1){
-							this.setDownText();
-							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-						}
-					}else if (this.osBrowser==8) {
-						if(this.isInstalled==false){
-							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-						}else if(this.pgeVersion!=PGEdit_MacOs_Safari_VERSION && UPEdit_Update==1){
-							this.setDownText();
-							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
-						}
+				if(this.osBrowser==2){
+					if(this.isInstalled==false){
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}else if(this.pgeVersion!=PGEdit_FF_VERSION && UPEdit_Update==1){
+						this.setDownText();
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
 					}
-					return $("#_id_PassGuardCtrl_show_text").html(this.getpgeHtml());//document.write(this.getpgeHtml());
+				}else if(this.osBrowser==4 || this.osBrowser==5){
+					if(this.isInstalled==false){
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}else if(this.pgeVersion!=PGEdit_Linux_VERSION && UPEdit_Update==1){
+						this.setDownText();
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}
+				} else if (this.osBrowser==6) {
+					if(this.isInstalled==false){
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}else if(this.pgeVersion!=PGEdit_MacOs_VERSION && UPEdit_Update==1){
+						this.setDownText();
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}
+				}else if (this.osBrowser==8) {
+					if(this.isInstalled==false){
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}else if(this.pgeVersion!=PGEdit_MacOs_Safari_VERSION && UPEdit_Update==1){
+						this.setDownText();
+						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+					}
+				}
+				return document.write(this.getpgeHtml());
 			},
-			
+
 			pwdclear: function() {
 				if (this.checkInstall()) {
 					var control = document.getElementById(this.settings.pgeId);
 					control.ClearSeCtrl();
-				}				
+				}
 			},
 			pwdSetSk: function(s) {
 				if (this.checkInstall()) {
@@ -256,12 +256,12 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							control.input1=s;
 						} else if (this.osBrowser==2 || this.osBrowser==4 || this.osBrowser==5) {
 							control.input(1,s);
-						}					
+						}
 					} catch (err) {
 					}
-				}				
+				}
 			},
-			
+
 			pwdResultHash: function() {
 
 				var code = '';
@@ -270,7 +270,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 
 					code = '';
 				}
-				else{	
+				else{
 					try {
 						var control = document.getElementById(this.settings.pgeId);
 						if (this.osBrowser==1 || this.osBrowser==3) {
@@ -279,7 +279,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							code = control.output(7);
 						}else if (this.osBrowser==6 || this.osBrowser==8) {
 							//code = control.get_output1();
-						}					
+						}
 					} catch (err) {
 						code = '';
 					}
@@ -287,7 +287,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 				//alert(code);
 				return code;
 			},
-			
+
 			pwdResult: function() {
 
 				var code = '';
@@ -296,7 +296,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 
 					code = '';
 				}
-				else{	
+				else{
 					try {
 						var control = document.getElementById(this.settings.pgeId);
 						if (this.osBrowser==1 || this.osBrowser==3) {
@@ -305,7 +305,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							code = control.output(7);
 						}else if (this.osBrowser==6 || this.osBrowser==8) {
 							code = control.get_output1();
-						}					
+						}
 					} catch (err) {
 						code = '';
 					}
@@ -313,7 +313,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 				//alert(code);
 				return code;
 			},
-			
+
 			machineNetwork: function() {
 				var code = '';
 
@@ -412,7 +412,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 					}
 				}
 				return code;
-			},			
+			},
 			pwdValid: function() {
 				var code = '';
 
@@ -437,7 +437,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 					}
 				}
 				return code;
-			},				
+			},
 			pwdHash: function() {
 				var code = '';
 
@@ -462,7 +462,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 					}
 				}
 				return code;
-			},			
+			},
 			pwdLength: function() {
 				var code = '';
 
@@ -487,7 +487,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 					}
 				}
 				return code;
-			},				
+			},
 			pwdStrength: function() {
 				var code = 0;
 
@@ -517,13 +517,13 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 						if(l==0){
 							code = 0;
 						}else if(l<7){
-							code = 1;//»ı
+							code = 1;//Âº±
 						}else if(n>1 && n<3 && l>6){
-							code = 2;//÷–
+							code = 2;//‰∏≠
 						}else if(n==3 && l>=6){
-							code = 3;//«ø
+							code = 3;//Âº∫
 						}else{
-							code = 1;//»ı
+							code = 1;//Âº±
 						}
 
 					} catch (err) {
@@ -532,33 +532,33 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 
 					}
 
-				}		
+				}
 				return code;
-								
-			},	
+
+			},
 			checkInstall: function() {
 				try {
 					if (this.osBrowser==1) {
 
-						var comActiveX = new ActiveXObject("PassGuardCtrl.PassGuard.1"); 
+						var comActiveX = new ActiveXObject("PassGuardCtrl.PassGuard.1");
 					} else if (this.osBrowser==2 || this.osBrowser==4 || this.osBrowser==5 || this.osBrowser==6 || this.osBrowser==8) {
 
-					    var arr=new Array();
-					    if(this.osBrowser==6){
-					    	var pge_info=navigator.plugins['PassGuard 1G'].description;
-					    }else if(this.osBrowser==8){
-					    	var pge_info=navigator.plugins['PassGuard Safari 1G'].description;
-					    }else{
-					    	var pge_info=navigator.plugins['PassGuard'].description;
-					    }
-					    
+						var arr=new Array();
+						if(this.osBrowser==6){
+							var pge_info=navigator.plugins['PassGuard 1G'].description;
+						}else if(this.osBrowser==8){
+							var pge_info=navigator.plugins['PassGuard Safari 1G'].description;
+						}else{
+							var pge_info=navigator.plugins['PassGuard'].description;
+						}
+
 						if(pge_info.indexOf(":")>0){
 							arr=pge_info.split(":");
 							var pge_version = arr[1];
 						}else{
 							var pge_version = "";
 						}
-						
+
 					} else if (this.osBrowser==3) {
 						var comActiveX = new ActiveXObject("PassGuardX64.PassGuard.1");
 					}
@@ -571,13 +571,13 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 				try {
 					if(navigator.userAgent.indexOf("MSIE")<0){
 						var arr=new Array();
-					    if(this.osBrowser==6){
-					    	var pge_info=navigator.plugins['PassGuard 1G'].description;
-					    }else if(this.osBrowser==8){
-					    	var pge_info=navigator.plugins['PassGuard Safari 1G'].description;					    	
-					    }else{
-					    	var pge_info=navigator.plugins['PassGuard'].description;
-					    }
+						if(this.osBrowser==6){
+							var pge_info=navigator.plugins['PassGuard 1G'].description;
+						}else if(this.osBrowser==8){
+							var pge_info=navigator.plugins['PassGuard Safari 1G'].description;
+						}else{
+							var pge_info=navigator.plugins['PassGuard'].description;
+						}
 						if(pge_info.indexOf(":")>0){
 							arr=pge_info.split(":");
 							var pge_version = arr[1];
@@ -588,7 +588,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 					return pge_version;
 				}catch(e){
 					return "";
-				}					
+				}
 			},
 			setColor: function() {
 				var code = '';
@@ -608,33 +608,33 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 
 					}
 				}
-			},			
+			},
 			setDownText:function(){
 				if(this.pgeVersion!=undefined && this.pgeVersion!=""){
-						this.pgeDownText="\u8BF7\u70B9\u6B64\u5347\u7EA7\u63A7\u4EF6";
+					this.pgeDownText="\u8BF7\u70B9\u6B64\u5347\u7EA7\u63A7\u4EF6";
 				}
-			},			
+			},
 			pgInitialize:function(){
 				if(this.checkInstall()){
-					if(this.osBrowser==1 || this.osBrowser==3){ 
-			            $('#'+this.settings.pgeId+'_pge').show(); 
+					if(this.osBrowser==1 || this.osBrowser==3){
+						$('#'+this.settings.pgeId+'_pge').show();
 					}
-					
+
 					var control = document.getElementById(this.settings.pgeId);
-					
+
 					if(this.settings.pgeBackColor!=undefined && this.settings.pgeBackColor!="") control.BackColor=this.settings.pgeBackColor;
 					if(this.settings.pgeForeColor!=undefined && this.settings.pgeForeColor!="") control.ForeColor=this.settings.pgeForeColor;
-					
+
 				}else{
 					if(this.osBrowser==1 || this.osBrowser==3){
 						$('#'+this.settings.pgeId+'_down').show();
-					}	
-					
+					}
+
 				}
-				
+
 			}
 		}
-	});	
-	
+	});
+
 })(jQuery);
 function notifycallback(arg){}

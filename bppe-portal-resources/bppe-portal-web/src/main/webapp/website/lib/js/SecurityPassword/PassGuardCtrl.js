@@ -1,3 +1,6 @@
+
+
+
 var PGEdit_IE32_CLASSID="3A2C8BC3-5B68-4AE5-81D6-6DC378708F3E";
 var PGEdit_IE32_CAB="PassGuardCtrl.cab#version=1,0,2,1";
 var PGEdit_IE32_EXE="PassGuardSetupIE.exe";
@@ -19,6 +22,7 @@ var PGEdit_MacOs_Safari="PassGuardSafari.dmg";
 var PGEdit_MacOs_Safari_VERSION="1.0.0.1";
 
 var UPEdit_Update="1";//非IE控件是否强制升级 1强制升级,0不强制升级
+
 
 if(navigator.userAgent.indexOf("MSIE")<0){
 	navigator.plugins.refresh();
@@ -638,3 +642,4 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 
 })(jQuery);
 function notifycallback(arg){}
+

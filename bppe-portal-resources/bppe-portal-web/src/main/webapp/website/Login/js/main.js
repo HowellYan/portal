@@ -2,7 +2,7 @@
  * Created by Howell on 2016/9/21.
  * Email:th15817161961@gmail.com
  */
-define('subclass',["Base64","PassGuardCtrl","bestpay.app"],function(Base64,PassGuardCtrl,app) {
+define('subclass',["bestpay.app"],function(app) {
     function LoginMainAction() {
         this.initApp();
         window.history.forward()

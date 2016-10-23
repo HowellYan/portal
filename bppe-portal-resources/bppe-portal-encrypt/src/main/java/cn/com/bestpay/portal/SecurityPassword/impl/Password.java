@@ -257,6 +257,7 @@ public class Password {
             log.error("密码实现类路径不能为空");
             return null;
         }
+        log.info("classStr:"+classStr);
         return (PasswordInf) getInstanceClazz(classStr);
     }
 

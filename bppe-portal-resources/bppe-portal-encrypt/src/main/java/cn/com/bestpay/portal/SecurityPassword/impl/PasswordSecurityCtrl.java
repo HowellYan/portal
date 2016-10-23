@@ -39,7 +39,7 @@ public class PasswordSecurityCtrl implements PasswordInf {
 	 * @param clazz 控件样式
 	 * @param name
 	 * @param rdName
-	 * @param rd
+	 * @param sessionKey
 	 * @param params 扩展属性
 	 *
 	 * 扩展属性 (密码标示符(取值[0,1]),staffId(取值${sessionScope.staffId}]))

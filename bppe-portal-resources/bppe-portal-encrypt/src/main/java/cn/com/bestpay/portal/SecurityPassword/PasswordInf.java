@@ -4,30 +4,30 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * ÃÜÂë¿Ø¼ş File : PasswordInf.java Copy Right : www.tisson.cn Project : bppf JDK
+ * å¯†ç æ§ä»¶ File : PasswordInf.java Copy Right : www.tisson.cn Project : bppf JDK
  * version used : JDK 1.5 Comments : Version : 1.00 Modification history :
- * 2013-1-9 ÉÏÎç11:28:05 [created] Author : jiarong Tan Email : tanjr@tisson.cn
- * 
+ * 2013-1-9 ä¸Šåˆ11:28:05 [created] Author : jiarong Tan Email : tanjr@tisson.cn
+ *
  */
 public interface PasswordInf {
     /**
-     * Êä³öÃÜÂë¿ò
-     * 
+     * è¾“å‡ºå¯†ç æ¡†
+     *
      * @version: 1.00
-     * @history: 2013-1-15 ÉÏÎç11:52:05 [created]
+     * @history: 2013-1-15 ä¸Šåˆ11:52:05 [created]
      * @author jiarong Tan
      * @param id
-     *            ÃÜÂë¿Ø¼şµÄID
+     *            å¯†ç æ§ä»¶çš„ID
      * @param clazz
-     *            ÃÜÂëÒş²ØÓòclass,ÓÃÀ´ÉèÖÃÃÜÂë¼ÓÃÜºóµÄÖµ,¶à¸öÃÜÂë¿Ø¼ş,Õâ¸öÖµ±ØĞëÏàÍ¬
+     *            å¯†ç éšè—åŸŸclass,ç”¨æ¥è®¾ç½®å¯†ç åŠ å¯†åçš„å€¼,å¤šä¸ªå¯†ç æ§ä»¶,è¿™ä¸ªå€¼å¿…é¡»ç›¸åŒ
      * @param name
-     *            ÃÜÂëÒş²ØÓòÃû×Ö,ÓÃÀ´ºóÌ¨È¡µÃÃÜÂëÖµ
+     *            å¯†ç éšè—åŸŸåå­—,ç”¨æ¥åå°å–å¾—å¯†ç å€¼
      * @param rdName
-     *            Ëæ»úÒò×ÓÊıÒş²ØÓòÃû,ÓÃÀ´ºóÌ¨È¡Öµ
+     *            éšæœºå› å­æ•°éšè—åŸŸå,ç”¨æ¥åå°å–å€¼
      * @param sessionKey
-     *            session´æ´¢Ëæ»úÒò×ÓµÄKEY
+     *            sessionå­˜å‚¨éšæœºå› å­çš„KEY
      * @param params
-     *            À©Õ¹²ÎÊı
+     *            æ‰©å±•å‚æ•°
      * @return
      * @throws Exception
      */
@@ -35,14 +35,14 @@ public interface PasswordInf {
                                 Map<String, String> params, HttpServletRequest request) throws Exception;
 
     /**
-     * ¼ÓÃÜÃÜÂë
-     * 
+     * åŠ å¯†å¯†ç 
+     *
      * @version: 1.00
-     * @history: 2013-1-18 ÉÏÎç11:34:11 [created]
+     * @history: 2013-1-18 ä¸Šåˆ11:34:11 [created]
      * @author jiarong Tan
      * @param pwd
      * @param params
-     *            À©Õ¹²ÎÊı
+     *            æ‰©å±•å‚æ•°
      * @return
      * @throws Exception
      * @see
@@ -50,32 +50,32 @@ public interface PasswordInf {
     public String encode(String pwd, Map<String, String> params) throws Exception;
 
     /**
-     * ½«¼ÓÃÜºóµÄ×Ö·û´®½âÃÜ
-     * 
+     * å°†åŠ å¯†åçš„å­—ç¬¦ä¸²è§£å¯†
+     *
      * @version: 1.00
-     * @history: 2013-1-9 ÏÂÎç04:03:20 [created]
+     * @history: 2013-1-9 ä¸‹åˆ04:03:20 [created]
      * @author jiarong Tan
      * @param random
-     *            ´«ÈëËæ»úÒò×Ó
+     *            ä¼ å…¥éšæœºå› å­
      * @param pwd
-     *            ¼ÓÃÜºóµÄ×Ö·û´®
+     *            åŠ å¯†åçš„å­—ç¬¦ä¸²
      * @param params
-     *            À©Õ¹²ÎÊı
+     *            æ‰©å±•å‚æ•°
      * @throws Exception
      * @see
      */
     public String decode(String random, String pwd, Map<String, String> params) throws Exception;
 
     /**
-     * »ñÈ¡ÃÜÂë¿Ø¼şËæ»úÒò×ÓÊı
-     * 
+     * è·å–å¯†ç æ§ä»¶éšæœºå› å­æ•°
+     *
      * @version: 1.00
-     * @history: 2013-1-9 ÉÏÎç11:27:02 [created]
+     * @history: 2013-1-9 ä¸Šåˆ11:27:02 [created]
      * @author jiarong Tan
      * @param len
-     *            Éú³ÉËæ»úÒò×Ó³¤¶È
+     *            ç”Ÿæˆéšæœºå› å­é•¿åº¦
      * @param params
-     *            À©Õ¹²ÎÊı
+     *            æ‰©å±•å‚æ•°
      * @return
      * @throws Exception
      * @see

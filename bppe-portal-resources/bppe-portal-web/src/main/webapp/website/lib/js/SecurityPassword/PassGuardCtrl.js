@@ -239,7 +239,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
 						}
 					}
-					return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getpgeHtml());
+					return $("#_id_PassGuardCtrl_show_text").html(this.getpgeHtml());//document.write(this.getpgeHtml());
 			},
 			
 			pwdclear: function() {

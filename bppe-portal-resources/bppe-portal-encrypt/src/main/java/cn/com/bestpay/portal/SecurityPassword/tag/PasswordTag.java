@@ -11,34 +11,34 @@ import java.io.IOException;
 
 public class PasswordTag extends TagSupport {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
-	 * ÃÜÂë¿Ø¼şµÄID
+	 * å¯†ç æ§ä»¶çš„ID
 	 */
 	private String id;
 	/**
-	 * ÃÜÂë¿Ø¼ş¼°ÃÜÂëÒş²ØÓòclass,ÓÃÀ´ÉèÖÃÃÜÂë¼ÓÃÜºóµÄÖµ,¶à¸öÃÜÂë¿Ø¼ş,Õâ¸öÖµ±ØĞëÏàÍ¬
+	 * å¯†ç æ§ä»¶åŠå¯†ç éšè—åŸŸclass,ç”¨æ¥è®¾ç½®å¯†ç åŠ å¯†åçš„å€¼,å¤šä¸ªå¯†ç æ§ä»¶,è¿™ä¸ªå€¼å¿…é¡»ç›¸åŒ
 	 */
 	private String clazz;
 	/**
-	 * ÃÜÂëÒş²ØÓòÃû×Ö,ÓÃÀ´ºóÌ¨È¡µÃÃÜÂëÖµ
+	 * å¯†ç éšè—åŸŸåå­—,ç”¨æ¥åå°å–å¾—å¯†ç å€¼
 	 */
 	private String name;
 	/**
-	 * Ëæ»úÒò×ÓÊıÒş²ØÓòÃû,ÓÃÀ´ºóÌ¨È¡Öµ
+	 * éšæœºå› å­æ•°éšè—åŸŸå,ç”¨æ¥åå°å–å€¼
 	 */
 	private String rdName;
 	/**
-	 * session´æ´¢Ëæ»úÒò×ÓµÄKEY
+	 * sessionå­˜å‚¨éšæœºå› å­çš„KEY
 	 */
 	private String sessionKey;
 	/**
-	 * ÊÇ·ñ´ÓsessionÈ¡µÄËæ»úÊıµÄÖµ(¸ù¾İsessionKey)
-	 * true ±íÊ¾´ÓsessionÈ¡ false Ôò´ÓĞÂÉú³É
+	 * æ˜¯å¦ä»sessionå–çš„éšæœºæ•°çš„å€¼(æ ¹æ®sessionKey)
+	 * true è¡¨ç¤ºä»sessionå– false åˆ™ä»æ–°ç”Ÿæˆ
 	 */
 	private boolean rdFromSession = false;
 	/**
-	 * À©Õ¹ÊôĞÔ,¶à¸öÒÔ¶ººÅ¸ô¿ª
+	 * æ‰©å±•å±æ€§,å¤šä¸ªä»¥é€—å·éš”å¼€
 	 */
 	private String params;
 
@@ -47,13 +47,13 @@ public class PasswordTag extends TagSupport {
 		JspWriter out = pageContext.getOut();
 		try{
 			rdName = rdFromSession ? null : rdName;
-			//String[] _params = Charset.isEmpty(params)? new String[0] : params.split(",");			
+			//String[] _params = Charset.isEmpty(params)? new String[0] : params.split(",");
 			out.print(Password.writePWDInput(id, clazz, name, rdName, sessionKey,rdFromSession, ((HttpServletRequest)pageContext.getRequest()),params));
 			out.flush();
 		}catch(Exception ex){
 			try {
 				ex.printStackTrace();
-				out.print("ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
+				out.print("å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -85,7 +85,7 @@ public class PasswordTag extends TagSupport {
 	public void setRdFromSession(boolean rdFromSession) {
 		this.rdFromSession = rdFromSession;
 	}
-	
+
 	public void setParams(String params) {
 		this.params = params;
 	}

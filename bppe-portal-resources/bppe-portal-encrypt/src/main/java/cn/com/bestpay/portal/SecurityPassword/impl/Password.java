@@ -13,40 +13,40 @@ public class Password {
     private static final Logger log = Logger.getLogger(Password.class);
 
     /**
-     * Ëæ»úÒò×ÓÔÚsessionÀïµÄKEY
+     * éšæœºå› å­åœ¨sessioné‡Œçš„KEY
      */
     public static final String PWD_RANDOM_KEY = "TISSON_BPPF_PWD_RANDOM_KEY";
     /**
-     * ÃÜÂëÊµÏÖÀàÈ«Â·¾¶KEY
+     * å¯†ç å®ç°ç±»å…¨è·¯å¾„KEY
      */
     public static final String PWD_PWDIMPL_KEY = "TISSON_BPPF_PWD_PASSWORDINF_KEY";
     /**
-     * ÃÜÂë¿Ø¼şÃû³Æ
+     * å¯†ç æ§ä»¶åç§°
      */
     public static final String PWD_NAME_KEY = "TISSON_BPPF_PWD_NAME_KEY";
     /**
-     * request·¶Î§
+     * requestèŒƒå›´
      */
     public static final int REQUEST_SCOPE = 1;
     /**
-     * session·¶Î§
+     * sessionèŒƒå›´
      */
     public static final int SESSION_SCOPE = 0;
     /**
-     * Ä¬ÈÏËæ»úÒò×ÓÊı³¤¶È
+     * é»˜è®¤éšæœºå› å­æ•°é•¿åº¦
      */
     private static final int DEFAULT_RANDOM_LEN = 32;
 
     /**
-     * ¼ÓÃÜµÄÃÜÂë
-     * 
+     * åŠ å¯†çš„å¯†ç 
+     *
      * @version: 1.00
-     * @history: 2013-1-18 ÉÏÎç11:34:11 [created]
+     * @history: 2013-1-18 ä¸Šåˆ11:34:11 [created]
      * @author jiarong Tan
      * @param pwd
      * @param request
      * @param params
-     *            À©Õ¹²ÎÊı
+     *            æ‰©å±•å‚æ•°
      * @return
      * @throws Exception
      * @see
@@ -56,23 +56,23 @@ public class Password {
     }
 
     /**
-     * Êä³öÃÜÂë¿ò
-     * 
+     * è¾“å‡ºå¯†ç æ¡†
+     *
      * @version: 1.00
-     * @history: 2013-1-15 ÉÏÎç11:52:05 [created]
+     * @history: 2013-1-15 ä¸Šåˆ11:52:05 [created]
      * @author jiarong Tan
      * @param id
-     *            ÃÜÂë¿Ø¼şµÄID
+     *            å¯†ç æ§ä»¶çš„ID
      * @param clazz
-     *            ÃÜÂë¿Ø¼ş¼°ÃÜÂëÒş²ØÓòclass,ÓÃÀ´ÉèÖÃÃÜÂë¼ÓÃÜºóµÄÖµ,¶à¸öÃÜÂë¿Ø¼ş,Õâ¸öÖµ±ØĞëÏàÍ¬
+     *            å¯†ç æ§ä»¶åŠå¯†ç éšè—åŸŸclass,ç”¨æ¥è®¾ç½®å¯†ç åŠ å¯†åçš„å€¼,å¤šä¸ªå¯†ç æ§ä»¶,è¿™ä¸ªå€¼å¿…é¡»ç›¸åŒ
      * @param name
-     *            ÃÜÂëÒş²ØÓòÃû×Ö,ÓÃÀ´ºóÌ¨È¡µÃÃÜÂëÖµ
+     *            å¯†ç éšè—åŸŸåå­—,ç”¨æ¥åå°å–å¾—å¯†ç å€¼
      * @param rdName
-     *            Ëæ»úÒò×ÓÊıÒş²ØÓòÃû,ÓÃÀ´ºóÌ¨È¡Öµ,Èç¹ûÎª¿ÕÔò²»Éú³ÉËæ»úÒò×ÓÒş²ØÓò
+     *            éšæœºå› å­æ•°éšè—åŸŸå,ç”¨æ¥åå°å–å€¼,å¦‚æœä¸ºç©ºåˆ™ä¸ç”Ÿæˆéšæœºå› å­éšè—åŸŸ
      * @param sessionKey
-     *            session´æ´¢Ëæ»úÒò×ÓµÄKEY
+     *            sessionå­˜å‚¨éšæœºå› å­çš„KEY
      * @param rdFromSession
-     *            Ëæ»úÒò×ÓÊıÊÇ·ñ´ÓsessionÈ¡,true ÔòÔÚsessionÈ¡,falseÔò´ÓĞÂÉú³É
+     *            éšæœºå› å­æ•°æ˜¯å¦ä»sessionå–,true åˆ™åœ¨sessionå–,falseåˆ™ä»æ–°ç”Ÿæˆ
      * @param request
      * @return
      * @throws Exception
@@ -88,18 +88,18 @@ public class Password {
     }
 
     /**
-     * ½«¼ÓÃÜºóµÄ×Ö·û´®½âÃÜ
-     * 
+     * å°†åŠ å¯†åçš„å­—ç¬¦ä¸²è§£å¯†
+     *
      * @version: 1.00
-     * @history: 2013-1-9 ÏÂÎç04:03:20 [created]
+     * @history: 2013-1-9 ä¸‹åˆ04:03:20 [created]
      * @author jiarong Tan
      * @param str
-     *            ´«ÈëËæ»úÒò×Ó»ò·¶Î§µÄ¼ü
+     *            ä¼ å…¥éšæœºå› å­æˆ–èŒƒå›´çš„é”®
      * @param pwdStr
-     *            ¼ÓÃÜºóµÄ×Ö·û´®
+     *            åŠ å¯†åçš„å­—ç¬¦ä¸²
      * @param scope
-     *            È¡Ëæ»úÒò×Ó·¶Î§,Èç¹û¸ÃÖµÉèÖÃÎª-1,ÔòÖ±½ÓÈ¡str×÷ÎªËæ»úÒò×Ó
-     * @return Èç¹û´«ÈëµÄÃÜÂëÎª¿Õ»ò¿Õ×Ö·û´®»òÉèÖÃÃÜÂëÊµÏÖÀà²»ÕıÈ·£¬Ôò·µ»Ø´«ÈëÖµ
+     *            å–éšæœºå› å­èŒƒå›´,å¦‚æœè¯¥å€¼è®¾ç½®ä¸º-1,åˆ™ç›´æ¥å–strä½œä¸ºéšæœºå› å­
+     * @return å¦‚æœä¼ å…¥çš„å¯†ç ä¸ºç©ºæˆ–ç©ºå­—ç¬¦ä¸²æˆ–è®¾ç½®å¯†ç å®ç°ç±»ä¸æ­£ç¡®ï¼Œåˆ™è¿”å›ä¼ å…¥å€¼
      * @param request
      * @throws Exception
      * @see
@@ -110,7 +110,7 @@ public class Password {
             return pwdStr;
         HttpSession session = request.getSession();
         String random = (String) session.getAttribute(str);// FIXME
-                                                           // 2014.10.21½ô¼±°æºó¸ÄÎªÖ±½Ó´Ósession»ñÈ¡
+        // 2014.10.21ç´§æ€¥ç‰ˆåæ”¹ä¸ºç›´æ¥ä»sessionè·å–
         PasswordInf pi = getPasswordInf(request);
         if (null == pi)
             return pwdStr;
@@ -120,10 +120,10 @@ public class Password {
     }
 
     /**
-     * ½«¼ÓÃÜºóµÄ×Ö·û´®½âÃÜ
-     * 
+     * å°†åŠ å¯†åçš„å­—ç¬¦ä¸²è§£å¯†
+     *
      * @version: 1.00
-     * @history: 2013-1-15 ÏÂÎç12:28:48 [created]
+     * @history: 2013-1-15 ä¸‹åˆ12:28:48 [created]
      * @author jiarong Tan
      * @param sesssionKey
      * @param pwdStr
@@ -138,13 +138,13 @@ public class Password {
     }
 
     /**
-     * ½«¼ÓÃÜºóµÄ×Ö·û´®½âÃÜ,(È¡Ä¬ÈÏµÄKEY)
-     * 
+     * å°†åŠ å¯†åçš„å­—ç¬¦ä¸²è§£å¯†,(å–é»˜è®¤çš„KEY)
+     *
      * @version: 1.00
-     * @history: 2013-1-15 ÉÏÎç11:55:20 [created]
+     * @history: 2013-1-15 ä¸Šåˆ11:55:20 [created]
      * @author jiarong Tan
      * @param pwdStr
-     *            ¼ÓÃÜ×Ö·û´®
+     *            åŠ å¯†å­—ç¬¦ä¸²
      * @param request
      * @return
      * @throws Exception
@@ -155,15 +155,15 @@ public class Password {
     }
 
     /**
-     * »ñÈ¡ÃÜÂë¿Ø¼şËæ»úÒò×ÓÊı
-     * 
+     * è·å–å¯†ç æ§ä»¶éšæœºå› å­æ•°
+     *
      * @version: 1.00
-     * @history: 2013-1-15 ÉÏÎç11:56:01 [created]
+     * @history: 2013-1-15 ä¸Šåˆ11:56:01 [created]
      * @author jiarong Tan
      * @param sessionKey
-     *            ´æ´¢Ëæ»úÒò×ÓÊıµÄsession¼ü
+     *            å­˜å‚¨éšæœºå› å­æ•°çš„sessioné”®
      * @param len
-     *            Éú³É¶àÉÙÎ»µÄËæ»úÒò×ÓÊı
+     *            ç”Ÿæˆå¤šå°‘ä½çš„éšæœºå› å­æ•°
      * @param request
      * @return
      * @throws Exception
@@ -177,13 +177,13 @@ public class Password {
     }
 
     /**
-     * »ñÈ¡ÃÜÂë¿Ø¼şËæ»úÒò×ÓÊı
-     * 
+     * è·å–å¯†ç æ§ä»¶éšæœºå› å­æ•°
+     *
      * @version: 1.00
-     * @history: 2013-1-15 ÉÏÎç11:55:53 [created]
+     * @history: 2013-1-15 ä¸Šåˆ11:55:53 [created]
      * @author jiarong Tan
      * @param len
-     *            Éú³É¶àÉÙÎ»µÄËæ»úÒò×ÓÊı
+     *            ç”Ÿæˆå¤šå°‘ä½çš„éšæœºå› å­æ•°
      * @param request
      * @return
      * @throws Exception
@@ -194,13 +194,13 @@ public class Password {
     }
 
     /**
-     * ÉèÖÃÃÜÂëÊµÏÖÀà,²¢°ÑÊµÏÖÀàÀàÃû´æÈësession
-     * 
+     * è®¾ç½®å¯†ç å®ç°ç±»,å¹¶æŠŠå®ç°ç±»ç±»åå­˜å…¥session
+     *
      * @version: 1.00
-     * @history: 2013-1-10 ÏÂÎç01:01:45 [created]
+     * @history: 2013-1-10 ä¸‹åˆ01:01:45 [created]
      * @author jiarong Tan
      * @param clazz
-     *            ÊµÏÖÀàÈ«Â·¾¶
+     *            å®ç°ç±»å…¨è·¯å¾„
      * @param request
      * @throws Exception
      * @see
@@ -222,13 +222,13 @@ public class Password {
     // }
 
     /**
-     * ÉèÖÃÃÜÂëÊµÏÖÀà
-     * 
+     * è®¾ç½®å¯†ç å®ç°ç±»
+     *
      * @version: 1.00
-     * @history: 2013-1-10 ÏÂÎç01:02:11 [created]
+     * @history: 2013-1-10 ä¸‹åˆ01:02:11 [created]
      * @author jiarong Tan
      * @param clazz
-     *            ÊµÏÖÀàÈ«Â·¾¶
+     *            å®ç°ç±»å…¨è·¯å¾„
      * @param request
      * @throws Exception
      * @see
@@ -238,13 +238,13 @@ public class Password {
     }
 
     /**
-     * »ñÈ¡ÃÜÂë¾ßÌåÊµÏÖÀà,ÔÚrequestÀïÃæ»ñÈ¡¾ßÌåÊµÏÖÀàÈ«Â·¾¶,¼üÖµ:[TISSON_BPPF_PWD_PASSWORDINF_KEY]
-     * 
+     * è·å–å¯†ç å…·ä½“å®ç°ç±»,åœ¨requesté‡Œé¢è·å–å…·ä½“å®ç°ç±»å…¨è·¯å¾„,é”®å€¼:[TISSON_BPPF_PWD_PASSWORDINF_KEY]
+     *
      * @version: 1.00
-     * @history: 2013-1-10 ÉÏÎç11:47:52 [created]
+     * @history: 2013-1-10 ä¸Šåˆ11:47:52 [created]
      * @author jiarong Tan
      * @param request
-     * @return ·µ»Ønull±íÊ¾ÊµÏÖ¸ÃÀàÊ§°Ü»ò´«ÈëµÄÂ·¾¶²»ÕıÈ·
+     * @return è¿”å›nullè¡¨ç¤ºå®ç°è¯¥ç±»å¤±è´¥æˆ–ä¼ å…¥çš„è·¯å¾„ä¸æ­£ç¡®
      * @throws Exception
      * @see
      */
@@ -253,22 +253,22 @@ public class Password {
         // String classStr =
         // request.getSession().getServletContext().getAttribute(PWD_PWDIMPL_KEY)+"".intern();
         if (null == classStr || "".intern().equals(classStr.trim()) || "null".equals(classStr.trim())) {
-            // throw new BusinessException("ÃÜÂëÊµÏÖÀàÂ·¾¶²»ÄÜÎª¿Õ");
-            log.error("ÃÜÂëÊµÏÖÀàÂ·¾¶²»ÄÜÎª¿Õ");
+            // throw new BusinessException("å¯†ç å®ç°ç±»è·¯å¾„ä¸èƒ½ä¸ºç©º");
+            log.error("å¯†ç å®ç°ç±»è·¯å¾„ä¸èƒ½ä¸ºç©º");
             return null;
         }
         return (PasswordInf) getInstanceClazz(classStr);
     }
 
     /**
-     * ¸ù¾İ´«ÈëµÄÀàÈ«Â·¾¶³õÊ¼»¯Àà
-     * 
+     * æ ¹æ®ä¼ å…¥çš„ç±»å…¨è·¯å¾„åˆå§‹åŒ–ç±»
+     *
      * @version: 1.00
-     * @history: 2013-1-10 ÉÏÎç11:34:33 [created]
+     * @history: 2013-1-10 ä¸Šåˆ11:34:33 [created]
      * @author jiarong Tan
      * @param clazz
-     *            ÀàÈ«Â·¾¶
-     * @return ·µ»Ø³õÊ¼»¯ºóµÄÀà
+     *            ç±»å…¨è·¯å¾„
+     * @return è¿”å›åˆå§‹åŒ–åçš„ç±»
      * @throws Exception
      * @see
      */
@@ -279,14 +279,14 @@ public class Password {
     }
 
     /**
-     * °Ñ¸½¼ÓÊôĞÔ×ª»»³ÉMAP
-     * 
+     * æŠŠé™„åŠ å±æ€§è½¬æ¢æˆMAP
+     *
      * @version: 1.00
-     * @history: 2013-1-30 ÉÏÎç09:21:00 [created]
+     * @history: 2013-1-30 ä¸Šåˆ09:21:00 [created]
      * @author jiarong Tan
      * @param params
-     *            ÊôĞÔ¸ñÊ½:key1:value1,key2:value2....
-     * @return Èç¹û´«ÈëµÄ×Ö·ûÎª¿Õ Ôò·µ»Ønull
+     *            å±æ€§æ ¼å¼:key1:value1,key2:value2....
+     * @return å¦‚æœä¼ å…¥çš„å­—ç¬¦ä¸ºç©º åˆ™è¿”å›null
      * @throws Exception
      * @see
      */
@@ -312,7 +312,7 @@ public class Password {
     // private PwdEnum(String impClass){
     // this.classStr = impClass;
     // }
-    // //¸²¸ÇÔ­·½·¨
+    // //è¦†ç›–åŸæ–¹æ³•
     // public String toString(){
     // return classStr;
     // }

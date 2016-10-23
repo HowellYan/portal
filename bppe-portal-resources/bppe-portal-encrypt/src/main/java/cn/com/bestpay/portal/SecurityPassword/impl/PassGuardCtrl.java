@@ -12,14 +12,14 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * 密码卫士控件实现
+ * 瀵嗙爜鍗＋鎺т欢瀹炵幇
  * File                 : PassGuardCtrl.java
  * Copy Right           : www.tisson.cn
  * Project              : bppf
  * JDK version used     : JDK 1.5
  * Comments             :
  * Version              : 1.00
- * Modification history : 2013-1-9 上午11:31:27 [created]
+ * Modification history : 2013-1-9 涓婂崍11:31:27 [created]
  * Author               : jiarong Tan
  * Email                : tanjr@tisson.cn
  *
@@ -32,7 +32,7 @@ public class PassGuardCtrl implements PasswordInf {
 	 */
 	public String getRandom(int len, Map<String, String> params) throws Exception {
 		if(0>=len){
-			log.error("生成密码随机因子长度为空");
+			log.error("鐢熸垚瀵嗙爜闅忔満鍥犲瓙闀垮害涓虹┖");
 		}
 		String mcrypt_key=GetRandom.generateString(len);
 		return mcrypt_key;
@@ -46,7 +46,7 @@ public class PassGuardCtrl implements PasswordInf {
 		try{
 			password = AESWithJCE.getResult(random, pwdStr);
 		}catch (Exception e) {
-			log.error("密码解密出错",e);
+			log.error("瀵嗙爜瑙ｅ瘑鍑洪敊",e);
 		}
 		return password;
 	}
@@ -55,14 +55,14 @@ public class PassGuardCtrl implements PasswordInf {
 	 * @see cn.tisson.cmpf.util.pwd.PasswordInf#writePWDInput(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Map)
 	 */
 	public String writePWDInput(String id, String clazz, String name, String rdName, String sessionKey, Map<String, String> params, HttpServletRequest request) throws Exception {
-	    HttpSession session = request.getSession();
-	    String rd = (String) session.getAttribute(sessionKey);
+		HttpSession session = request.getSession();
+		String rd = (String) session.getAttribute(sessionKey);
 		String target = "PassGuardCtrl"+id.toLowerCase();
-		String str = "<script type=\"text/javascript\">$(function(){var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
-				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".pgInitialize();});"+target+".generate();})</script>" +
+		String str = "<script type=\"text/javascript\">var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
+				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".pgInitialize();});"+target+".generate();</script>" +
 				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/><div id=\"_id_PassGuardCtrl_show_text\"></div>";
 		if(!Charset.isEmpty(rdName)) {
-		    session.setAttribute(rdName, rd);
+			session.setAttribute(rdName, rd);
 		}
 
 		return str;

@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * °²È«ÃÜÂë¿Ø¼ş
+ * å®‰å…¨å¯†ç æ§ä»¶
  * File                 : PasswordManger.java
  * Copy Right           : www.tisson.cn
  * Project              : bppf
  * JDK version used     : JDK 1.5
- * Comments             : 
+ * Comments             :
  * Version              : 1.00
- * Modification history : 2013-1-16 ÉÏÎç11:59:17 [created]
+ * Modification history : 2013-1-16 ä¸Šåˆ11:59:17 [created]
  * Author               : XiuWang Lan
  * Email                :
  *
@@ -34,44 +34,44 @@ public class PasswordSecurityCtrl implements PasswordInf {
 	public String getRandom(int len, Map<String, String> params) throws Exception {
 		return new PwdManager().createSCRand();
 	}
-   /**
-    * @param id ¿Ø¼şID
-    * @param clazz ¿Ø¼şÑùÊ½
-    * @param name
-    * @param rdName
-    * @param rd
-    * @param params À©Õ¹ÊôĞÔ 
-    * 
-    * À©Õ¹ÊôĞÔ (ÃÜÂë±êÊ¾·û(È¡Öµ[0,1]),staffId(È¡Öµ${sessionScope.staffId}]))
-    * ÃÜÂë±êÊ¾·û keyÎªpwdmark
-    * ÃÜÂë±êÊ¾·ûÈ¡0±íÊ¾Ê¹ÓÃ¿Ø¼şgetStaffRandPwd·½·¨À´¼ÓÃÜ
-    * ÃÜÂë±êÊ¾·ûÈ¡1±íÊ¾Ê¹ÓÃ¿Ø¼şgetStaffPwd·½·¨À´¼ÓÃÜ
-    * staffIdµÄkeyÎªstaffId
-    */
+	/**
+	 * @param id æ§ä»¶ID
+	 * @param clazz æ§ä»¶æ ·å¼
+	 * @param name
+	 * @param rdName
+	 * @param rd
+	 * @param params æ‰©å±•å±æ€§
+	 *
+	 * æ‰©å±•å±æ€§ (å¯†ç æ ‡ç¤ºç¬¦(å–å€¼[0,1]),staffId(å–å€¼${sessionScope.staffId}]))
+	 * å¯†ç æ ‡ç¤ºç¬¦ keyä¸ºpwdmark
+	 * å¯†ç æ ‡ç¤ºç¬¦å–0è¡¨ç¤ºä½¿ç”¨æ§ä»¶getStaffRandPwdæ–¹æ³•æ¥åŠ å¯†
+	 * å¯†ç æ ‡ç¤ºç¬¦å–1è¡¨ç¤ºä½¿ç”¨æ§ä»¶getStaffPwdæ–¹æ³•æ¥åŠ å¯†
+	 * staffIdçš„keyä¸ºstaffId
+	 */
 	public String writePWDInput(String id, String clazz, String name,
-                                String rdName, String sessionKey, Map<String, String> params, HttpServletRequest request) throws Exception {
+								String rdName, String sessionKey, Map<String, String> params, HttpServletRequest request) throws Exception {
 		String ctrStr="";
 		if(checkparams(params)){
-			log.error("À©Õ¹ÊôĞÔÎª¿Õ,ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
-			throw new Exception("À©Õ¹ÊôĞÔÎª¿Õ,ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
-			
+			log.error("æ‰©å±•å±æ€§ä¸ºç©º,å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
+			throw new Exception("æ‰©å±•å±æ€§ä¸ºç©º,å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
+
 		}
 		String pwdmark=params.get("pwdmark");
 		String staffId=params.get("staffId");
 		if(Charset.isEmpty(pwdmark)){
-			log.error("ÃÜÂë¿Ø¼şÃÜÂë±êÊ¾·ûÎª¿Õ,ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
-			throw new Exception("ÃÜÂë¿Ø¼şÃÜÂë±êÊ¾·ûÎª¿Õ,ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
+			log.error("å¯†ç æ§ä»¶å¯†ç æ ‡ç¤ºç¬¦ä¸ºç©º,å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
+			throw new Exception("å¯†ç æ§ä»¶å¯†ç æ ‡ç¤ºç¬¦ä¸ºç©º,å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
 		}
 		else if(!checkPwd(pwdmark)){
-			log.error("ÃÜÂë¿Ø¼şÃÜÂë±êÊ¾·û²»ÕıÈ·,ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
-			throw new Exception("ÃÜÂë¿Ø¼şÃÜÂë±êÊ¾·û²»ÕıÈ·,ÃÜÂë¿Ø¼şÉú³ÉÊ§°Ü");
+			log.error("å¯†ç æ§ä»¶å¯†ç æ ‡ç¤ºç¬¦ä¸æ­£ç¡®,å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
+			throw new Exception("å¯†ç æ§ä»¶å¯†ç æ ‡ç¤ºç¬¦ä¸æ­£ç¡®,å¯†ç æ§ä»¶ç”Ÿæˆå¤±è´¥");
 		}
-		 ctrStr=" <object id=\""+id+"\" class=\""+clazz+"\"  classid=\"clsid:9FF161C1-6BE7-43B4-8E81-B7550212FA79\"" +
-		               " codebase=\"./bppf/activeX/bppf_sc.CAB#version=1,0,0,1\"></object>"+
-		               "<input type=\"hidden\" name=\""+name+"\" id=\"hiden-"+id+"\" class=\""+clazz+"-hidpwd\" objId=\""+id+"\"/>"+
-		               "<input type=\"hidden\" id=\"staff_"+id+"\" value=\""+staffId+"\" />"+
-		               "<input type=\"hidden\" id=\"pwd_"+id+"\"  value=\""+pwdmark+"\"/>";
-		log.info("ÃÜÂë¿Ø¼ş:"+ctrStr);
+		ctrStr=" <object id=\""+id+"\" class=\""+clazz+"\"  classid=\"clsid:9FF161C1-6BE7-43B4-8E81-B7550212FA79\"" +
+				" codebase=\"./bppf/activeX/bppf_sc.CAB#version=1,0,0,1\"></object>"+
+				"<input type=\"hidden\" name=\""+name+"\" id=\"hiden-"+id+"\" class=\""+clazz+"-hidpwd\" objId=\""+id+"\"/>"+
+				"<input type=\"hidden\" id=\"staff_"+id+"\" value=\""+staffId+"\" />"+
+				"<input type=\"hidden\" id=\"pwd_"+id+"\"  value=\""+pwdmark+"\"/>";
+		log.info("å¯†ç æ§ä»¶:"+ctrStr);
 		return ctrStr;
 	}
 
@@ -86,14 +86,14 @@ public class PasswordSecurityCtrl implements PasswordInf {
 			if(pwdmark[i].equals(pwd))
 				flag=true;
 		}
-		 return flag;       
+		return flag;
 	}
-	
+
 	private boolean checkparams(Map<String, String> params){
 		boolean flag=false;
 		if(params==null) flag=true;
 		else if(params.size()==0) flag=true;
-		
+
 		return flag;
 	}
 }

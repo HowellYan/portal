@@ -57,10 +57,10 @@ public class PassGuardCtrl implements PasswordInf {
 	public String writePWDInput(String id, String clazz, String name, String rdName, String sessionKey, Map<String, String> params, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		String rd = (String) session.getAttribute(sessionKey);
-		String target = "PassGuardCtrl"+id.toLowerCase();
-		String str = "<script type=\"text/javascript\">var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
-				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".pgInitialize();});"+target+".generate();</script>" +
-				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/><div id=\"_id_PassGuardCtrl_show_text\"></div>";
+		String target = "PassGuardCtrl"+id.toLowerCase() , showId = "_id_PassGuardCtrl_"+id;
+		String str = "<div id=\""+showId+"\"><script type=\"text/javascript\">var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
+				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".pgInitialize();});"+target+".generate(\""+showId+"\");</script>" +
+				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/></div>";
 		if(!Charset.isEmpty(rdName)) {
 			session.setAttribute(rdName, rd);
 		}

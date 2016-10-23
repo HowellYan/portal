@@ -208,38 +208,38 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 				}
 			},
 
-			generate: function() {
+			generate: function(id) {
 
 				if(this.osBrowser==2){
 					if(this.isInstalled==false){
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}else if(this.pgeVersion!=PGEdit_FF_VERSION && UPEdit_Update==1){
 						this.setDownText();
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}
 				}else if(this.osBrowser==4 || this.osBrowser==5){
 					if(this.isInstalled==false){
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return  $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}else if(this.pgeVersion!=PGEdit_Linux_VERSION && UPEdit_Update==1){
 						this.setDownText();
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return  $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}
 				} else if (this.osBrowser==6) {
 					if(this.isInstalled==false){
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return  $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}else if(this.pgeVersion!=PGEdit_MacOs_VERSION && UPEdit_Update==1){
 						this.setDownText();
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return  $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}
 				}else if (this.osBrowser==8) {
 					if(this.isInstalled==false){
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return  $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}else if(this.pgeVersion!=PGEdit_MacOs_Safari_VERSION && UPEdit_Update==1){
 						this.setDownText();
-						return $("#_id_PassGuardCtrl_show_text").html(this.getDownHtml());//document.write(this.getDownHtml());
+						return  $("#"+id).html(this.getDownHtml());//document.write(this.getDownHtml());
 					}
 				}
-				return document.write(this.getpgeHtml());
+				return  $("#"+id).html(this.getpgeHtml());
 			},
 
 			pwdclear: function() {

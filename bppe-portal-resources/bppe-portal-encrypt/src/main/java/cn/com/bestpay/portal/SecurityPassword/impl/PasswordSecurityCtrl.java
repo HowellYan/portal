@@ -11,15 +11,6 @@ import java.util.Map;
 
 /**
  * 安全密码控件
- * File                 : PasswordManger.java
- * Copy Right           : www.tisson.cn
- * Project              : bppf
- * JDK version used     : JDK 1.5
- * Comments             :
- * Version              : 1.00
- * Modification history : 2013-1-16 上午11:59:17 [created]
- * Author               : XiuWang Lan
- * Email                :
  *
  */
 public class PasswordSecurityCtrl implements PasswordInf {

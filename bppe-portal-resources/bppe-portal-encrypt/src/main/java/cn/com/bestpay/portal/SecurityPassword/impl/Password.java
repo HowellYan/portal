@@ -15,15 +15,15 @@ public class Password {
     /**
      * 随机因子在session里的KEY
      */
-    public static final String PWD_RANDOM_KEY = "TISSON_BPPE_PWD_RANDOM_KEY";
+    public static final String PWD_RANDOM_KEY = "BPPE_SECURITY_PASSWORD_RANDOM_KEY";
     /**
      * 密码实现类全路径KEY
      */
-    public static final String PWD_PWDIMPL_KEY = "TISSON_BPPE_PWD_PASSWORDINF_KEY";
+    public static final String PWD_PWDIMPL_KEY = "BPPE_SECURITY_PASSWORD_PASSWORDINF_KEY";
     /**
      * 密码控件名称
      */
-    public static final String PWD_NAME_KEY = "TISSON_BPPE_PWD_NAME_KEY";
+    public static final String PWD_NAME_KEY = "BPPE_SECURITY_PASSWORD_NAME_KEY";
     /**
      * request范围
      */

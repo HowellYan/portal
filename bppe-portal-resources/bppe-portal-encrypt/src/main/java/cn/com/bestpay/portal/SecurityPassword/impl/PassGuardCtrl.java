@@ -14,14 +14,6 @@ import java.util.Map;
 /**
  * 密码卫士控件实现
  * File                 : PassGuardCtrl.java
- * Copy Right           : www.tisson.cn
- * Project              : bppf
- * JDK version used     : JDK 1.5
- * Comments             :
- * Version              : 1.00
- * Modification history : 2013-1-9 上午11:31:27 [created]
- * Author               : jiarong Tan
- * Email                : tanjr@tisson.cn
  *
  */
 public class PassGuardCtrl implements PasswordInf {
@@ -61,7 +53,7 @@ public class PassGuardCtrl implements PasswordInf {
 		String str = "<script type=\"text/javascript\">" +
 				"var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
 				"jQuery(function(){"+target+".generate(\""+showId+"\");"+target+".pgInitialize();"+target+".pwdSetSk(\""+rd+"\");});" +
-				" </script>" +
+				" window.SECURITY_PASSWORD[\""+id+"\"]="+target+"; </script>" +
 				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/><div id=\"" + showId + "\"></div>";
 		if(!Charset.isEmpty(rdName)) {
 			session.setAttribute(rdName, rd);

@@ -1,7 +1,7 @@
 /**
  * Created by Howell on 4/10/16.
  */
-define(['bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function() {
+define(['bootstrapDatetimepicker','bootstrapDatetimepickerZhCN',"Base64","PassGuardCtrl"],function() {
     function SDMpay() {
 
     }

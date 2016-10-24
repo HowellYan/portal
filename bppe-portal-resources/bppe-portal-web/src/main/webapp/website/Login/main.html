@@ -38,14 +38,17 @@
             <input id="login-password" type="password" name="password" placeholder="password">
         </div>
 
+        <div ng-include="'/webCommon/SecurityPassword/view/LoginPasswordView.hbs?v=&version&'"></div>
+
         <input type="submit" class="btn" value="Login">
 
     </form>
+    <input type="button" id="GetPwd" class="btn" value="GetPwd">
 
 
 </div>
 
-<div ng-include="'/webCommon/SecurityPassword/view/LoginPasswordView.hbs?v=&version&'"></div>
+
 
 <div ng-include="'&CDN_Url&/lib/templates/footer/bestpay.footer.hbs?v=&version&'"></div>
 </body>

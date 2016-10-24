@@ -1,5 +1,6 @@
 package cn.com.bestpay.portal.controller.api;
 
+import cn.com.bestpay.portal.SecurityPassword.impl.Password;
 import cn.com.bestpay.portal.controller.BaseController;
 import cn.com.bestpay.portal.service.LoginService;
 import org.slf4j.Logger;
@@ -26,7 +27,15 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ModelAndView userLogin(HttpServletRequest request, HttpSession session) {
-         if(loginService.userLogin(request, session)){
+        String loginpwd = request.getParameter("loginpwd");
+        try {
+            loginpwd = Password.decode("loginpwd", loginpwd, Password.SESSION_SCOPE, request, null);
+            logger.info("loginpwd:"+loginpwd);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage().toString());
+        }
+        if(loginService.userLogin(request, session)){
              return new ModelAndView("redirect:/Index/main.html");
          } else {
              return new ModelAndView("redirect:/Login/main.html");

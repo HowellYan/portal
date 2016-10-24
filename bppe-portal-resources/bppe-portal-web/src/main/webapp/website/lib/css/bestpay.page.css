@@ -30,3 +30,11 @@ sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
     zoom: 1;
 }
 
+/*安全密碼輸入框 樣式 start*/
+.loginpwd{
+    line-height:24px;
+    border:1px solid #D2D2D2;
+    height:24px;
+    width:200px;
+}
+/*安全密碼輸入框 樣式 end*/

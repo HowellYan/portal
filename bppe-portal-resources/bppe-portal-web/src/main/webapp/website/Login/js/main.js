@@ -12,6 +12,12 @@ define('subclass',["bestpay.app","Base64","PassGuardCtrl"],function(app) {
         console.log("MainAction init!");
         $(".common-body-style").show();
 
+
+        $("#GetPwd").click(function () {
+            alert($("#loginpwd").val()+";"+$("#loginpwd-self").val()+";"+ PassGuardCtrlloginpwd.pwdHash());
+
+
+        });
         // BestpayApp.controller('AppController', ['$scope','$sce',function($scope,$sce) {
         //     var url = $sce.trustAs($sce.HTML,"http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs");
         //     console.log(url);

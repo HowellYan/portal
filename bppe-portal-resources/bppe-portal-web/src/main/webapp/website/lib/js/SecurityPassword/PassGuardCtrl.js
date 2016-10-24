@@ -267,11 +267,8 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 			},
 
 			pwdResultHash: function() {
-
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = '';
 				}
 				else{
@@ -293,11 +290,8 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 			},
 
 			pwdResult: function() {
-
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = '';
 				}
 				else{

@@ -30,9 +30,10 @@ public class LoginService {
     public boolean userLogin(HttpServletRequest request ,HttpSession session){
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
+        String loginpwd = request.getParameter("loginpwd");
         logger.info("username:"+userName);
         logger.info("password:"+password);
-
+        logger.info("loginpwd:"+loginpwd);
         if(userName.equals("123456") && password.equals("123456")){
             UserInfoModel userInfoModel = new UserInfoModel();
             userInfoModel.setStaffCode(userName);

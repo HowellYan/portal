@@ -59,19 +59,15 @@ public class HTMLController extends BaseController{
         return new ModelAndView(First+"/"+Second, map);
     }
 
-    @RequestMapping(value = "/webCommon/SecurityPassword/view/LoginPasswordView.hbs", method = RequestMethod.GET)
-    public ModelAndView getWebCommonView() {
-        ModelAndView modelResp = new ModelAndView();
-        logger.info("getWebCommonView : ");
-        return new ModelAndView("forward:/webCommon/SecurityPassword/view/LoginPasswordView.jsp");
-    }
 
-    @RequestMapping(value = "/webCommon/*/*.hbs", method = RequestMethod.GET)
-    @ResponseBody
-    public String getWebCommonHbs() {
-        //new ModelAndView("forward:/webCommon/SecurityPassword/view/LoginPasswordView.jsp");
-
-        return "asdasd111";
+    /**
+     * 安全密码控件
+     * @return
+     */
+    @RequestMapping(value = "/webCommon/SecurityPassword/{First}/{Second}.hbs", method = RequestMethod.GET)
+    public ModelAndView getWebCommonView(@PathVariable("First")String First, @PathVariable("Second")String Second) {
+        logger.info("getWebCommonView file :"+Second);
+        return new ModelAndView("forward:/webCommon/SecurityPassword/"+First+"/"+Second+".jsp");
     }
 
 }

@@ -5,7 +5,10 @@
 var _url = window.location.href,
     _subclass = _url.substring(0, _url.indexOf('.html')+5);
     _subclass = _subclass.substring(_subclass.lastIndexOf('/') + 1, _subclass.indexOf('.html'));
-
+function getRandNumber() {
+    var rand = Math.round(Math.random()*899999+100000);
+    return rand;
+}
 require.config({
     baseUrl : "js",
     waitSeconds: 0,
@@ -57,7 +60,7 @@ require.config({
             id == 'Base64' ||
             id == 'PassGuardCtrl'
         ){
-            args = "v=1.0.0";
+            args = "v=1.0.2";
         }
         return (url.indexOf('?') === -1 ? '?' : '&') + args;
     }

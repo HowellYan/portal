@@ -5,7 +5,7 @@ img, label, legend, li, mark, menu, nav, ol, p, pre, q, section, small, span, st
 sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
     margin: 0px;
     padding: 0px;
-    font-size: 14px;
+    font-sgetRandomize: 14px;
     font-family: "Microsoft YaHei","Microsoft JhengHei", "STHeiti", "MingLiu";
 }
 .pageBody .common-body-style {

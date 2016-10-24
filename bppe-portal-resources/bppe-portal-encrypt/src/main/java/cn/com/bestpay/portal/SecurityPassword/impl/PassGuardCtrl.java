@@ -60,13 +60,12 @@ public class PassGuardCtrl implements PasswordInf {
 		String target = "PassGuardCtrl"+id.toLowerCase() , showId = "_id_PassGuardCtrl_"+id;
 		String str = "<script type=\"text/javascript\">" +
 				"var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
-				"jQuery(function(){"+target+".pwdSetSk(\""+rd+"\");"+target+".generate(\""+showId+"\");"+target+".pgInitialize();});" +
+				"jQuery(function(){"+target+".generate(\""+showId+"\");"+target+".pgInitialize();"+target+".pwdSetSk(\""+rd+"\");});" +
 				" </script>" +
 				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/><div id=\"" + showId + "\"></div>";
 		if(!Charset.isEmpty(rdName)) {
 			session.setAttribute(rdName, rd);
 		}
-
 		return str;
 	}
 	/*

@@ -14,8 +14,8 @@ define('subclass',["bestpay.app","Base64","PassGuardCtrl"],function(app) {
 
 
         $("#GetPwd").click(function () {
+           // alert($("#loginpwd").val()+";"+$("#loginpwd-self").val()+";"+ BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
             alert($("#loginpwd").val()+";"+$("#loginpwd-self").val()+";"+ BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
-
             $("#loginpwd").val(BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
         });
         // BestpayApp.controller('AppController', ['$scope','$sce',function($scope,$sce) {

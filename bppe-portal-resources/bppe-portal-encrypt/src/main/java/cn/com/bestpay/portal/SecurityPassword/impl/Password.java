@@ -15,15 +15,15 @@ public class Password {
     /**
      * 随机因子在session里的KEY
      */
-    public static final String PWD_RANDOM_KEY = "TISSON_BPPF_PWD_RANDOM_KEY";
+    public static final String PWD_RANDOM_KEY = "TISSON_BPPE_PWD_RANDOM_KEY";
     /**
      * 密码实现类全路径KEY
      */
-    public static final String PWD_PWDIMPL_KEY = "TISSON_BPPF_PWD_PASSWORDINF_KEY";
+    public static final String PWD_PWDIMPL_KEY = "TISSON_BPPE_PWD_PASSWORDINF_KEY";
     /**
      * 密码控件名称
      */
-    public static final String PWD_NAME_KEY = "TISSON_BPPF_PWD_NAME_KEY";
+    public static final String PWD_NAME_KEY = "TISSON_BPPE_PWD_NAME_KEY";
     /**
      * request范围
      */
@@ -206,13 +206,11 @@ public class Password {
      * @see
      */
     public static void initPwdImpl(String clazz, HttpServletRequest request) throws Exception {
-        Object _PWD_PWDIMPL_KEY = request.getSession().getAttribute("PWD_PWDIMPL_KEY");
+        Object _PWD_PWDIMPL_KEY = request.getSession().getAttribute(PWD_PWDIMPL_KEY);
         if (null == _PWD_PWDIMPL_KEY) {
             request.getSession().setAttribute(PWD_PWDIMPL_KEY, clazz);
-            request.getSession()
-                    .setAttribute(PWD_NAME_KEY, clazz.substring(clazz.lastIndexOf(".") + 1, clazz.length()));
-            // request.getSession().getServletContext().setAttribute(PWD_PWDIMPL_KEY,
-            // clazz);
+            request.getSession().setAttribute(PWD_NAME_KEY, clazz.substring(clazz.lastIndexOf(".") + 1, clazz.length()));
+            //request.getSession().getServletContext().setAttribute(PWD_PWDIMPL_KEY, clazz);
         }
     }
 

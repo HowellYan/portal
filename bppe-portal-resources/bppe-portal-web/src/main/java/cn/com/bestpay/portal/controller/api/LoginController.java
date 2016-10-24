@@ -29,7 +29,7 @@ public class LoginController extends BaseController {
     public ModelAndView userLogin(HttpServletRequest request, HttpSession session) {
         String loginpwd = request.getParameter("loginpwd");
         try {
-            loginpwd = Password.decode("loginpwd", loginpwd, Password.SESSION_SCOPE, request, null);
+            loginpwd = Password.decode("login-pwd-ses-key", loginpwd, Password.SESSION_SCOPE, request, null);
             logger.info("loginpwd:"+loginpwd);
         } catch (Exception e) {
             e.printStackTrace();

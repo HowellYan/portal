@@ -37,14 +37,18 @@
         <div style="margin-bottom: 25px" class="input-group">
             <input id="login-password" type="password" name="password" placeholder="password">
         </div>
-
-        <div ng-include="'/webCommon/SecurityPassword/view/LoginPasswordView.hbs?v=&version&'"></div>
+        <div id="Show_LoginPasswordView"></div>
+        <script>
+            var rand = Math.round(Math.random()*8999+1000);
+            var url = "'/webCommon/SecurityPassword/view/LoginPasswordView.hbs?v="+rand+"'";
+            document.getElementById("Show_LoginPasswordView").setAttribute("ng-include",url);
+        </script>
+        <!--<div ng-include="'/webCommon/SecurityPassword/view/LoginPasswordView.hbs?v=&version&'"></div>-->
 
         <input type="submit" class="btn" value="Login">
 
     </form>
-    <input type="button" id="GetPwd" class="btn" value="GetPwd">
-
+    <input type="button" class="btn" id="GetPwd" value="GetPwd">
 
 </div>
 

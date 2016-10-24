@@ -346,9 +346,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 			},
 			machineDisk: function() {
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = '';
 				}
 				else{
@@ -363,18 +361,14 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							code = control.get_output7(2);
 						}
 					} catch (err) {
-
 						code = '';
-
 					}
 				}
 				return code;
 			},
 			machineCPU: function() {
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = '';
 				}
 				else{
@@ -396,9 +390,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 			},
 			pwdSimple: function() {
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = '';
 				}
 				else{
@@ -419,9 +411,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 			},
 			pwdValid: function() {
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = 1;
 				}
 				else{
@@ -435,18 +425,14 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							code = control.get_output5();
 						}
 					} catch (err) {
-
 						code = 1;
-
 					}
 				}
 				return code;
 			},
 			pwdHash: function() {
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = 0;
 				}
 				else{
@@ -460,18 +446,14 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							code = control.get_output2();
 						}
 					} catch (err) {
-
 						code = 0;
-
 					}
 				}
 				return code;
 			},
 			pwdLength: function() {
 				var code = '';
-
 				if (!this.checkInstall()) {
-
 					code = 0;
 				}
 				else{
@@ -485,28 +467,19 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 							code = control.get_output3();
 						}
 					} catch (err) {
-
 						code = 0;
-
 					}
 				}
 				return code;
 			},
 			pwdStrength: function() {
 				var code = 0;
-
 				if (!this.checkInstall()) {
-
 					code = 0;
-
 				}
-
 				else{
-
 					try {
-
 						var control = document.getElementById(this.settings.pgeId);
-
 						if (this.osBrowser==1 || this.osBrowser==3) {
 							var l=control.output3;
 							var n=control.output4;
@@ -531,9 +504,7 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 						}
 
 					} catch (err) {
-
 						code = 0;
-
 					}
 
 				}
@@ -543,7 +514,6 @@ if(navigator.userAgent.indexOf("MSIE")<0){
 			checkInstall: function() {
 				try {
 					if (this.osBrowser==1) {
-
 						var comActiveX = new ActiveXObject("PassGuardCtrl.PassGuard.1");
 					} else if (this.osBrowser==2 || this.osBrowser==4 || this.osBrowser==5 || this.osBrowser==6 || this.osBrowser==8) {
 

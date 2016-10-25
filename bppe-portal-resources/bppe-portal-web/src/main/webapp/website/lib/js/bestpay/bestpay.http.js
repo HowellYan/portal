@@ -1,7 +1,7 @@
 /**
  * Created by yfzx_gd_yanghh on 2016/9/25.
  */
-define(['bestpay.lang'],function(Lang) {
+define(['bestpay.lang',"bestpay.ui"],function(Lang, UI) {
     function Http() {
 
     }
@@ -12,7 +12,7 @@ define(['bestpay.lang'],function(Lang) {
 
     Http.prototype.setCommonParams = function (params) {
         params.WebKeep = Lang.getKeep();
-
+        params.MachineNetwork = UI.getMachineNetwork()
         return params;
     };
 

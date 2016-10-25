@@ -1,13 +1,18 @@
 package cn.com.bestpay.portal.controller.api.index;
 
+import cn.com.bestpay.portal.SecurityPassword.impl.Password;
 import cn.com.bestpay.portal.controller.BaseController;
 import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
 import cn.com.bestpay.portal.resp.ParentResp;
+import com.google.gson.JsonObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -22,8 +27,19 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value = "/api/index/main",method = RequestMethod.POST)
     @ResponseBody
-    public ParentResp main(@RequestBody String body){
+    public ParentResp main(@RequestBody String body, HttpServletRequest request){
         logger.info("RequestBody:"+body);
+        try {
+            JSONObject jsonObject = new JSONObject(body);
+            String MachineNetwork = jsonObject.getString("MachineNetwork");
+            MachineNetwork = Password.decode("SecurityHTML_Index_Key", MachineNetwork, Password.SESSION_SCOPE, request, null);
+            logger.info("MachineNetwork:"+MachineNetwork);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage().toString());
+        }
+
+
 
         ParentResp parentResp = new ParentResp();
         parentResp.setCode("000000");

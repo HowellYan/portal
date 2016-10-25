@@ -12,7 +12,6 @@ define('subclass',["bestpay.app","bestpay.ui"],function(app,UI) {
         console.log("MainAction init!");
         $(".common-body-style").show();
 
-
         $("#GetPwd").click(function () {
             alert(UI.getPasswordResult("loginpwd"));
             $("#machineNetwork").val(BASE64.encoder(PassGuardCtrlloginpwd.machineNetwork()));

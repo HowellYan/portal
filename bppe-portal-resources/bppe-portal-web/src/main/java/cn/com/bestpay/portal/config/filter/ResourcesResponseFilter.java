@@ -54,7 +54,6 @@ public class ResourcesResponseFilter implements Filter {
             if(extensionName.equals("js")){
                 content = SetVersion.setDebugVersion(content);
                 content = content.replaceAll("&#x27;","\'").replaceAll("&quot;","\"").replaceAll("&amp;","&");
-
                 if(SystemProperty.getValueParam("system.debug").equals("true")){
                     String miniJS = CompilerJs.miniJS(content);
                     if (!miniJS.equals("JS Closure Errors!")){
@@ -63,6 +62,14 @@ public class ResourcesResponseFilter implements Filter {
                 } else {
                     content = SetVersion.chinaToUnicode(content);
                 }
+            }
+            if(extensionName.equals("html")){
+                content = content.replaceAll("&#x27;","\'").
+                        replaceAll("&quot;","\"").
+                        replaceAll("&amp;","&").
+                        replaceAll("&lt;","<").
+                        replaceAll("&#x3D;","=").
+                        replaceAll("&gt;",">");
             }
             if(!extensionName.equals("map") && !extensionName.equals("jsp")){
                 if(extensionName.equals("html") || extensionName.equals("hbs")){

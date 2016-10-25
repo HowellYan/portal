@@ -1,5 +1,6 @@
 package cn.com.bestpay.portal.controller.api.lib.js;
 
+import cn.com.bestpay.portal.SecurityScript.SecurityHTML;
 import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
 import cn.com.bestpay.portal.pojo.ViewModel.HeaderMenuModel;
 import org.json.JSONArray;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,12 +26,14 @@ public class JSController {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    SecurityHTML securityHTML;
     /**
      * 应用版本
      * @return project.version
      */
     @RequestMapping(value = "/lib/js/bestpay/bestpay.global.js", method = RequestMethod.GET)
-    public ModelAndView globalJS() {
+    public ModelAndView globalJS(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
 
         JSONArray jsonArray = new JSONArray();
@@ -73,8 +77,24 @@ public class JSController {
             e.printStackTrace();
         }
 
+        try {
+            String RD = securityHTML.getSecurityRD("index",
+                    "",
+                    "SecurityHTML_Index",
+                    "SecurityHTML_Index_rd",
+                    "SecurityHTML_Index_Key",
+                    false,
+                    "pwdmark:0",
+                    request
+            );
+            jsonObject.put("SecurityScriptRD", RD);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         map.put("injections", jsonObject.toString());
         return new ModelAndView("/lib/js/bestpay/bestpay.global", map);
     }
+
 
 }

@@ -2,7 +2,7 @@
  * Created by Howell on 2016/9/21.
  * Email:th15817161961@gmail.com
  */
-define('subclass',["bestpay.app","Base64","PassGuardCtrl"],function(app) {
+define('subclass',["bestpay.app","bestpay.ui"],function(app,UI) {
     function LoginMainAction() {
         this.initApp();
         window.history.forward()
@@ -14,15 +14,12 @@ define('subclass',["bestpay.app","Base64","PassGuardCtrl"],function(app) {
 
 
         $("#GetPwd").click(function () {
-           // alert($("#loginpwd").val()+";"+$("#loginpwd-self").val()+";"+ BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
-            alert($("#loginpwd").val()+";"+$("#loginpwd-self").val()+";"+ BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
+            alert(UI.getPasswordResult("loginpwd"));
+            $("#machineNetwork").val(BASE64.encoder(PassGuardCtrlloginpwd.machineNetwork()));
             $("#loginpwd").val(BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
+            $("#machineCPU").val(BASE64.encoder(PassGuardCtrlloginpwd.machineCPU()));
+            $("#machineDisk").val(BASE64.encoder(PassGuardCtrlloginpwd.machineDisk()));
         });
-        // BestpayApp.controller('AppController', ['$scope','$sce',function($scope,$sce) {
-        //     var url = $sce.trustAs($sce.HTML,"http://localhost:8080/webCommon/SecurityPassword/view/LoginPasswordView.hbs");
-        //     console.log(url);
-        //     $scope.trustSrc = url;
-        // }]);
 
     };
 

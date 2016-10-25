@@ -53,7 +53,7 @@ public class PassGuardCtrl implements PasswordInf {
 		String str = "<script type=\"text/javascript\">" +
 				"var "+target+" = new $.pge({pgeClass:\""+clazz+"\",pgeId: \""+id+"-self\"});" +
 				"jQuery(function(){"+target+".generate(\""+showId+"\");"+target+".pgInitialize();"+target+".pwdSetSk(\""+rd+"\");});" +
-				" window.SECURITY_PASSWORD[\""+id+"\"]="+target+"; </script>" +
+				" window.SECURITY_PASSWORD_"+id+"="+target+"; </script>" +
 				"<input type=\"hidden\" name=\""+name+"\" id=\""+id+"\" class=\""+clazz+"\" objId=\""+id+"-self\"/><div id=\"" + showId + "\"></div>";
 		if(!Charset.isEmpty(rdName)) {
 			session.setAttribute(rdName, rd);

@@ -1,7 +1,7 @@
 /**
  * Created by Howell on 4/10/16.
  */
-define(['bootstrapDatetimepicker','bootstrapDatetimepickerZhCN',"Base64","PassGuardCtrl"],function() {
+define(["bestpay.ui",'bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function(UI) {
     function SDMpay() {
 
     }
@@ -37,6 +37,9 @@ define(['bootstrapDatetimepicker','bootstrapDatetimepickerZhCN',"Base64","PassGu
             maxView: 1,
             forceParse: 0
         });
+
+       alert( UI.getMachineNetwork() );
+
     };
 
     return new SDMpay();

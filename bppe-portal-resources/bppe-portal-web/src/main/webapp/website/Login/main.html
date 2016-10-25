@@ -35,6 +35,11 @@
         <div style="margin-bottom: 25px" class="input-group">
             <input id="login-password" type="password" name="password" placeholder="password">
         </div>
+        <div>
+            <input type="hidden" name="machineNetwork" id="machineNetwork">
+            <input type="hidden" name="machineCPU" id="machineCPU">
+            <input type="hidden" name="machineDisk" id="machineDisk">
+        </div>
 
         <div ng-include="'/webCommon/SecurityPassword/view/LoginPasswordView.hbs?v=&randNumber&'"></div>
 

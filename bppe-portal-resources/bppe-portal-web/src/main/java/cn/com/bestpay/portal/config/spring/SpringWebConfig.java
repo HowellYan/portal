@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan({
         "cn.com.bestpay.portal.aspects",
         "cn.com.bestpay.portal.service",
+        "cn.com.bestpay.portal.SecurityScript",
         "cn.com.bestpay.portal.controller"
 })
 @ImportResource({ "classpath:properties/spring/mvc_config.xml" } )

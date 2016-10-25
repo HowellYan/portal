@@ -28,9 +28,19 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/api/login", method = RequestMethod.POST)
     public ModelAndView userLogin(HttpServletRequest request, HttpSession session) {
         String loginpwd = request.getParameter("loginpwd");
+        String machineNetwork = request.getParameter("machineNetwork");
+        String machineCPU = request.getParameter("machineCPU");
+        String machineDisk = request.getParameter("machineDisk");
         try {
             loginpwd = Password.decode("login-pwd-ses-key", loginpwd, Password.SESSION_SCOPE, request, null);
+            machineNetwork = Password.decode("login-pwd-ses-key", machineNetwork, Password.SESSION_SCOPE, request, null);
+            machineCPU = Password.decode("login-pwd-ses-key", machineCPU, Password.SESSION_SCOPE, request, null);
+            machineDisk = Password.decode("login-pwd-ses-key", machineDisk, Password.SESSION_SCOPE, request, null);
+
             logger.info("loginpwd:"+loginpwd);
+            logger.info("machineNetwork:"+machineNetwork);
+            logger.info("machineCPU:"+machineCPU);
+            logger.info("machineDisk:"+machineDisk);
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.getMessage().toString());

@@ -69,7 +69,7 @@ define(["Base64","PassGuardCtrl"],function() {
      * @returns {*}
      */
     UI.prototype.getMachineNetwork = function () {
-        var obj = new $.pge({pgeClass:"",pgeId: "SecurityScript-self"});
+        var obj = new $.pge({pgeClass:"hiddenPWD",pgeId: "SecurityScript-self"});
         var divObj = document.createElement("div");
             divObj.id = "_id_SecurityScript_Show";
         document.body.appendChild(divObj);
@@ -77,7 +77,9 @@ define(["Base64","PassGuardCtrl"],function() {
         obj.pgInitialize();
         var injections = config['injections'];
         obj.pwdSetSk(injections['SecurityScriptRD']);
-        return BASE64.encoder(obj.machineNetwork());
+        var machineNetwork = BASE64.encoder(obj.machineNetwork());
+        document.body.removeChild(divObj);
+        return machineNetwork;
     };
 
     return new UI();

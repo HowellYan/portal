@@ -37,4 +37,9 @@ sub, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, button, body *{
     height:24px;
     width:200px;
 }
+.hiddenPWD{
+    height: 0px;
+    /*position: absolute;*/
+    /*bottom: -20px;*/
+}
 /*安全密碼輸入框 樣式 end*/

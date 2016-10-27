@@ -51,7 +51,6 @@ public class SessionFilter extends OncePerRequestFilter {
             }
         }
 
-
         //过滤不存在于 session_list 文件的URL
         for (SessionModel sessionItem:GetPermissonList.sessionModel) {  //method and uri matches with white list, ok
             if (sessionItem.httpMethods.contains(method) && sessionItem.pattern.matcher(requestURI).matches()) {

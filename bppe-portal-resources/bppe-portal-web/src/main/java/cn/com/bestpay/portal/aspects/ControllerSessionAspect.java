@@ -1,6 +1,7 @@
 package cn.com.bestpay.portal.aspects;
 
 import cn.com.bestpay.portal.SecurityPassword.impl.Password;
+import cn.com.bestpay.portal.config.filter.tool.SpeedIimitation;
 import cn.com.bestpay.portal.exception.PortalError;
 import cn.com.bestpay.portal.exception.PortalException;
 import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
@@ -40,18 +41,36 @@ public class ControllerSessionAspect {
     public void cutController() {
 
     }
+    @Pointcut("execution(public *  cn.com.bestpay.portal.*controller..*..*(*))")
+    public void cutJS(){
+
+    }
+
     @Around("cutRestController()")
     public Object verificationSession(ProceedingJoinPoint point) throws Throwable{
         Object proceed = null;
         if(session.getAttribute("userSession") != null){
             return point.proceed();
         } else {
-            return  new PortalException(PortalError.Logout_msg).getParentResp();
+            return new PortalException(PortalError.Logout_msg).getParentResp();
+        }
+    }
+
+    @Around("cutJS() && allMethod() && args(..,request)")
+    public Object speedIimitation(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
+        String requestURI = request.getRequestURI();
+        String method = request.getMethod().toLowerCase();
+        SpeedIimitation speedIimitation = new SpeedIimitation();
+        if(speedIimitation.speedIimitationAction(session,requestURI,method).equals("111111")) {
+            return new PortalException(PortalError.Speed_msg).getParentResp();
+        } else {
+            return point.proceed();
         }
     }
 
     @Around("cutRestController() && allMethod() && args(..,request)")
     public Object verificationDeviceInfo(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
+
         String servletRequest = (String) point.getArgs()[0];
         JSONObject jsonObject = new JSONObject(servletRequest);
 

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,26 +81,7 @@ public class JSController {
         return new ModelAndView("/lib/js/bestpay/bestpay.global", map);
     }
 
-    @RequestMapping(value = "/api/security/random", method = RequestMethod.POST)
-    @ResponseBody
-    public String getRandom(HttpServletRequest request) {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            String RD = securityHTML.getSecurityRD("index",
-                    "",
-                    "SecurityHTML_Index",
-                    "SecurityHTML_Index_rd",
-                    "SecurityHTML_Index_Key",
-                    false,
-                    "pwdmark:0",
-                    request
-            );
-            jsonObject.put("SecurityScriptRD", RD);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return jsonObject.toString();
-    }
+
 
 
 }

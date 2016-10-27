@@ -26,6 +26,8 @@ public class IndexController extends BaseController {
     public ParentResp main(@RequestBody String body, HttpServletRequest request){
         logger.info("RequestBody:"+body);
 
+
+
         ParentResp parentResp = new ParentResp();
         parentResp.setCode("000000");
         parentResp.setContent("成功");

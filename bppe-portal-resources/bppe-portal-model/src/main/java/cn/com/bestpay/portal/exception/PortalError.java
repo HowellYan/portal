@@ -9,7 +9,8 @@ package cn.com.bestpay.portal.exception;
  */
 public enum PortalError {
 	Logout_msg("999999", "请重新登陆！"),
-	Device_msg("999998", "设备发生改变，为了你的资金安全，请重新登陆！");
+	Device_msg("999998", "设备发生改变，为了你的资金安全，请重新登陆！"),
+	Speed_msg("999997", "请求次数过多！");
 
 	private String code;
 	private String reason;

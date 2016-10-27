@@ -21,11 +21,11 @@ public class LoginService {
     private static Logger logger = LoggerFactory.getLogger(LoginService.class);
 
 
-    @Autowired
-    private Bcs90001Service bcs90001Service;
-
-    @Autowired
-    private Cms0006Service cms0006Service;
+//    @Autowired
+//    private Bcs90001Service bcs90001Service;
+//
+//    @Autowired
+//    private Cms0006Service cms0006Service;
 
 
     public boolean userLogin(HttpServletRequest request ,HttpSession session){

@@ -58,10 +58,12 @@ public class ControllerSessionAspect {
 
     @Around("cutJS() && allMethod() && args(..,request)")
     public Object speedIimitation(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
+        new SpeedIimitation().setSpeedIimitation(session,"/api/security/random","post",3 ,10 , 1);
+
         String requestURI = request.getRequestURI();
         String method = request.getMethod().toLowerCase();
         SpeedIimitation speedIimitation = new SpeedIimitation();
-        if(speedIimitation.speedIimitationAction(session,requestURI,method).equals("111111")) {
+        if(!speedIimitation.speedIimitationAction(session,requestURI,method)) {
             return new PortalException(PortalError.Speed_msg).getParentResp();
         } else {
             return point.proceed();

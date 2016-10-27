@@ -28,7 +28,7 @@ public class SecurityRandom {
     @RequestMapping(value = "/api/security/random", method = RequestMethod.POST)
     @ResponseBody
     public String getRandom(HttpServletRequest request) {
-        new SpeedIimitation().setSpeedIimitation(session,"/api/security/random","POST",3 ,10 , 1);
+
         JSONObject jsonObject = new JSONObject();
         try {
             String RD = securityHTML.getSecurityRD("index",

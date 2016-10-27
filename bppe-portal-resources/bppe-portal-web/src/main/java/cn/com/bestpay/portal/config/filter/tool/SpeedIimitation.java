@@ -2,6 +2,8 @@ package cn.com.bestpay.portal.config.filter.tool;
 
 import cn.com.bestpay.portal.common.utils.TimeUtil;
 import cn.com.bestpay.portal.filter.SpeedModel;
+import com.alibaba.dubbo.common.logger.Logger;
+import com.alibaba.dubbo.common.logger.LoggerFactory;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
  * Created by Howell on 27/10/16.
  */
 public class SpeedIimitation {
+    private static Logger logger = LoggerFactory.getLogger(SpeedIimitation.class);
 
     public void setSpeedIimitation(HttpSession session,String RequestURI, String Methods, int SpeedNumber,
                                    long SpeedTime, int LimitTime) {
@@ -40,13 +43,20 @@ public class SpeedIimitation {
         session.setAttribute("SpeedIimitationArrayList", speedArrayList);
     }
 
-    public String speedIimitationAction(HttpSession session,String RequestURI, String Methods) {
+    /**
+     *
+     * @param session
+     * @param RequestURI
+     * @param Methods
+     * @return true : 通过
+     */
+    public boolean speedIimitationAction(HttpSession session,String RequestURI, String Methods) {
         boolean isHaveIn = false;
         SpeedModel speedModel = null;
         int itemNumber = 0;
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
-            return "000000";
+            speedArrayList  = new ArrayList<SpeedModel>();
         }
         for (int i = 0; i < speedArrayList.size(); i++ ) {
             SpeedModel speedModelItem = speedArrayList.get(i);
@@ -57,25 +67,28 @@ public class SpeedIimitation {
             }
         }
         if(!isHaveIn){
-            return "000000";
+            return true;
         } else {
             if(speedModel != null){
                 int accumulationNumber = speedModel.getAccumulationNumber();
                 if(accumulationNumber  == 0){
                     setStartTime(speedModel);
+                    accumulationNumber(speedModel);
                 } else if(accumulationNumber == -1) {
-                    cleanAction(speedModel);
+                    if(!cleanAction(speedModel)){
+                        return false;
+                    }
                 } else {
                     accumulationNumber(speedModel);
                     if(isIimitation(speedModel)){
-                        return "111111";
+                        return false;
                     }
                 }
                 speedArrayList.set(itemNumber, speedModel);
             }
             session.setAttribute("SpeedIimitationArrayList",speedArrayList);
         }
-        return "000000";
+        return true;
     }
 
     /**
@@ -124,7 +137,7 @@ public class SpeedIimitation {
         return false;
     }
 
-    private void cleanAction(SpeedModel speedModel){
+    private boolean cleanAction(SpeedModel speedModel){
         String stratTime = speedModel.getStratTime();
         String endTime = TimeUtil.formatCurrentDate("yyyyMMddHHmmss");
         long minute = TimeUtil.getMinuteToBetween(stratTime, endTime, "yyyyMMddHHmmss");
@@ -133,6 +146,9 @@ public class SpeedIimitation {
         if((minute - SpeedTime) >= limitTime){
             speedModel.setAccumulationNumber(0);
             speedModel.setStratTime(endTime);
+            return true;
+        } else {
+            return false;
         }
     }
 

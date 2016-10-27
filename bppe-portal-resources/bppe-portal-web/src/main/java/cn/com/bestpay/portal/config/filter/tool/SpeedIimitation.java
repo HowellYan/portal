@@ -43,6 +43,7 @@ public class SpeedIimitation {
     public String speedIimitationAction(HttpSession session,String RequestURI, String Methods) {
         boolean isHaveIn = false;
         SpeedModel speedModel = null;
+        int itemNumber = 0;
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
             return "000000";
@@ -52,6 +53,7 @@ public class SpeedIimitation {
             if(speedModelItem.getRequestURI().equals(RequestURI) && speedModelItem.getMethods().equals(Methods)){
                 isHaveIn = true;
                 speedModel = speedModelItem;
+                itemNumber = i;
             }
         }
         if(!isHaveIn){
@@ -69,7 +71,9 @@ public class SpeedIimitation {
                         return "111111";
                     }
                 }
+                speedArrayList.set(itemNumber, speedModel);
             }
+            session.setAttribute("SpeedIimitationArrayList",speedArrayList);
         }
         return "000000";
     }

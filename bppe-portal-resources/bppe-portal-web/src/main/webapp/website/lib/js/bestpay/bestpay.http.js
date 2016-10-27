@@ -1,7 +1,7 @@
 /**
  * Created by yfzx_gd_yanghh on 2016/9/25.
  */
-define(['bestpay.lang',"bestpay.ui"],function(Lang, UI) {
+define(['bestpay.lang',"bestpay.ui","Base64","PassGuardCtrl"],function(Lang, UI) {
     function Http() {
 
     }
@@ -12,9 +12,54 @@ define(['bestpay.lang',"bestpay.ui"],function(Lang, UI) {
 
     Http.prototype.setCommonParams = function (params) {
         params.WebKeep = Lang.getKeep();
-        params.MachineNetwork = UI.getMachineNetwork()
+
+        //硬件信息
+        var DeviceInfoJson = this.getDeviceInfo();
+        params.MachineNetwork = DeviceInfoJson['MachineNetwork'];
+        params.MachineDisk = DeviceInfoJson['MachineDisk'];
+        params.MachineCPU = DeviceInfoJson['MachineCPU'];
+
         return params;
     };
+
+    Http.prototype.getSecurityScriptRD = function () {
+        var SecurityScriptRD = "";
+        this.callWebService({
+            'service': '/api/security/random',
+            'params': {},
+            'showLoading': false,
+            'async':false,
+            'success': function(result){SecurityScriptRD =result['SecurityScriptRD'];}
+        });
+        return SecurityScriptRD;
+    };
+
+    /**
+     * 获取用户使用的设备的硬件信息
+     * @returns {{MachineNetwork: *, MachineDisk: *, MachineCPU: *}}
+     */
+    Http.prototype.getDeviceInfo = function () {
+        var obj = new $.pge({pgeClass:"hiddenPWD",pgeId: "SecurityScript-self"});
+        var divObj = document.createElement("div");
+        divObj.id = "_id_SecurityScript_Show";
+        document.body.appendChild(divObj);
+        obj.generate("_id_SecurityScript_Show");
+        obj.pgInitialize();
+        var SecurityScriptRD = this.getSecurityScriptRD();
+        obj.pwdSetSk(SecurityScriptRD);
+        var machineNetwork = BASE64.encoder(obj.machineNetwork());
+        var machineDisk = BASE64.encoder(obj.machineDisk());
+        var machineCPU = BASE64.encoder(obj.machineCPU());
+        var DeviceInfoJson = {
+            "MachineNetwork" : machineNetwork,
+            "MachineDisk" : machineDisk,
+            "MachineCPU" : machineCPU
+        };
+        document.body.removeChild(divObj);
+        return DeviceInfoJson;
+    };
+
+
 
     /**
      * Ajax call to Web Service

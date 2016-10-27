@@ -1,7 +1,7 @@
 /**
  * Created by Howell on 4/10/16.
  */
-define(["bestpay.ui",'bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function(UI) {
+define(["bestpay.http",'bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function(HTTP) {
     function SDMpay() {
 
     }
@@ -38,7 +38,7 @@ define(["bestpay.ui",'bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],fu
             forceParse: 0
         });
 
-       alert( UI.getMachineNetwork() );
+       alert( JSON.stringify(HTTP.getDeviceInfo()) );
 
     };
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +78,14 @@ public class JSController {
             e.printStackTrace();
         }
 
+        map.put("injections", jsonObject.toString());
+        return new ModelAndView("/lib/js/bestpay/bestpay.global", map);
+    }
+
+    @RequestMapping(value = "/api/security/random", method = RequestMethod.POST)
+    @ResponseBody
+    public String getRandom(HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
         try {
             String RD = securityHTML.getSecurityRD("index",
                     "",
@@ -91,9 +100,7 @@ public class JSController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        map.put("injections", jsonObject.toString());
-        return new ModelAndView("/lib/js/bestpay/bestpay.global", map);
+        return jsonObject.toString();
     }
 
 

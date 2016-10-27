@@ -3,10 +3,12 @@ package cn.com.bestpay.portal.resp;
 import cn.com.bestpay.portal.exception.PortalError;
 import cn.com.bestpay.portal.exception.PortalException;
 
+import java.io.Serializable;
+
 /**
  * Created by Howell on 19/10/16.
  */
-public class ParentResp {
+public class ParentResp implements Serializable {
     private String code = "000000";
     private String content = "成功";
     private String sign;

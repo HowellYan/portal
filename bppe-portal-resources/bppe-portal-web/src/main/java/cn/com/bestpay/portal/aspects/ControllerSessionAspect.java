@@ -1,16 +1,20 @@
 package cn.com.bestpay.portal.aspects;
 
+import cn.com.bestpay.portal.SecurityPassword.impl.Password;
 import cn.com.bestpay.portal.exception.PortalError;
 import cn.com.bestpay.portal.exception.PortalException;
+import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -23,6 +27,10 @@ public class ControllerSessionAspect {
 
     @Autowired
     HttpSession session;
+
+    @Pointcut("execution(* *.*(..))")
+    protected void allMethod() {
+    }
 
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
     public void cutRestController() {
@@ -41,4 +49,35 @@ public class ControllerSessionAspect {
             return  new PortalException(PortalError.Logout_msg).getParentResp();
         }
     }
+
+    @Around("cutRestController() && allMethod() && args(..,request)")
+    public Object verificationDeviceInfo(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
+        String servletRequest = (String) point.getArgs()[0];
+        JSONObject jsonObject = new JSONObject(servletRequest);
+
+        String MachineNetwork = Password.decode("SecurityHTML_Index_Key", jsonObject.getString("MachineNetwork"), Password.SESSION_SCOPE, request, null);
+        String MachineDisk = Password.decode("SecurityHTML_Index_Key", jsonObject.getString("MachineDisk"), Password.SESSION_SCOPE, request, null);
+        String MachineCPU = Password.decode("SecurityHTML_Index_Key", jsonObject.getString("MachineCPU"), Password.SESSION_SCOPE, request, null);
+        logger.info(MachineNetwork);
+        logger.info(MachineDisk);
+        logger.info(MachineCPU);
+        if(session.getAttribute("userSession") != null){
+            UserInfoModel userInfoModel = (UserInfoModel)session.getAttribute("userSession");
+            String loginMachineNetwork = userInfoModel.getMachineNetwork();
+            String loginMachineCPU = userInfoModel.getMachineCPU();
+            String loginMachineDisk = userInfoModel.getMachineDisk();
+
+            if(!loginMachineNetwork.equals(MachineNetwork) ||
+                    !loginMachineCPU.equals(MachineCPU) ||
+                    !loginMachineDisk.equals(MachineDisk)){
+                return new PortalException(PortalError.Device_msg).getParentResp();
+            }
+            session.removeAttribute("SecurityHTML_Index_rd");
+            session.removeAttribute("SecurityHTML_Index_Key");
+            return point.proceed();
+        } else {
+            return new PortalException(PortalError.Logout_msg).getParentResp();
+        }
+    }
+
 }

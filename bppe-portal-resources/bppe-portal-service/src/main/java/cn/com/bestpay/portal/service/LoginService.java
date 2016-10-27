@@ -1,6 +1,7 @@
 package cn.com.bestpay.portal.service;
 
 
+import cn.com.bestpay.portal.SecurityPassword.impl.Password;
 import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
@@ -29,14 +30,31 @@ public class LoginService {
 
     public boolean userLogin(HttpServletRequest request ,HttpSession session){
         String userName = request.getParameter("username");
-        String password = request.getParameter("password");
-        String loginpwd = request.getParameter("loginpwd");
+        String password = request.getParameter("loginpwd");
+        String machineNetwork = request.getParameter("machineNetwork");
+        String machineCPU = request.getParameter("machineCPU");
+        String machineDisk = request.getParameter("machineDisk");
+        try {
+            password = Password.decode("login-pwd-ses-key", password, Password.SESSION_SCOPE, request, null);
+            machineNetwork = Password.decode("login-pwd-ses-key", machineNetwork, Password.SESSION_SCOPE, request, null);
+            machineCPU = Password.decode("login-pwd-ses-key", machineCPU, Password.SESSION_SCOPE, request, null);
+            machineDisk = Password.decode("login-pwd-ses-key", machineDisk, Password.SESSION_SCOPE, request, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage().toString());
+        }
+        logger.info("machineNetwork:"+machineNetwork);
+        logger.info("machineCPU:"+machineCPU);
+        logger.info("machineDisk:"+machineDisk);
         logger.info("username:"+userName);
         logger.info("password:"+password);
-        logger.info("loginpwd:"+loginpwd);
         if(userName.equals("123456") && password.equals("123456")){
             UserInfoModel userInfoModel = new UserInfoModel();
             userInfoModel.setStaffCode(userName);
+            userInfoModel.setMachineNetwork(machineNetwork);
+            userInfoModel.setMachineCPU(machineCPU);
+            userInfoModel.setMachineDisk(machineDisk);
+
             session.setAttribute("userSession",userInfoModel);
             return true;
         }

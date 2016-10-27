@@ -18,6 +18,7 @@ define('subclass',["bestpay.app","bestpay.ui"],function(app,UI) {
             $("#loginpwd").val(BASE64.encoder(PassGuardCtrlloginpwd.pwdResult()));
             $("#machineCPU").val(BASE64.encoder(PassGuardCtrlloginpwd.machineCPU()));
             $("#machineDisk").val(BASE64.encoder(PassGuardCtrlloginpwd.machineDisk()));
+            $("#id_submit").click();
         });
 
     };

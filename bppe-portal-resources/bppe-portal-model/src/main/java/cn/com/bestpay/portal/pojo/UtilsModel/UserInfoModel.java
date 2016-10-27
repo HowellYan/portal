@@ -87,14 +87,24 @@ public class UserInfoModel implements Serializable {
     private String areaCode;
 
     /**
-     * @return the custName
-     */
-
-    /**
      * 添益宝标识
      */
     private String hadEpt;
 
+    /**
+     * mac 地址
+     */
+    private String MachineNetwork;
+
+    /**
+     *  磁盘编号
+     */
+    private String MachineDisk;
+
+    /**
+     * cpu编号
+     */
+    private String MachineCPU;
 
 
     public String getHadEpt() {
@@ -272,6 +282,29 @@ public class UserInfoModel implements Serializable {
         this.areaCode = areaCode;
     }
 
+    public String getMachineNetwork() {
+        return MachineNetwork;
+    }
+
+    public void setMachineNetwork(String machineNetwork) {
+        MachineNetwork = machineNetwork;
+    }
+
+    public String getMachineDisk() {
+        return MachineDisk;
+    }
+
+    public void setMachineDisk(String machineDisk) {
+        MachineDisk = machineDisk;
+    }
+
+    public String getMachineCPU() {
+        return MachineCPU;
+    }
+
+    public void setMachineCPU(String machineCPU) {
+        MachineCPU = machineCPU;
+    }
     @Override
     public String toString() {
         return "UserInfo [staffCode=" + staffCode + ", tokenCode=" + tokenCode

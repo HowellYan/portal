@@ -64,23 +64,6 @@ define(["Base64","PassGuardCtrl"],function() {
         }
     };
 
-    /**
-     * 获取mac地址
-     * @returns {*}
-     */
-    UI.prototype.getMachineNetwork = function () {
-        var obj = new $.pge({pgeClass:"hiddenPWD",pgeId: "SecurityScript-self"});
-        var divObj = document.createElement("div");
-            divObj.id = "_id_SecurityScript_Show";
-        document.body.appendChild(divObj);
-        obj.generate("_id_SecurityScript_Show");
-        obj.pgInitialize();
-        var injections = config['injections'];
-        obj.pwdSetSk(injections['SecurityScriptRD']);
-        var machineNetwork = BASE64.encoder(obj.machineNetwork());
-        document.body.removeChild(divObj);
-        return machineNetwork;
-    };
 
     return new UI();
 });

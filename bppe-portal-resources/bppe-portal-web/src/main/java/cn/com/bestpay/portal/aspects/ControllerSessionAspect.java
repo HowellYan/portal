@@ -41,19 +41,9 @@ public class ControllerSessionAspect {
     public void cutController() {
 
     }
-    @Pointcut("execution(public *  cn.com.bestpay.portal.*controller..*..*(*))")
+    @Pointcut("execution(public *  cn.com.bestpay.portal.*controller..*..speed*(*))")
     public void cutJS(){
 
-    }
-
-    @Around("cutRestController()")
-    public Object verificationSession(ProceedingJoinPoint point) throws Throwable{
-        Object proceed = null;
-        if(session.getAttribute("userSession") != null){
-            return point.proceed();
-        } else {
-            return new PortalException(PortalError.Logout_msg).getParentResp();
-        }
     }
 
     @Around("cutJS() && allMethod() && args(..,request)")
@@ -64,9 +54,19 @@ public class ControllerSessionAspect {
         String method = request.getMethod().toLowerCase();
         SpeedIimitation speedIimitation = new SpeedIimitation();
         if(!speedIimitation.speedIimitationAction(session,requestURI,method)) {
-            return new PortalException(PortalError.Speed_msg).getParentResp();
+            return new PortalException(PortalError.Speed_msg).toJson();
         } else {
             return point.proceed();
+        }
+    }
+
+    @Around("cutRestController()")
+    public Object verificationSession(ProceedingJoinPoint point) throws Throwable{
+        Object proceed = null;
+        if(session.getAttribute("userSession") != null){
+            return point.proceed();
+        } else {
+            return new PortalException(PortalError.Logout_msg).getParentResp();
         }
     }
 

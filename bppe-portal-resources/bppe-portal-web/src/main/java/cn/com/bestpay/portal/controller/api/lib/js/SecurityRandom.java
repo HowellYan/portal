@@ -1,7 +1,6 @@
 package cn.com.bestpay.portal.controller.api.lib.js;
 
 import cn.com.bestpay.portal.SecurityScript.SecurityHTML;
-import cn.com.bestpay.portal.config.filter.tool.SpeedIimitation;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,9 @@ public class SecurityRandom {
     @Autowired
     SecurityHTML securityHTML;
 
-    @RequestMapping(value = "/api/security/random", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/security/random", method = RequestMethod.POST, produces="application/json;charset=utf-8", headers = "content-type=application/json; charset=utf-8")
     @ResponseBody
-    public String getRandom(HttpServletRequest request) {
-
+    public String speedGetRandom(HttpServletRequest request) {
         JSONObject jsonObject = new JSONObject();
         try {
             String RD = securityHTML.getSecurityRD("index",

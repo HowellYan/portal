@@ -100,6 +100,14 @@ public class SpeedIimitation {
         int accumulationNumber = speedModel.getAccumulationNumber();
         accumulationNumber++;
         speedModel.setAccumulationNumber(accumulationNumber);
+        String stratTime = speedModel.getStratTime();
+        String endTime = TimeUtil.formatCurrentDate("yyyyMMddHHmmss");
+        long minute = TimeUtil.getMinuteToBetween(stratTime, endTime, "yyyyMMddHHmmss");
+        long SpeedTime = speedModel.getSpeedTime();
+        if(minute > SpeedTime){
+            speedModel.setStratTime(endTime);
+            speedModel.setAccumulationNumber(0);
+        }
         return speedModel;
     }
 
@@ -130,7 +138,7 @@ public class SpeedIimitation {
 
         int accumulationNumber = speedModel.getAccumulationNumber();
         int speedNumber = speedModel.getSpeedNumber();
-        if(accumulationNumber >= speedNumber &&  minute <= SpeedTime){
+        if(accumulationNumber > speedNumber &&  minute < SpeedTime){
             speedModel.setAccumulationNumber(-1);
             return true;
         }

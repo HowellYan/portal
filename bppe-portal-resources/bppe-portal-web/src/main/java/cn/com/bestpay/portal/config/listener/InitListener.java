@@ -21,7 +21,6 @@ public class InitListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         logger.info("ServletContex初始化");
         SystemProperty systemProperty = new SystemProperty();
-        //GetSpeedList getSpeedList = new GetSpeedList();
     }
 
     @Override

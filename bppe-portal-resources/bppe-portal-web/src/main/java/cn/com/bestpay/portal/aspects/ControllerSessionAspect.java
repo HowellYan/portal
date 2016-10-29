@@ -50,10 +50,6 @@ public class ControllerSessionAspect {
     @Around(" cutSpeed() && allMethod() && args(..,request)")
     public Object speedIimitation(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
         session = request.getSession();
-//        GetSpeedList getSpeedList = new GetSpeedList();
-//        for(SpeedModel speedModel : getSpeedList.getSpeedModelSet()) {
-//            new SpeedIimitation().setSpeedIimitation(session, speedModel);
-//        }
         String requestURI = request.getRequestURI();
         String method = request.getMethod().toLowerCase();
         SpeedIimitation speedIimitation = new SpeedIimitation();

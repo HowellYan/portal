@@ -20,11 +20,15 @@ import java.util.Set;
 public class GetSpeedList {
     private static Logger logger = LoggerFactory.getLogger(GetSpeedList.class);
 
-    public static Set<SpeedModel> speedModelSet = null;
+    public Set<SpeedModel> speedModelSet = null;
 
     public GetSpeedList(){
         speedModelSet = Sets.newHashSet();
         getVerificationList();
+    }
+
+    public Set<SpeedModel> getSpeedModelSet(){
+        return speedModelSet;
     }
 
     /**

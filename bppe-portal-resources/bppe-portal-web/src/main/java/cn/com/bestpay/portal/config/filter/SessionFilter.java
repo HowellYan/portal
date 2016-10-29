@@ -34,8 +34,9 @@ public class SessionFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        Boolean isHave = false, doFilter = true; ;
+        Boolean isHave = false, doFilter = true;
         HttpSession session = httpServletRequest.getSession();
+
         // 请求的uri
         String requestURI = httpServletRequest.getRequestURI();
         Matcher matcher = rewritePattern.matcher(requestURI);

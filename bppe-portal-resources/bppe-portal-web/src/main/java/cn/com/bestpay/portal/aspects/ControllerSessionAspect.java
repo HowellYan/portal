@@ -1,9 +1,11 @@
 package cn.com.bestpay.portal.aspects;
 
 import cn.com.bestpay.portal.SecurityPassword.impl.Password;
+import cn.com.bestpay.portal.config.filter.tool.GetSpeedList;
 import cn.com.bestpay.portal.config.filter.tool.SpeedIimitation;
 import cn.com.bestpay.portal.exception.PortalError;
 import cn.com.bestpay.portal.exception.PortalException;
+import cn.com.bestpay.portal.filter.SpeedModel;
 import cn.com.bestpay.portal.pojo.UtilsModel.UserInfoModel;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -49,7 +51,11 @@ public class ControllerSessionAspect {
 
     @Around(" cutSpeed() && allMethod() && args(..,request)")
     public Object speedIimitation(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
-
+        session = request.getSession();
+        GetSpeedList getSpeedList = new GetSpeedList();
+        for(SpeedModel speedModel : getSpeedList.getSpeedModelSet()) {
+            new SpeedIimitation().setSpeedIimitation(session, speedModel);
+        }
         String requestURI = request.getRequestURI();
         String method = request.getMethod().toLowerCase();
         SpeedIimitation speedIimitation = new SpeedIimitation();

@@ -26,7 +26,6 @@ public class SpeedIimitation {
             boolean isHaveIn = false;
             for (int i = 0; i < speedArrayList.size(); i++ ){
                 SpeedModel speedModelItem = speedArrayList.get(i);
-
                 if(speedModelItem.getRequestURI().equals(speedModel.getRequestURI())
                         && speedModelItem.getMethods().equals(speedModel.getMethods())){
                     isHaveIn = true;
@@ -36,6 +35,7 @@ public class SpeedIimitation {
                 speedArrayList.add(speedModel);
             }
         }
+
         session.setAttribute("SpeedIimitationArrayList", speedArrayList);
     }
 
@@ -50,6 +50,7 @@ public class SpeedIimitation {
         boolean isHaveIn = false;
         SpeedModel speedModel = null;
         int itemNumber = 0;
+        logger.info("session.getId:"+session.getId());
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
             speedArrayList  = new ArrayList<SpeedModel>();

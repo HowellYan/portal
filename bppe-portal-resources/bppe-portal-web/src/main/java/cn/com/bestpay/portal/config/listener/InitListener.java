@@ -1,6 +1,5 @@
 package cn.com.bestpay.portal.config.listener;
 
-import cn.com.bestpay.portal.config.filter.tool.GetSpeedList;
 import cn.com.bestpay.portal.config.property.SystemProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,7 @@ public class InitListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         logger.info("ServletContex初始化");
         SystemProperty systemProperty = new SystemProperty();
-        GetSpeedList getSpeedList = new GetSpeedList();
+        //GetSpeedList getSpeedList = new GetSpeedList();
     }
 
     @Override

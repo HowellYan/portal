@@ -1,8 +1,8 @@
-/api/([\da-z\.-]+)/([\da-z\.-]+) : post
-/api/([\da-z\.-]+)/([\da-z\.-]+) : get
+/api/([\da-zA-Z\.-]+)/([\da-zA-Z\.-]+) : post
+/api/([\da-zA-Z\.-]+)/([\da-zA-Z\.-]+) : get
 
-/api/([\da-z\.-]+) : post
-/api/([\da-z\.-]+) : get
+/api/([\da-zA-Z\.-]+) : post
+/api/([\da-zA-Z\.-]+) : get
 
 
 

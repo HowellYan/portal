@@ -1,0 +1,2 @@
+{"RequestURI":"/api/security/random","Methods":"post","SpeedNumber":"10","SpeedTime":"1","LimitTime":"5"}
+{"RequestURI":"/api/security/random","Methods":"get","SpeedNumber":"10","SpeedTime":"1","LimitTime":"5"}

@@ -21,6 +21,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ImportResource({ "classpath:properties/spring/mvc_config.xml" } )
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
+
+//    @Bean
+//    public SessionEventHttpSessionListenerAdapter httpSessionListener(){
+//        SessionEventHttpSessionListenerAdapter sessionListenerAdapter;
+//        ArrayList<HttpSessionListener> listeners = new ArrayList<HttpSessionListener>();
+//            listeners.add(new AppHttpSessionListener());
+//        sessionListenerAdapter = new SessionEventHttpSessionListenerAdapter(listeners);
+//        return sessionListenerAdapter;
+//    }
+
+
     @Bean
     public PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
         return new PropertySourcesPlaceholderConfigurer();

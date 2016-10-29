@@ -14,14 +14,8 @@ import java.util.ArrayList;
 public class SpeedIimitation {
     private static Logger logger = LoggerFactory.getLogger(SpeedIimitation.class);
 
-    public void setSpeedIimitation(HttpSession session,String RequestURI, String Methods, int SpeedNumber,
-                                   long SpeedTime, int LimitTime) {
-        SpeedModel speedModel = new SpeedModel();
-        speedModel.setRequestURI(RequestURI);
-        speedModel.setMethods(Methods);
-        speedModel.setSpeedNumber(SpeedNumber);
-        speedModel.setSpeedTime(SpeedTime);
-        speedModel.setLimitTime(LimitTime);
+    public void setSpeedIimitation(HttpSession session, SpeedModel speedModel) {
+
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
             speedArrayList = new ArrayList<SpeedModel>();
@@ -32,7 +26,9 @@ public class SpeedIimitation {
             boolean isHaveIn = false;
             for (int i = 0; i < speedArrayList.size(); i++ ){
                 SpeedModel speedModelItem = speedArrayList.get(i);
-                if(speedModelItem.getRequestURI().equals(RequestURI) && speedModelItem.getMethods().equals(Methods)){
+
+                if(speedModelItem.getRequestURI().equals(speedModel.getRequestURI())
+                        && speedModelItem.getMethods().equals(speedModel.getMethods())){
                     isHaveIn = true;
                 }
             }
@@ -106,7 +102,7 @@ public class SpeedIimitation {
         long SpeedTime = speedModel.getSpeedTime();
         if(minute > SpeedTime){
             speedModel.setStratTime(endTime);
-            speedModel.setAccumulationNumber(0);
+            speedModel.setAccumulationNumber(1);
         }
         return speedModel;
     }
@@ -140,6 +136,7 @@ public class SpeedIimitation {
         int speedNumber = speedModel.getSpeedNumber();
         if(accumulationNumber > speedNumber &&  minute < SpeedTime){
             speedModel.setAccumulationNumber(-1);
+            speedModel.setStratTime(endTime);
             return true;
         }
         return false;
@@ -149,10 +146,9 @@ public class SpeedIimitation {
         String stratTime = speedModel.getStratTime();
         String endTime = TimeUtil.formatCurrentDate("yyyyMMddHHmmss");
         long minute = TimeUtil.getMinuteToBetween(stratTime, endTime, "yyyyMMddHHmmss");
-        long SpeedTime = speedModel.getSpeedTime();
         long limitTime = speedModel.getLimitTime();
-        if((minute - SpeedTime) >= limitTime){
-            speedModel.setAccumulationNumber(0);
+        if(minute >= limitTime){
+            speedModel.setAccumulationNumber(1);
             speedModel.setStratTime(endTime);
             return true;
         } else {

@@ -33,7 +33,7 @@ public class GetPermissonList {
 
     public GetPermissonList(){
         protectModel = Sets.newHashSet();
-        whiteModel = Sets.newHashSet();;
+        whiteModel = Sets.newHashSet();
         sessionModel = Sets.newHashSet();
         getVerificationList();
     }

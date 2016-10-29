@@ -41,14 +41,14 @@ public class ControllerSessionAspect {
     public void cutController() {
 
     }
-    @Pointcut("execution(public *  cn.com.bestpay.portal.*controller..*..speed*(*))")
-    public void cutJS(){
+
+    @Pointcut("execution(public * speed*(..))")
+    public void cutSpeed(){
 
     }
 
-    @Around("cutJS() && allMethod() && args(..,request)")
+    @Around(" cutSpeed() && allMethod() && args(..,request)")
     public Object speedIimitation(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
-        new SpeedIimitation().setSpeedIimitation(session,"/api/security/random","post",3 ,10 , 1);
 
         String requestURI = request.getRequestURI();
         String method = request.getMethod().toLowerCase();

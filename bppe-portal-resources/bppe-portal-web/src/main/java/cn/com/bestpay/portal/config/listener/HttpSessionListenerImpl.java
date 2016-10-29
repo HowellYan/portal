@@ -1,5 +1,8 @@
 package cn.com.bestpay.portal.config.listener;
 
+import cn.com.bestpay.portal.config.filter.tool.GetSpeedList;
+import cn.com.bestpay.portal.config.filter.tool.SpeedIimitation;
+import cn.com.bestpay.portal.filter.SpeedModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +29,10 @@ public class HttpSessionListenerImpl implements HttpSessionListener {
             app.setAttribute("onLineCount", count);
         } else {
             app.setAttribute("onLineCount", count);
+        }
+        GetSpeedList getSpeedList = new GetSpeedList();
+        for(SpeedModel speedModel : getSpeedList.getSpeedModelSet()) {
+            new SpeedIimitation().setSpeedIimitation(httpSessionEvent.getSession(), speedModel);
         }
         logger.info("在线人数：" + count);
     }

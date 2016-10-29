@@ -50,7 +50,6 @@ public class SpeedIimitation {
         boolean isHaveIn = false;
         SpeedModel speedModel = null;
         int itemNumber = 0;
-        logger.info("session.getId:"+session.getId());
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
             speedArrayList  = new ArrayList<SpeedModel>();

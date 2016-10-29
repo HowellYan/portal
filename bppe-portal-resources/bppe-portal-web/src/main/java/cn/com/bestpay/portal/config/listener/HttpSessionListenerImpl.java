@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -22,6 +23,7 @@ public class HttpSessionListenerImpl implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
         logger.info("HttpSession初始化");
         ServletContext app = httpSessionEvent.getSession().getServletContext();
+        HttpSession session = httpSessionEvent.getSession();
         int count = 0;
         if(app.getAttribute("onLineCount") != null){
             count = Integer.parseInt(app.getAttribute("onLineCount").toString());
@@ -32,8 +34,9 @@ public class HttpSessionListenerImpl implements HttpSessionListener {
         }
         GetSpeedList getSpeedList = new GetSpeedList();
         for(SpeedModel speedModel : getSpeedList.getSpeedModelSet()) {
-            new SpeedIimitation().setSpeedIimitation(httpSessionEvent.getSession(), speedModel);
+            new SpeedIimitation().setSpeedIimitation(session, speedModel);
         }
+        logger.info("session.getId:"+session.getId());
         logger.info("在线人数：" + count);
     }
 

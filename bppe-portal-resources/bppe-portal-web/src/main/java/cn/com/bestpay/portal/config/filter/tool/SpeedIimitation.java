@@ -52,6 +52,10 @@ public class SpeedIimitation {
         int itemNumber = 0;
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
+            GetSpeedList getSpeedList = new GetSpeedList();
+            for(SpeedModel speedModelItem : getSpeedList.getSpeedModelSet()) {
+                new SpeedIimitation().setSpeedIimitation(session, speedModelItem);
+            }
             speedArrayList  = new ArrayList<SpeedModel>();
         }
         for (int i = 0; i < speedArrayList.size(); i++ ) {

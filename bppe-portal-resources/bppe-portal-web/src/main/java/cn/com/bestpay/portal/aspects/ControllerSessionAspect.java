@@ -63,7 +63,7 @@ public class ControllerSessionAspect {
         if(!speedIimitation.speedIimitationAction(session,requestURI,method)) {
             long waitTime = speedIimitation.getWaitTime(session,requestURI,method);
             PortalError portalError = PortalError.Speed_msg;
-            portalError.setReason("请求次数过多！,请"+waitTime+"分钟再试！");
+            portalError.setReason("请求次数过多,请"+waitTime+"分钟再试！");
             return new PortalException(portalError).toJson();
         } else {
             return point.proceed();

@@ -80,6 +80,13 @@ public class ControllerSessionAspect {
         }
     }
 
+    /**
+     * 切面校验用户设备信息
+     * @param point
+     * @param request
+     * @return
+     * @throws Throwable
+     */
     @Around("cutRestController() && allMethod() && args(..,request)")
     public Object verificationDeviceInfo(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
 

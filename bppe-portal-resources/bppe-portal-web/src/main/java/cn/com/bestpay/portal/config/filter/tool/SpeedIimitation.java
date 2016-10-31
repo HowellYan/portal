@@ -15,7 +15,6 @@ public class SpeedIimitation {
     private static Logger logger = LoggerFactory.getLogger(SpeedIimitation.class);
 
     public void setSpeedIimitation(HttpSession session, SpeedModel speedModel) {
-
         ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
         if (speedArrayList == null){
             speedArrayList = new ArrayList<SpeedModel>();
@@ -35,9 +34,10 @@ public class SpeedIimitation {
                 speedArrayList.add(speedModel);
             }
         }
-
         session.setAttribute("SpeedIimitationArrayList", speedArrayList);
     }
+
+
 
     /**
      *
@@ -75,12 +75,19 @@ public class SpeedIimitation {
                     setStartTime(speedModel);
                     accumulationNumber(speedModel);
                 } else if(accumulationNumber == -1) {
-                    if(!cleanAction(speedModel)){
+                    SpeedModel speedModelItem = cleanAction(speedModel);
+                    if(speedModelItem == null){
                         return false;
+                    } else {
+                        speedArrayList.set(itemNumber, speedModelItem);
+                        session.setAttribute("SpeedIimitationArrayList",speedArrayList);
                     }
                 } else {
                     accumulationNumber(speedModel);
-                    if(isIimitation(speedModel)){
+                    SpeedModel speedModelItem = isIimitation(speedModel);
+                    if(speedModelItem != null){
+                        speedArrayList.set(itemNumber, speedModelItem);
+                        session.setAttribute("SpeedIimitationArrayList",speedArrayList);
                         return false;
                     }
                 }
@@ -127,9 +134,9 @@ public class SpeedIimitation {
      * @param speedModel
      * @return
      */
-    private boolean isIimitation(SpeedModel speedModel){
+    private SpeedModel isIimitation(SpeedModel speedModel){
         if(speedModel.getStratTime() == null){
-            return false;
+            return null;
         }
         String stratTime = speedModel.getStratTime();
         String endTime = TimeUtil.formatCurrentDate("yyyyMMddHHmmss");
@@ -138,15 +145,15 @@ public class SpeedIimitation {
 
         int accumulationNumber = speedModel.getAccumulationNumber();
         int speedNumber = speedModel.getSpeedNumber();
-        if(accumulationNumber > speedNumber &&  minute < SpeedTime){
+        if(accumulationNumber > speedNumber &&  minute <= SpeedTime){
             speedModel.setAccumulationNumber(-1);
             speedModel.setStratTime(endTime);
-            return true;
+            return speedModel;
         }
-        return false;
+        return null;
     }
 
-    private boolean cleanAction(SpeedModel speedModel){
+    private SpeedModel cleanAction(SpeedModel speedModel){
         String stratTime = speedModel.getStratTime();
         String endTime = TimeUtil.formatCurrentDate("yyyyMMddHHmmss");
         long minute = TimeUtil.getMinuteToBetween(stratTime, endTime, "yyyyMMddHHmmss");
@@ -154,10 +161,32 @@ public class SpeedIimitation {
         if(minute >= limitTime){
             speedModel.setAccumulationNumber(1);
             speedModel.setStratTime(endTime);
-            return true;
+            return speedModel;
         } else {
-            return false;
+            return null;
         }
+    }
+
+    public long getWaitTime(HttpSession session,String RequestURI, String Methods){
+        SpeedModel speedModel = null;
+        ArrayList<SpeedModel> speedArrayList = (ArrayList<SpeedModel>)session.getAttribute("SpeedIimitationArrayList");
+        if (speedArrayList == null){
+            speedArrayList  = new ArrayList<SpeedModel>();
+        }
+        for (int i = 0; i < speedArrayList.size(); i++ ) {
+            SpeedModel speedModelItem = speedArrayList.get(i);
+            if(speedModelItem.getRequestURI().equals(RequestURI) && speedModelItem.getMethods().equals(Methods)){
+                speedModel = speedModelItem;
+            }
+        }
+        if(speedModel != null){
+            String stratTime = speedModel.getStratTime();
+            String endTime = TimeUtil.formatCurrentDate("yyyyMMddHHmmss");
+            long minute = TimeUtil.getMinuteToBetween(stratTime, endTime, "yyyyMMddHHmmss");
+            long limitTime = speedModel.getLimitTime();
+            return limitTime - minute;
+        }
+        return 0;
     }
 
 

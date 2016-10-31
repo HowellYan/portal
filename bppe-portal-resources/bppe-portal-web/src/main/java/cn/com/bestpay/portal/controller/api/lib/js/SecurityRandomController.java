@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * Created by Howell on 27/10/16.
  */
 @Controller
-public class SecurityRandom {
+public class SecurityRandomController {
 
     @Autowired
     HttpSession session;

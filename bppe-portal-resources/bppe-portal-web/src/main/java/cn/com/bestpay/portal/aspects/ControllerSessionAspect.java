@@ -47,6 +47,13 @@ public class ControllerSessionAspect {
 
     }
 
+    /**
+     * 接口防刷切面，请以speed 为开头命名Controller的方法
+     * @param point
+     * @param request
+     * @return
+     * @throws Throwable
+     */
     @Around(" cutSpeed() && allMethod() && args(..,request)")
     public Object speedIimitation(ProceedingJoinPoint point, HttpServletRequest request) throws Throwable{
         session = request.getSession();

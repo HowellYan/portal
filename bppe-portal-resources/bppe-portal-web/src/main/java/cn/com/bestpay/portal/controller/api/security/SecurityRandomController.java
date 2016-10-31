@@ -1,4 +1,4 @@
-package cn.com.bestpay.portal.controller.api.lib.js;
+package cn.com.bestpay.portal.controller.api.security;
 
 import cn.com.bestpay.portal.SecurityScript.SecurityHTML;
 import org.json.JSONException;

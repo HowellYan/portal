@@ -7,9 +7,9 @@ import net.sf.json.JSONObject;
  * Created by Howell on 19/10/16.
  */
 public class PortalException extends Exception {
-    private String errCode;
+    private String code;
 
-    private String errReason;
+    private String content;
 
     private PortalError portalError;
 
@@ -17,38 +17,38 @@ public class PortalException extends Exception {
 
     public PortalException(PortalError portalError) {
         super("[" + portalError.getCode() + "]" + portalError.getReason());
-        this.errCode = portalError.getCode();
-        this.errReason = portalError.getReason();
+        this.code = portalError.getCode();
+        this.content = portalError.getReason();
         this.portalError = portalError;
         this.parentResp = new  ParentResp();
     }
 
     public void setErrCode(String errCode) {
-        this.errCode = errCode;
+        this.code = errCode;
     }
 
-    public void setErrReason(String errReason) {
-        this.errReason = errReason;
+    public void setErrReason(String content) {
+        this.content = content;
     }
 
     public String getErrCode() {
-        return errCode;
+        return code;
     }
 
     public String getErrReason() {
-        return errReason;
+        return content;
     }
 
     public ParentResp getParentResp(){
-        parentResp.setCode(errCode);
-        parentResp.setContent(errReason);
+        parentResp.setCode(code);
+        parentResp.setContent(content);
         return parentResp;
     }
 
     public String toJson(){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("errCode",errCode);
-        jsonObject.put("errReason",errReason);
+        jsonObject.put("code",code);
+        jsonObject.put("content",content);
         return jsonObject.toString();
     }
 }

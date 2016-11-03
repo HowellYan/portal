@@ -44,8 +44,9 @@ public class EqualsJson {
                     err_message = (err_message + "\n" + log1);
                 }
                 else{  //response中找到Key了，再判断value
-                    if(thisKeyValue.equals("org.json.JSONObject")){ //object类型的字段继续往内层判断
-                        err_message += equalsJsonValue(standardJson.getJSONObject(key), responseJson.getJSONObject(key)); //!!进入递归时，保存当前错误信息
+                    String thisKeyClassName = standardJson.get(key).getClass().getName();
+                    if(thisKeyClassName.equals("org.json.JSONObject")){ //object类型的字段继续往内层判断
+                        err_message += "\n"+ key +" Json:"+equalsJsonValue(standardJson.getJSONObject(key), responseJson.getJSONObject(key)); //!!进入递归时，保存当前错误信息
                     }
                     else{
                         String respKeyValue = responseJson.get(key).toString(); //获取响应的字段值

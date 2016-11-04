@@ -25,7 +25,11 @@
         <h4>公告:{{userName}}</h4>
         <ul>
             {{#each _DATA_}}
-            <li>{{appId}}-{{appName}}</li>
+                {{#if isTrue '==' 'true' }}
+                    <li>{{appId}}-{{appName}}</li>
+                {{else}}
+                    <li>{{appName}}-{{appName}}</li>
+                {{/if}}
             {{/each}}
         </ul>
         <div ui-view></div>

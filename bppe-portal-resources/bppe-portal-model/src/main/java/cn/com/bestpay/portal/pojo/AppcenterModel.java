@@ -9,6 +9,7 @@ public class AppcenterModel implements Serializable {
     String appName;
     String appId;
     String appUrl;
+    String isTrue;
 
     public void setAppId(String appId) {
         this.appId = appId;
@@ -32,5 +33,13 @@ public class AppcenterModel implements Serializable {
 
     public String getAppUrl() {
         return appUrl;
+    }
+
+    public String getIsTrue() {
+        return isTrue;
+    }
+
+    public void setIsTrue(String isTrue) {
+        this.isTrue = isTrue;
     }
 }

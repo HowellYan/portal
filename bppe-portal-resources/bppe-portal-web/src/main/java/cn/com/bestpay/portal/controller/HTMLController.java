@@ -43,16 +43,19 @@ public class HTMLController extends BaseController{
         appcenterModel.setAppId("1");
         appcenterModel.setAppName("yang");
         appcenterModel.setAppUrl("123123");
+        appcenterModel.setIsTrue("true");
         modelList.add(appcenterModel);
         appcenterModel = new AppcenterModel();
         appcenterModel.setAppId("2");
         appcenterModel.setAppName("tang");
         appcenterModel.setAppUrl("123123");
+        appcenterModel.setIsTrue("false");
         modelList.add(appcenterModel);
         appcenterModel = new AppcenterModel();
         appcenterModel.setAppId("3");
         appcenterModel.setAppName("tang");
         appcenterModel.setAppUrl("123123");
+        appcenterModel.setIsTrue("true");
         modelList.add(appcenterModel);
         map.put("_DATA_", modelList);
 

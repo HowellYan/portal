@@ -30,7 +30,8 @@
         <property name="suffix" value=".html" />
     </bean>
 
-    <bean id="handlebarsViewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+    <!--<bean id="handlebarsViewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">-->
+    <bean id="handlebarsViewResolver" class="cn.com.bestpay.portal.View.HbsViewResolver">
         <property name="order" value="0" />
         <property name="prefix" value="/website/" />
         <property name="contentType" value="text/html;charset=utf-8" />
@@ -39,14 +40,16 @@
         <property name="suffix" value=".html" />
     </bean>
 
-    <bean id="jsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+    <!--<bean id="jsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">-->
+    <bean id="jsResolver" class="cn.com.bestpay.portal.View.HbsViewResolver">
         <property name="order" value="1" />
         <property name="prefix" value="/website/" />
         <property name="contentType" value="application/x-javascript;charset=UTF-8" />
         <property name="suffix" value=".js"/>
     </bean>
 
-    <bean id="hbsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
+    <!--<bean id="hbsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">-->
+    <bean id="hbsResolver" class="cn.com.bestpay.portal.View.HbsViewResolver">
         <property name="order" value="2" />
         <property name="prefix" value="/website/" />
         <property name="suffix" value=".hbs" />

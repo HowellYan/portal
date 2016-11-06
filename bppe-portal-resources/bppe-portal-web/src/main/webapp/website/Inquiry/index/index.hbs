@@ -1,1 +1,32 @@
-交易查询
+<meta charset="UTF-8">
+<div id="inquiry-menu" class="row inquiry-menu" style="display: none;">
+    <div class="span3">
+        <div class="well">
+            <div>
+                <ul class="nav nav-list">
+                    <li><label class="tree-toggle nav-header">交易查询</label>
+                        <ul class="nav nav-list tree">
+                            <li><a href="#Inquiry/orderInquiry">订单交易查询</a></li>
+                            <li><a href="#Inquiry">当日统计</a></li>
+                            <li><a href="#Inquiry">历史统计</a></li>
+                            <li><a href="#Inquiry">交易统计</a></li>
+                            <li><a href="#Inquiry">赠送查询</a></li>
+                            <li><a href="#Inquiry">话费充值卡</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggle nav-header">收支查询</label>
+                        <ul class="nav nav-list tree" style="display: none">
+                            <li><a href="#">Overview</a></li>
+                            <li><a href="#">CSS</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="inquiry-content" style="display: none;margin-left: 9px;" class="span8">
+        <div ui-view></div>
+    </div>
+</div>

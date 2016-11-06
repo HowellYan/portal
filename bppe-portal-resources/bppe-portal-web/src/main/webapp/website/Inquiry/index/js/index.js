@@ -7,6 +7,12 @@ define([],function() {
     }
 
     InquiryAction.prototype.initApp = function(){
+        $("#inquiry-menu").show();
+        $("#inquiry-content").show();
+        //this.setMenu();
+        $('.tree-toggle').click(function () {
+            $(this).parent().children('ul.tree').toggle(200);
+        });
         console.log("Init InquiryAction");
     };
 

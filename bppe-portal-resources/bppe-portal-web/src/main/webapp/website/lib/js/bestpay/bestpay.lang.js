@@ -25,5 +25,16 @@ define([],function() {
         return keep;
     };
 
+    Lang.prototype.getYYYYMMDD = function () {
+        var data = '';
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        data = y + '-' + m + '-' + d;
+        return data;
+    };
+
     return new Lang();
 });

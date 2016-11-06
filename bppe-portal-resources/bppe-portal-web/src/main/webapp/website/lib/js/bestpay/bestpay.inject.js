@@ -24,6 +24,7 @@
         this.IndexMenuConfig();
         this.controller(subclass);
         this.PayMenuConfig();
+        this.InquiryMenuConfig();
     };
 
     //配置主页菜单路由
@@ -84,6 +85,22 @@
         }]);
     };
 
+    //配置inquiry菜单路由
+    BestpayRoute.prototype.InquiryMenuConfig = function () {
+        BestpayApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+            console.log("init pay router config");
+            $stateProvider.state('Inquiry.orderInquiry', {
+                url:"/orderInquiry",
+                controller:"InquiryMenu",
+                templateUrl: "&CDN_Url&/Inquiry/orderInquiry/orderInquiry.hbs?v=&version&"
+
+            })
+
+
+        }]);
+    };
+
+
 
     BestpayRoute.prototype.controller = function (subclass) {
         BestpayApp.controller('headerMenu', ['$scope', '$location', '$css', function($scope,$location,$css) {
@@ -101,6 +118,13 @@
             $css.bind("&CDN_Url&"+path+"/css/"+path.replace("/Pay/","")+".css?v=&version&",$scope);
             require(["&CDN_Url&"+path+"/js/"+path.replace("/Pay/","")+".js?v=&version&"],function(PayItemClass){
                 PayItemClass.initApp();
+            });
+        }]).controller('InquiryMenu',['$scope', '$location', '$css', function($scope,$location,$css) {
+            var path = $location.path();
+            console.log(path);
+            $css.bind("&CDN_Url&"+path+"/css/"+path.replace("/Inquiry/","")+".css?v=&version&",$scope);
+            require(["&CDN_Url&"+path+"/js/"+path.replace("/Inquiry/","")+".js?v=&version&"],function(InquiryItemClass){
+                InquiryItemClass.initApp();
             });
         }]);
     };

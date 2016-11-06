@@ -1,0 +1,17 @@
+.nav-list .nav-header{
+    text-align: center;
+    font-size: 15px;
+}
+.nav-list>li>a{
+    text-align: center;
+}
+.inquiry-menu .span3{
+    width: 200px;
+}
+.inquiry-menu .well{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.inquiry-menu .menu-item{
+    color: blue;
+}

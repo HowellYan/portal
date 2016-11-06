@@ -60,7 +60,7 @@ require.config({
             id == 'Base64' ||
             id == 'PassGuardCtrl'
         ){
-            args = "v=1.0.2";
+            args = "v=1.0.0";
         }
         return (url.indexOf('?') === -1 ? '?' : '&') + args;
     }

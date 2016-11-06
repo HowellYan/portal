@@ -6,8 +6,17 @@ define(["bestpay.http", "bestpay.lang",'bootstrapDatetimepicker','bootstrapDatet
 
     }
     OrderInquiry.prototype.initApp = function () {
-        $('.form_date').datetimepicker({
+        this.btnInit();
+
+    };
+
+    OrderInquiry.prototype.btnInit = function () {
+        var self = this;
+        //StartTime
+        $("#id_StartTime").val(Lang.getYYYYMMDD());
+        $('#id_StartTime').datetimepicker({
             language:  'zh-CN',
+            format: 'yyyy-M-dd',
             weekStart: 1,
             todayBtn:  1,
             autoclose: 1,
@@ -16,7 +25,52 @@ define(["bestpay.http", "bestpay.lang",'bootstrapDatetimepicker','bootstrapDatet
             minView: 2,
             forceParse: 0
         });
-        $("#id_StartTime").val(Lang.getYYYYMMDD());
+        $("#id_CleanStart").click(function () {
+            $("#id_StartTime").val("");
+        });
+
+        //EndTime
+        $("#id_EndTime").val(Lang.getYYYYMMDD());
+        $('#id_EndTime').datetimepicker({
+            language:  'zh-CN',
+            format: 'yyyy-M-dd',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $("#id_CleanEnd").click(function () {
+            $("#id_EndTime").val("");
+        });
+
+        //
+        $("#id_inquiry_btn").click(function () {
+            self.callSetOrderInquiryData();
+        });
+    };
+
+    OrderInquiry.prototype.callSetOrderInquiryData = function(){
+        var self = this;
+        HTTP.callWebService({
+            'service': '/api/inquiry/orderInquiry',
+            'params': self.callSetOrderInquiryDataParams(),
+            'showLoading': false,
+            'openInject' : false,
+            'success': self.callSetOrderInquiryDataSuccessCallback
+        });
+    };
+    OrderInquiry.prototype.callSetOrderInquiryDataParams = function () {
+        var params = {};
+        params = HTTP.setCommonParams(params);
+        params['StartTime'] = $("#id_StartTime").val();
+        return params;
+    };
+
+    OrderInquiry.prototype.callSetOrderInquiryDataSuccessCallback = function (result) {
+
     };
 
     return new OrderInquiry();

@@ -23,7 +23,7 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value = "/api/index/main",method = RequestMethod.POST)
     @ResponseBody
-    public ParentResp main(@RequestBody String body, HttpServletRequest request){
+    public ParentResp RestMain(@RequestBody String body, HttpServletRequest request){
         logger.info("RequestBody:"+body);
 
         ParentResp parentResp = new ParentResp();

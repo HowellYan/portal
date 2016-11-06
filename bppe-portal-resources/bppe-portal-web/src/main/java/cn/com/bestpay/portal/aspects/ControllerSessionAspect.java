@@ -33,7 +33,8 @@ public class ControllerSessionAspect {
     protected void allMethod() {
     }
 
-    @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
+    //@Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
+    @Pointcut("execution(public * Rest*(..))")
     public void cutRestController() {
     }
 

@@ -70,7 +70,7 @@ define(["bestpay.http", "bestpay.lang",'bootstrapDatetimepicker','bootstrapDatet
     };
 
     OrderInquiry.prototype.callSetOrderInquiryDataSuccessCallback = function (result) {
-
+        $scope.exercise_tpl.url = '/Inquiry/orderInquiry/orderInquiryData.hbs?v=&version&';
     };
 
     return new OrderInquiry();

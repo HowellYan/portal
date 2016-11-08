@@ -2,7 +2,7 @@
     订单交易查询
 </div>
 
-<div class="control-group">
+<div class="control-group" style="text-align: center">
     <form action="/api/inquiry/orderInquiry" method="post">
     交易日期:
     <div class="controls input-append date">
@@ -20,7 +20,5 @@
 </div>
 
 <div>
-
-    <div ng-include="'/Inquiry/orderInquiry/orderInquiryData.hbs?v=&version&'"></div>
-
+    <div  ng-include="exercise_tpl.url"></div>
 </div>

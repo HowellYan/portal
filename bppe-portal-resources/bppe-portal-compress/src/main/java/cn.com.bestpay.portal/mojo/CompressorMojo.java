@@ -17,6 +17,9 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
+import static cn.com.bestpay.portal.utils.CompressJs.CompressJs;
+import static cn.com.bestpay.portal.utils.RandomString.RandomString;
+
 /**
  *
  * @goal compress
@@ -250,7 +253,7 @@ public class CompressorMojo extends MojoSupport {
                 IOUtil.copy(in, out);
             } else if (".js".equalsIgnoreCase(src.getExtension())) {
                 if(!SystemProperty.getValueParam("system.debug").equals("true")){
-                    stringFromStream = compressJs(stringFromStream);
+                    stringFromStream = CompressJs(stringFromStream);
                 }
                 out.write(stringFromStream);
 
@@ -305,37 +308,6 @@ public class CompressorMojo extends MojoSupport {
         }
     }
 
-    private String compressJs(String codeStr){
-        Compiler.setLoggingLevel(Level.OFF);
-        Compiler compiler = new Compiler();
-        //设置压缩级别
-        CompilerOptions options = new CompilerOptions();
-
-        CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-
-        //警告级别
-        WarningLevel.DEFAULT.setOptionsForWarningLevel(options);
-        List<JSSourceFile> externalJavascriptFiles = new ArrayList<JSSourceFile>();
-        List<JSSourceFile> primaryJavascriptFiles = new ArrayList<JSSourceFile>();
-
-        primaryJavascriptFiles.add(JSSourceFile.fromCode("", codeStr));
-
-        compiler.compile(externalJavascriptFiles, primaryJavascriptFiles, options);
-
-        Result result=  compiler.getResult();
-        if(!result.success){
-            System.out.println(result.success);
-
-            JSError[] jsError = compiler.getErrors();
-            for(int k=0;k<jsError.length;k++){
-                getLog().error("JS Closure Errors:"+ jsError[k].toString());
-            }
-            return "JS Closure Errors!";
-        }
-        String[] strings= compiler.toSourceArray();
-
-        return strings[0].toString();
-    }
 
     private void compressCss(InputStreamReader in, OutputStreamWriter out)
             throws IOException {
@@ -377,15 +349,5 @@ public class CompressorMojo extends MojoSupport {
     }
 
 
-    /** 产生一个随机的字符串*/
-    protected static String RandomString(int length) {
-        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random = new Random();
-        StringBuffer buf = new StringBuffer();
-        for (int i = 0; i < length; i++) {
-            int num = random.nextInt(62);
-            buf.append(str.charAt(num));
-        }
-        return buf.toString();
-    }
+
 }

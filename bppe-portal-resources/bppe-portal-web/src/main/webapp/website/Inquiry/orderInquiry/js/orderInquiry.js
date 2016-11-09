@@ -1,7 +1,7 @@
 /**
  * Created by Howell on 5/11/16.
  */
-define(["bestpay.http", "bestpay.lang",'bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function(HTTP, Lang) {
+define(["bestpay.http", "bestpay.lang",'jqueryDataTables','bootstrapDatetimepicker','bootstrapDatetimepickerZhCN'],function(HTTP, Lang) {
     function OrderInquiry() {
 
     }
@@ -70,7 +70,17 @@ define(["bestpay.http", "bestpay.lang",'bootstrapDatetimepicker','bootstrapDatet
     };
 
     OrderInquiry.prototype.callSetOrderInquiryDataSuccessCallback = function (result) {
-        $scope.exercise_tpl.url = '/Inquiry/orderInquiry/orderInquiryData.hbs?v=&version&';
+        $('#example').DataTable({
+            "ajax": "/Inquiry/orderInquiry/orderInquiryData.hbs",
+            "columns": [
+                { "data": "name" },
+                { "data": "position" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ]
+        });
     };
 
     return new OrderInquiry();

@@ -25,6 +25,7 @@ require.config({
         'PassGuardCtrl' : '&CDN_Url&/lib/js/SecurityPassword/PassGuardCtrl',
 
         'jquery' : '&CDN_Url&/lib/js/thirdParty/jquery-1.12.4.min',
+        'jqueryDataTables' : '&CDN_Url&/lib/js/thirdParty/jquery.dataTables.min',
         'angular' : '&CDN_Url&/lib/js/thirdParty/angular.min',
         'angularUIRouter': '&CDN_Url&/lib/js/thirdParty/angular-ui-router.min',
         'angularCSS' : '&CDN_Url&/lib/js/thirdParty/angular-css.min',
@@ -33,6 +34,7 @@ require.config({
         'bootstrapDatetimepicker':'&CDN_Url&/lib/js/thirdParty/bootstrap-datetimepicker.min',
         'bootstrapDatetimepickerZhCN':'&CDN_Url&/lib/js/thirdParty/bootstrap-datetimepicker.zh-CN',
         'highcharts':'&CDN_Url&/lib/js/thirdParty/highcharts.min',
+
         // 子应用特有
         'subconfig' : 'config',
         'subclass'  : _subclass
@@ -44,12 +46,14 @@ require.config({
         highcharts:['jquery'],
         bootstrap:['angular','jquery'],
         PassGuardCtrl:['jquery'],
+        jqueryDataTables:['jquery'],
         bootstrapDatetimepicker:['bootstrap','jquery'],
         bootstrapDatetimepickerZhCN:['bootstrap','jquery','bootstrapDatetimepicker']
     },
     urlArgs : function (id, url) {
         var args = "v=&version&";
         if( id == 'jquery' ||
+            id == 'jqueryDataTables' ||
             id == 'angular' ||
             id == 'highcharts' ||
             id == 'angularUIRouter' ||

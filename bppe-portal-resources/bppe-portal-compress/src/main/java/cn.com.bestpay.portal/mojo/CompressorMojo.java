@@ -252,7 +252,9 @@ public class CompressorMojo extends MojoSupport {
                 getLog().info("No compression is enabled");
                 IOUtil.copy(in, out);
             } else if (".js".equalsIgnoreCase(src.getExtension())) {
-                if(!SystemProperty.getValueParam("system.debug").equals("true")){
+                if(stringFromStream.contains("'[nocompress]';")){
+
+                } else if(!SystemProperty.getValueParam("system.debug").equals("true")){
                     stringFromStream = CompressJs(stringFromStream);
                 }
                 out.write(stringFromStream);

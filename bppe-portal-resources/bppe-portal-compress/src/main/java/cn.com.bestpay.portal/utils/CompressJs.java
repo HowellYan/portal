@@ -29,6 +29,8 @@ public class CompressJs {
 
         compiler.compile(externalJavascriptFiles, primaryJavascriptFiles, options);
 
+
+
         Result result=  compiler.getResult();
         if(!result.success){
             System.out.println(result.success);

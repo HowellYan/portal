@@ -82,6 +82,17 @@ public class JSController {
     }
 
 
+    @RequestMapping(value = "/Index/js/main.js", method = RequestMethod.GET)
+    public ModelAndView indexMainJS(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if(session.getAttribute("userSession") != null) {
+            map.put("isLogin", "config.MainActionSelf.IndexRoute()");
+        } else {
+            map.put("isLogin", "config.MainActionSelf.IndexRoute()");
+        }
+        return new ModelAndView("/Index/js/main", map);
+    }
+
 
 
 }

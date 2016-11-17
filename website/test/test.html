@@ -17,6 +17,22 @@
 <script src="../lib/js/thirdParty/angular.min.js"></script>
 <script src="../lib/js/thirdParty/angular-route.min.js"></script>
 <script>
+    var testObjSelf = null;
+    function testObj() {
+        testObjSelf = this;
+        alert(0);
+        this.init();
+    }
+    testObj.prototype.init = function () {
+        this.hasOwnProperty("callStrFun");
+        window.eval("testObjSelf.callStrFun()");
+    };
+    testObj.prototype.callStrFun = function () {
+        alert(1);
+    };
+
+    new testObj();
+
     angular.module('routingDemoApp',['ngRoute'])
             .config(['$routeProvider', function($routeProvider){
                 $routeProvider

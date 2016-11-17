@@ -40,29 +40,28 @@
             });
         }]);
 
+        var headerMenuJson = [{
+            "key":"Index","url":"/Index","templateUrl":"/Index/index/index.hbs?v=&version&"
+        },{
+            "key":"Pay","url":"/Pay","templateUrl":"/Pay/index/index.hbs?v=&version&"
+        },{
+            "key":"Finances","url":"/Finances","templateUrl":"/Finances/index/index.hbs?v=&version&"
+        },{
+            "key":"Inquiry","url":"/Inquiry","templateUrl":"/Inquiry/index/index.hbs?v=&version&"
+        },{
+            "key":"Account","url":"/Account","templateUrl":"/Account/index/index.hbs?v=&version&"
+        }];
         BestpayApp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
             console.log("init index router config");
-            $stateProvider.state('Index', {
-                url:"/Index",
-                templateUrl: "&CDN_Url&/Index/index/index.hbs?v=&version&",
-                controller:"headerMenu"
-            }).state('Pay', {
-                url:"/Pay",
-                templateUrl: "&CDN_Url&/Pay/index/index.hbs?v=&version&",
-                controller:"headerMenu"
-            }).state('Finances', {
-                url:"/Finances",
-                templateUrl: "&CDN_Url&/Finances/index/index.hbs?v=&version&",
-                controller:"headerMenu"
-            }).state('Inquiry', {
-                url:"/Inquiry",
-                templateUrl: "&CDN_Url&/Inquiry/index/index.hbs?v=&version&",
-                controller:"headerMenu"
-            }).state('Account', {
-                url:"/Account",
-                templateUrl: "&CDN_Url&/Account/index/index.hbs?v=&version&",
-                controller:"headerMenu"
-            });
+            for(var i=0; i<headerMenuJson.length; i++){
+                var item = headerMenuJson[i];
+                $stateProvider.state(item["key"], {
+                    url:item["url"],
+                    templateUrl: "&CDN_Url&"+item["templateUrl"],
+                    controller:"headerMenu"
+                });
+            }
+
             $urlRouterProvider.otherwise('/Index');
         }]);
     };

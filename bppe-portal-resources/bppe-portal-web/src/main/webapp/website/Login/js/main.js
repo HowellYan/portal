@@ -6,6 +6,7 @@ define('subclass',["bestpay.app","bestpay.ui"],function(app,UI) {
     function LoginMainAction() {
         this.initApp();
         window.history.forward()
+        window['isLogin'] = '{{isLogin}}';
     }
 
     LoginMainAction.prototype.initApp = function () {

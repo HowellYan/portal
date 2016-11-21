@@ -13,7 +13,7 @@
     <!-- 注入 properties文件 -->
     <util:properties id="systemProperties" location="classpath:properties/system.properties"/>
 
-    <mvc:resources mapping="/**" location="/website/" />
+    <mvc:resources mapping="/**" location="/target/" />
     <mvc:resources mapping="/webCommon/**" location="/webCommon/" />
 
     <!-- ModelAndView -->
@@ -33,7 +33,7 @@
     <!--<bean id="handlebarsViewResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">-->
     <bean id="handlebarsViewResolver" class="cn.com.bestpay.portal.View.HbsViewResolver">
         <property name="order" value="0" />
-        <property name="prefix" value="/website/" />
+        <property name="prefix" value="/target/" />
         <property name="contentType" value="text/html;charset=utf-8" />
         <property name="failOnMissingFile" value="false" />
         <property name="exposeSpringMacroHelpers" value="true"/>
@@ -44,7 +44,7 @@
     <!--<bean id="jsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">-->
     <bean id="jsResolver" class="cn.com.bestpay.portal.View.HbsViewResolver">
         <property name="order" value="1" />
-        <property name="prefix" value="/website/" />
+        <property name="prefix" value="/target/" />
         <property name="contentType" value="application/x-javascript;charset=UTF-8" />
         <property name="exposeSpringMacroHelpers" value="true"/>
         <property name="suffix" value=".js"/>
@@ -53,7 +53,7 @@
     <!--<bean id="hbsResolver" class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">-->
     <bean id="hbsResolver" class="cn.com.bestpay.portal.View.HbsViewResolver">
         <property name="order" value="2" />
-        <property name="prefix" value="/website/" />
+        <property name="prefix" value="/target/" />
         <property name="contentType" value="application/x-javascript;charset=UTF-8" />
         <property name="exposeSpringMacroHelpers" value="true"/>
         <property name="suffix" value=".hbs" />

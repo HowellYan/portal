@@ -157,7 +157,7 @@ public class CompressorMojo extends MojoSupport {
 
     @Override
     protected void beforeProcess(File warSourceDirectory, File webappDirectory) throws Exception {
-        FolderCopy.MoveFolderAndFileWithSelf(warSourceDirectory.getPath(),
+        FolderCopy.copyFolderWithSelf(warSourceDirectory.getPath(),
                 webappDirectory.getPath());
     }
 
@@ -207,12 +207,12 @@ public class CompressorMojo extends MojoSupport {
         File outFile = src.toDestFile(suffix);
 
         getLog().debug("only compress if input file is younger than existing output file");
-        if (!force && outFile.exists() && (outFile.lastModified() > inFile.lastModified())) {
-            if (getLog().isInfoEnabled()) {
-                getLog().info("nothing to do, " + outFile + " is younger than original, use 'force' option or clean your target");
-            }
-            return;
-        }
+//        if (!force && outFile.exists() && (outFile.lastModified() > inFile.lastModified())) {
+//            if (getLog().isInfoEnabled()) {
+//                getLog().info("nothing to do, " + outFile + " is younger than original, use 'force' option or clean your target");
+//            }
+//            return;
+//        }
 
         InputStreamReader in = null;
         OutputStreamWriter out = null;

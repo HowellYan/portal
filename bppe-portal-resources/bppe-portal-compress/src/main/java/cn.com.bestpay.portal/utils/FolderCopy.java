@@ -43,14 +43,14 @@ public class FolderCopy {
                 if (files[i].isDirectory()) {
                     MoveFolderAndFileWithSelf(files[i].getPath(), to);
                     // 成功，删除原文件
-                    files[i].delete();
+                    //files[i].delete();
                 }
                 File moveFile = new File(moveDir.getPath() + File.separator + files[i].getName());
                 // 目标文件夹下存在的话，删除
                 if (moveFile.exists()) {
-                    moveFile.delete();
+                   // moveFile.delete();
                 }
-                files[i].renameTo(moveFile);
+                //files[i].renameTo(moveFile);
             }
             dir.delete();
         } catch (Exception e) {
@@ -124,7 +124,8 @@ public class FolderCopy {
             new File(newPath).mkdirs(); //如果文件夹不存在 则建立新文件夹
             File dir = new File(oldPath);
             // 目标
-            newPath +=  File.separator + dir.getName();
+            System.out.println(dir.getName());
+            newPath +=  File.separator + dir.getName().replace("website","");
             File moveDir = new File(newPath);
             if(dir.isDirectory()){
                 if (!moveDir.exists()) {

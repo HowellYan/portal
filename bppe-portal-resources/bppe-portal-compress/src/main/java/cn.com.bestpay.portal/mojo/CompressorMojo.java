@@ -2,9 +2,9 @@ package cn.com.bestpay.portal.mojo;
 
 
 import cn.com.bestpay.portal.config.property.SystemProperty;
+import cn.com.bestpay.portal.utils.Aggregation;
+import cn.com.bestpay.portal.utils.FolderCopy;
 import com.google.common.io.CharStreams;
-import com.google.javascript.jscomp.*;
-import com.google.javascript.jscomp.Compiler;
 
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import com.yahoo.platform.yui.compressor.CssCompressor;
@@ -14,7 +14,6 @@ import org.codehaus.plexus.util.IOUtil;
 
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.zip.GZIPOutputStream;
 
 import static cn.com.bestpay.portal.utils.CompressJs.CompressJs;
@@ -157,6 +156,12 @@ public class CompressorMojo extends MojoSupport {
     }
 
     @Override
+    protected void beforeProcess(File warSourceDirectory, File webappDirectory) throws Exception {
+        FolderCopy.MoveFolderAndFileWithSelf(warSourceDirectory.getPath(),
+                webappDirectory.getPath());
+    }
+
+    @Override
     protected void afterProcess() throws Exception {
         if (statistics && (inSizeTotal_ > 0)) {
             getLog().info(String.format("total input (%db) -> output (%db)[%d%%]", inSizeTotal_, outSizeTotal_, ((outSizeTotal_ * 100)/inSizeTotal_)));
@@ -189,7 +194,7 @@ public class CompressorMojo extends MojoSupport {
     }
 
     @Override
-    protected void processFile(SourceFile src) throws Exception {
+    protected void processFile(cn.com.bestpay.portal.utils.SourceFile src) throws Exception {
 
         if(!systemProperty.equalsIgnoreCase("")){
             SystemProperty.initSystemConf(systemProperty);

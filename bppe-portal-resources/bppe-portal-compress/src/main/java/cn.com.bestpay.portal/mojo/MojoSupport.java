@@ -1,5 +1,6 @@
 package cn.com.bestpay.portal.mojo;
 
+import cn.com.bestpay.portal.utils.SourceFile;
 import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -123,6 +124,7 @@ public abstract class MojoSupport extends AbstractMojo {
             }
             jsErrorReporter_ = new ErrorReporter4Mojo(getLog(), jswarn);
             beforeProcess();
+            beforeProcess(warSourceDirectory, webappDirectory);
             processDir(sourceDirectory, outputDirectory, null, true);
             if (!excludeResources) {
               for (Resource resource : resources){
@@ -154,11 +156,11 @@ public abstract class MojoSupport extends AbstractMojo {
 
     protected abstract String[] getDefaultIncludes() throws Exception;
     protected abstract void beforeProcess() throws Exception;
+    protected abstract void beforeProcess(File warSourceDirectory, File webappDirectory) throws Exception;
     protected abstract void afterProcess() throws Exception;
 
     /**
      * Force to use defaultIncludes (ignore srcIncludes) to avoid processing resources/includes from other type than *.css or *.js
-     * @see https://github.com/davidB/yuicompressor-maven-plugin/issues/19 
      */
     protected void processDir(File srcRoot, File destRoot, List<String> srcExcludes, boolean destAsSource) throws Exception {
         if ((srcRoot == null) || ( !srcRoot.exists() )) {

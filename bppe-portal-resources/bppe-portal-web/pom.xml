@@ -126,19 +126,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webResources>
-                        <resource>
-                            <directory>${project.parent.basedir}/target/bppe-portal-resources/website</directory>
-                            <filtering>false</filtering>
-                            <targetPath>website</targetPath>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>bppe-portal-resources</groupId>
@@ -160,6 +147,7 @@
                     <nosuffix>true</nosuffix>
                     <systemProperty>${project.parent.basedir}/target/classes/properties/system.properties</systemProperty>
                     <linebreakpos>-1</linebreakpos>
+                    <excludeResources>true</excludeResources>
                     <includes>
                         <include>**/*.js</include>
                         <include>**/*.css</include>
@@ -174,6 +162,19 @@
                         <exclude>**/*.min.js</exclude>
                         <exclude>**/*.min.css</exclude>
                     </excludes>
+                    <warSourceDirectory>${project.basedir}/src/main/webapp/website</warSourceDirectory>
+                    <webappDirectory>${project.basedir}/src/main/webapp/target</webappDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.basedir}/src/main/webapp/target</directory>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
         </plugins>

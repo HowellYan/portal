@@ -1,4 +1,4 @@
-package cn.com.bestpay.portal.mojo;
+package cn.com.bestpay.portal.utils;
 
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.IOUtil;

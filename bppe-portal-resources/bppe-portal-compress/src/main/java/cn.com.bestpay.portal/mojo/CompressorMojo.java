@@ -50,6 +50,15 @@ public class CompressorMojo extends MojoSupport {
      */
     private String systemProperty;
 
+
+    /**
+     * Read the input file using "encoding".
+     *
+     * @parameter expression="${autoconfig.userProperties}" default-value=""
+     */
+    private String userProperties;
+
+
     /**
      * If no "suffix" must be add to output filename (maven's configuration manage empty suffix like default).
      *
@@ -225,7 +234,6 @@ public class CompressorMojo extends MojoSupport {
             }
             getLog().debug("use a temporary outputfile (in case in == out)");
 
-            getLog().debug("start compression");
             out = new OutputStreamWriter(new FileOutputStream(outFileTmp), encoding);
 
             //InputStreamReader to String

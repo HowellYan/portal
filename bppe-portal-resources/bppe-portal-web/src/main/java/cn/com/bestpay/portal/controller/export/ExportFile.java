@@ -1,24 +1,18 @@
 package cn.com.bestpay.portal.controller.export;
 
-import cn.com.bestpay.portal.controller.export.model.Row;
-import cn.com.bestpay.portal.controller.export.model.Worksheet;
+
+import cn.com.bestpay.portal.pojo.AppcenterModel;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STGroup;
-import org.stringtemplate.v4.STGroupString;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
-import static java.lang.Thread.sleep;
+import java.util.*;
 
 /**
  * Created by susie on 2016/12/14.
@@ -29,16 +23,38 @@ public class ExportFile {
     @RequestMapping(value="/api/export/download")
     public void downloadResource(HttpServletRequest request, HttpServletResponse response) {
         PrintWriter out = null;
-
+        Handlebars handlebars = new Handlebars();
         try {
             out = response.getWriter();
             response.reset();
-            response.setHeader("Content-Disposition", "attachment; filename=dict.txt");
+            response.setHeader("Content-Disposition", "attachment; filename=abc.xls");
             response.setContentType("application/octet-stream; charset=utf-8");
-            for(int i=0; i< 6000; i++){
-                out.write("asdasdasdas啊实打实大苏打士大夫但是国服进度反馈给司机的概率事件\n\t");
+
+            Template template =  handlebars.compile("export/header");
+            Map map = new HashMap<String, Object>();
+            map.put("sheetName", "abc");
+            map.put("columnNum", "12");
+            map.put("rowNum", "60000");
+            String result = template.apply(map);
+            out.write(result);
+
+
+            template =  handlebars.compile("export/body");
+            for(int i=0;i<60000;i++){
+                List<AppcenterModel> modelList = new ArrayList<>();
+                AppcenterModel appcenterModel = new AppcenterModel();
+                map = new HashMap<String, Object>();
+                appcenterModel.setAppId(""+i);
+                appcenterModel.setAppName("a");
+                appcenterModel.setAppUrl("http://a");
+                modelList.add(appcenterModel);
+                map.put("dataList", modelList);
+                result = template.apply(map);
+                out.write(result);
             }
-            out.write("asdasdasdas");
+
+            template =  handlebars.compile("export/footer");
+            out.write(template.text());
 
             out.flush();
             out.close();
@@ -58,62 +74,4 @@ response.addHeader("Content-Disposition", "attachment; filename=" + URLEncoder.e
 
     }
 
-
-
-    public static void main(String[] args) throws FileNotFoundException {
-        ExportFile exportFile = new ExportFile();
-        exportFile.output2();
-    }
-
-    public void output2() throws FileNotFoundException{
-        long startTimne = System.currentTimeMillis();
-
-        STGroup stGroup = new STGroupString("stringTemplate");
-
-        //写入excel文件头部信息 /D:/howell/java/portal/bppe-portal-resources/target/classes/export
-        ST head =  stGroup.getInstanceOf("head");
-        File file = new File("D:/output.xls");
-        PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(file)));
-        writer.print(head.toString());
-        writer.flush();
-
-        int sheets = 300;
-        //excel单表最大行数是65535
-        int maxRowNum = 60000;
-
-        //写入excel文件数据信息
-        for(int i=0;i<sheets;i++){
-            ST body =  stGroup.getInstanceOf("export/body");
-            Worksheet worksheet = new Worksheet();
-            worksheet.setSheet(" "+(i+1)+" ");
-            worksheet.setColumnNum(3);
-            worksheet.setRowNum(maxRowNum);
-            List<Row> rows = new ArrayList<Row>();
-            for(int j=0;j<maxRowNum;j++){
-                Row row = new Row();
-                row.setName1(""+new Random().nextInt(100000));
-                row.setName2(""+j);
-                row.setName3(i+""+j);
-                rows.add(row);
-            }
-            worksheet.setRows(rows);
-            body.add("worksheet", worksheet);
-            writer.print(body.toString());
-            writer.flush();
-            rows.clear();
-            rows = null;
-            worksheet = null;
-            body = null;
-            Runtime.getRuntime().gc();
-            System.out.println("正在生成excel文件的 sheet"+(i+1));
-        }
-
-        //写入excel文件尾部
-        writer.print("</Workbook>");
-        writer.flush();
-        writer.close();
-        System.out.println("生成excel文件完成");
-        long endTime = System.currentTimeMillis();
-        System.out.println("用时="+((endTime-startTimne)/1000)+"秒");
-    }
 }

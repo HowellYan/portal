@@ -32,32 +32,6 @@
    <Protection/>
   </Style>
  </Styles>
-
- $worksheets:{
- <Worksheet ss:Name="$it.sheet$">
-  <Table ss:ExpandedColumnCount="3" ss:ExpandedRowCount="60000" x:FullColumns="1"
-   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
- $it.rows:{
-   <Row>
-    <Cell><Data ss:Type="String">$it.name1$</Data></Cell>
-    <Cell><Data ss:Type="String">$it.name2$</Data></Cell>
-    <Cell><Data ss:Type="String">$it.name3$</Data></Cell>
-   </Row>
- }$
-  </Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <Selected/>
-   <Panes>
-    <Pane>
-     <Number>3</Number>
-     <ActiveRow>68</ActiveRow>
-     <ActiveCol>5</ActiveCol>
-    </Pane>
-   </Panes>
-   <ProtectObjects>False</ProtectObjects>
-   <ProtectScenarios>False</ProtectScenarios>
-  </WorksheetOptions>
- </Worksheet>
-}$
-
-</Workbook>
+    <Worksheet ss:Name="{{sheetName}}">
+        <Table ss:ExpandedColumnCount="{{columnNum}}" ss:ExpandedRowCount="{{rowNum}}" x:FullColumns="1"
+               x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="14.25">
